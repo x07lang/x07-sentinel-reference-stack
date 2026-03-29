@@ -1,4 +1,8 @@
 mode: deployment
+image:
+  repository: otel/opentelemetry-collector
+command:
+  name: otelcol
 config:
   receivers:
     otlp:

@@ -40,7 +40,16 @@ pack_service() {
   jq --arg workload_id "${workload_id}" '.policy_id = $workload_id' "${tmp_app_dir}/policy/run-os.json" >"${tmp_policy}"
   mv "${tmp_policy}" "${tmp_app_dir}/policy/run-os.json"
 
-  (cd "${tmp_app_dir}" &&     x07 wasm workload pack       --project x07.json       --manifest arch/service/index.x07service.json       --out-dir "${out_dir}"       --runtime-image "${runtime_image}"       --container-port 8080       --json pretty       --quiet-json)
+  (cd "${tmp_app_dir}" && \
+    x07 wasm workload pack \
+      --project x07.json \
+      --manifest arch/service/index.x07service.json \
+      --out-dir "${out_dir}" \
+      --runtime-image "${runtime_image}" \
+      --container-port 8080 \
+      --json pretty \
+      --report-out "${out_dir}/pack.report.json" \
+      --quiet-json)
 
   local pack_path="${out_dir}/x07.workload.pack.json"
   local digest

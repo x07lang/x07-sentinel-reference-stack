@@ -26,6 +26,12 @@ From the repo root:
 make local-smoke
 ```
 
+On Apple Silicon, you can build native images with:
+
+```sh
+DOCKER_PLATFORM=linux/arm64 make local-smoke
+```
+
 If you want to inspect the running stack after the smoke completes:
 
 ```sh

@@ -11,6 +11,8 @@
 # Local env and outputs
 .env
 .env.*
+.aws.env
+.gcp.env
 *.local
 out/
 dist/

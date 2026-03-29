@@ -24,7 +24,7 @@ if [[ -z "${ENVIRONMENT_ID:-}" ]]; then
   ENVIRONMENT_ID="$(jq -r --arg slug "${ENVIRONMENT_SLUG}" '.result.items[] | select(.environment_slug == $slug) | .environment_id' <<<"${env_json}")"
 fi
 
-api_post_json "/v1/context/select" "$(jq -n --arg org_id "${ORG_ID}" --arg project_id "${PROJECT_ID}" --arg environment_id "${ENVIRONMENT_ID}" '{org_id:$org_id, project_id:$project_id, environment_id:$environment_id}')"
+api_post_json "/v1/context/select" "$(jq -n --arg org_id "${ORG_ID}" --arg project_id "${PROJECT_ID}" --arg environment_id "${ENVIRONMENT_ID}" '{org_id:$org_id, project_id:$project_id, environment_id:$environment_id}')" >/dev/null
 
 echo "ORG_ID=${ORG_ID}"
 echo "PROJECT_ID=${PROJECT_ID}"

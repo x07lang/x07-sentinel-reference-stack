@@ -16,6 +16,9 @@ x07up component add wasm
 bash sentinel/scripts/05-build-images.sh
 ```
 
+Notes:
+- EKS/GKE nodes are typically `linux/amd64`. If you need a different platform, set `DOCKER_PLATFORM` (for example `DOCKER_PLATFORM=linux/arm64`).
+
 ## Pack workloads
 
 ```sh

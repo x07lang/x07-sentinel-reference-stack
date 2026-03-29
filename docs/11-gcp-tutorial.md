@@ -71,6 +71,16 @@ export RABBITMQ_PASSWORD='replace-me'
 bash install-common-addons.sh
 ```
 
+Wait for the ingress controller to get a public address, then record the base URL you want to use for the target:
+
+```sh
+ingress_ip="$(kubectl -n ingress-nginx get svc ingress-nginx-controller -o jsonpath='{.status.loadBalancer.ingress[0].ip}')"
+ingress_host="$(kubectl -n ingress-nginx get svc ingress-nginx-controller -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')"
+echo "ingress_ip=${ingress_ip}"
+echo "ingress_host=${ingress_host}"
+echo "TARGET_BASE_URL=https://<use ingress_ip or ingress_host>"
+```
+
 ## 5. Build binding values
 
 Populate these env values for `sentinel/scripts/03-put-secrets.sh`:
@@ -89,10 +99,16 @@ Populate these env values for `sentinel/scripts/03-put-secrets.sh`:
 ```sh
 cd ../../../sentinel/examples
 cp gcp.env.example .gcp.env
+${EDITOR:-nano} .gcp.env
 set -a
 source .gcp.env
 set +a
 ```
+
+At minimum, set:
+- `TARGET_BASE_URL` to `https://...` (or loopback `http://127.0.0.1` / `http://localhost` for local smoke)
+- `CLUSTER_REF` to the GKE `cluster_name`
+- `NAMESPACE` to a fresh namespace (for example `orders-dev`)
 
 ## 7. Create or select Sentinel context
 
