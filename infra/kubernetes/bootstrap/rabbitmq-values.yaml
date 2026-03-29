@@ -1,9 +1,0 @@
-replicaCount: 1
-resources:
-  requests:
-    cpu: 100m
-    memory: 256Mi
-auth:
-  username: x07ref
-persistence:
-  enabled: false
