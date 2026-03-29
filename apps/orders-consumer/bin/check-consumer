@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+set -eu
+
+case "${1:-}" in
+  --alive)
+    exit 0
+    ;;
+  --ready)
+    test -f /tmp/consumer_ready
+    ;;
+  *)
+    echo "usage: check-consumer (--alive|--ready)" >&2
+    exit 2
+    ;;
+esac

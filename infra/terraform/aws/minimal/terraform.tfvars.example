@@ -1,0 +1,4 @@
+aws_region    = "us-west-1"
+project_name  = "x07ref"
+environment   = "dev"
+db_password   = "replace-me"

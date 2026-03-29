@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "reconciliation.report",
+  "type": "object",
+  "required": [
+    "report_id",
+    "generated_at",
+    "order_count",
+    "projected_count",
+    "missing_projection_count"
+  ],
+  "properties": {
+    "report_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "order_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "projected_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "missing_projection_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "object_key": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

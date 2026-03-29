@@ -1,0 +1,27 @@
+# Terraform
+**/.terraform/
+**/.terraform.lock.hcl
+**/*.tfstate
+**/*.tfstate.*
+*.tfplan
+**/terraform.tfvars
+**/*.auto.tfvars
+**/*.auto.tfvars.json
+
+# Local env and outputs
+.env
+.env.*
+*.local
+out/
+dist/
+build/
+tmp/
+.cache/
+
+# X07
+**/.x07/
+
+# IDE / OS
+.DS_Store
+.vscode/
+.idea/

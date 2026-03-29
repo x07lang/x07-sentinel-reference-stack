@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "order.created",
+  "type": "object",
+  "required": [
+    "event_type",
+    "order_id",
+    "customer_id",
+    "currency",
+    "total_minor",
+    "created_at"
+  ],
+  "properties": {
+    "event_type": {
+      "const": "order.created"
+    },
+    "order_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "customer_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "total_minor": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

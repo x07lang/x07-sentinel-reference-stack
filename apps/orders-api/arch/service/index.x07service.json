@@ -1,0 +1,91 @@
+{
+  "schema_version": "x07.service.manifest@0.1.0",
+  "service_id": "orders_api",
+  "display_name": "Orders API",
+  "domain_pack": {
+    "id": "orders_api",
+    "display_name": "Orders API"
+  },
+  "cells": [
+    {
+      "cell_key": "primary",
+      "cell_kind": "api-cell",
+      "entry_symbol": "app.main",
+      "ingress_kind": "http",
+      "runtime_class": "native-http",
+      "scale_class": "replicated-http",
+      "binding_refs": [
+        "db.primary",
+        "msg.orders",
+        "obj.reports",
+        "telemetry.otlp"
+      ],
+      "topology_group": "primary",
+      "runtime": {
+        "probes": {
+          "readiness": {
+            "probe_kind": "http",
+            "path": "/readyz",
+            "port": 8080,
+            "period_seconds": 5,
+            "failure_threshold": 3
+          },
+          "liveness": {
+            "probe_kind": "http",
+            "path": "/livez",
+            "port": 8080,
+            "period_seconds": 10,
+            "failure_threshold": 3
+          }
+        },
+        "rollout": {
+          "strategy": "rolling",
+          "max_unavailable": "25%",
+          "max_surge": "25%"
+        },
+        "autoscaling": {
+          "min_replicas": 2,
+          "max_replicas": 6,
+          "target_cpu_utilization": 70
+        }
+      }
+    }
+  ],
+  "topology_profiles": [
+    {
+      "id": "dev",
+      "target_kind": "hosted",
+      "placement": "co-located",
+      "notes": "single deployable for local and hosted dev"
+    },
+    {
+      "id": "prod",
+      "target_kind": "k8s",
+      "placement": "split-by-cell",
+      "notes": "allow independent scale later"
+    }
+  ],
+  "resource_bindings": [
+    {
+      "name": "db.primary",
+      "kind": "postgres",
+      "required": true
+    },
+    {
+      "name": "msg.orders",
+      "kind": "amqp",
+      "required": true
+    },
+    {
+      "name": "obj.reports",
+      "kind": "s3",
+      "required": true
+    },
+    {
+      "name": "telemetry.otlp",
+      "kind": "otlp",
+      "required": true
+    }
+  ],
+  "default_trust_profile": "sandboxed_service_v1"
+}

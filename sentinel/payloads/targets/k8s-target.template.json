@@ -1,0 +1,16 @@
+{
+  "target_id": "${TARGET_ID}",
+  "display_name": "${TARGET_DISPLAY_NAME}",
+  "target_kind": "k8s",
+  "status": "ready",
+  "profile_json": {
+    "base_url": "${TARGET_BASE_URL}",
+    "cluster_ref": "${CLUSTER_REF}",
+    "default_namespace": "${NAMESPACE}"
+  },
+  "capabilities_json": {
+    "runtime_provider": "lp.impl.runtime.k8s_v1",
+    "routing_provider": "lp.impl.routing.k8s_ingress_v1",
+    "binding_kinds": ["postgres", "s3", "amqp", "otlp", "secret"]
+  }
+}

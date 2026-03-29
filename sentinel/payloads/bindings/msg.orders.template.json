@@ -1,0 +1,8 @@
+{
+  "name": "msg.orders",
+  "kind": "amqp",
+  "provider_kind": "reference.external",
+  "secret_ref_json": { "url_secret": "${AMQP_URL_SECRET}" },
+  "status": "ready",
+  "message": "Reference stack AMQP binding"
+}

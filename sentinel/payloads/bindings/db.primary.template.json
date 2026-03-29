@@ -1,0 +1,8 @@
+{
+  "name": "db.primary",
+  "kind": "postgres",
+  "provider_kind": "reference.external",
+  "secret_ref_json": { "dsn_secret": "${DB_DSN_SECRET}" },
+  "status": "ready",
+  "message": "Reference stack PostgreSQL binding"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "obj.reports",
+  "kind": "s3",
+  "provider_kind": "reference.external",
+  "secret_ref_json": {
+    "endpoint_secret": "${S3_ENDPOINT_SECRET}",
+    "bucket_secret": "${S3_BUCKET_SECRET}",
+    "access_key_secret": "${S3_ACCESS_KEY_SECRET}",
+    "secret_key_secret": "${S3_SECRET_KEY_SECRET}"
+  },
+  "status": "ready",
+  "message": "Reference stack object store binding"
+}

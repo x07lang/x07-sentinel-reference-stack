@@ -1,0 +1,8 @@
+{
+  "name": "telemetry.otlp",
+  "kind": "otlp",
+  "provider_kind": "reference.external",
+  "secret_ref_json": { "endpoint_secret": "${OTLP_ENDPOINT_SECRET}" },
+  "status": "ready",
+  "message": "Reference stack OTLP binding"
+}

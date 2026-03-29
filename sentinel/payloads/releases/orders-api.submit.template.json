@@ -1,0 +1,9 @@
+{
+  "schema_version": "lp.release.submit.request@0.1.0",
+  "workload_id": "${ORDERS_API_WORKLOAD_ID}",
+  "environment_id": "${ENVIRONMENT_ID}",
+  "target_id": "${TARGET_ID}",
+  "pack_digest": "sha256:${ORDERS_API_PACK_DIGEST}",
+  "rollout_strategy": "manual",
+  "notes": "reference stack orders-api"
+}

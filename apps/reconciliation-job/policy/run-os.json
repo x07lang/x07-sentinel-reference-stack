@@ -1,0 +1,53 @@
+{
+  "schema_version": "x07.run-os-policy@0.1.0",
+  "policy_id": "reconciliation_job",
+  "limits": {
+    "cpu_ms": 5000,
+    "wall_ms": 6000,
+    "mem_bytes": 33554432,
+    "fds": 32,
+    "procs": 8
+  },
+  "fs": {
+    "enabled": false,
+    "read_roots": [],
+    "write_roots": [],
+    "deny_hidden": true
+  },
+  "net": {
+    "enabled": true,
+    "allow_dns": false,
+    "allow_tcp": true,
+    "allow_udp": false,
+    "allow_hosts": []
+  },
+  "env": {
+    "enabled": true,
+    "allow_keys": [
+      "X07_BINDING_*",
+      "APP_VERSION",
+      "PREPROD_VERSION"
+    ],
+    "deny_keys": []
+  },
+  "time": {
+    "enabled": true,
+    "allow_monotonic": true,
+    "allow_wall_clock": true,
+    "allow_sleep": true,
+    "max_sleep_ms": 60000,
+    "allow_local_tzid": false
+  },
+  "language": {
+    "allow_unsafe": true,
+    "allow_ffi": true
+  },
+  "process": {
+    "enabled": false,
+    "allow_spawn": false,
+    "max_live": 0,
+    "max_spawns": 0,
+    "allow_exec": false,
+    "allow_exit": false
+  }
+}

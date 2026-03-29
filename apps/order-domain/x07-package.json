@@ -1,0 +1,23 @@
+{
+  "schema_version": "x07.package@0.1.0",
+  "name": "order-domain",
+  "version": "0.1.0",
+  "description": "Shared order + reconciliation contracts for the Sentinel reference stack.",
+  "docs": "Shared order-domain helpers used by orders-api, orders-consumer, and reconciliation-job.\n\nModules:\n- order.domain\n",
+  "module_root": "modules",
+  "modules": [
+    "order.domain"
+  ],
+  "meta": {
+    "determinism_tier": "pure",
+    "worlds_allowed": [
+      "solve-pure",
+      "solve-fs",
+      "solve-rr",
+      "solve-full",
+      "run-os",
+      "run-os-sandboxed"
+    ],
+    "visibility": "project"
+  }
+}
