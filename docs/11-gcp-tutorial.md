@@ -13,6 +13,13 @@
   - RabbitMQ
   - OpenTelemetry Collector
 
+## Prerequisites
+
+- GCP credentials for the target project.
+  - Terraform uses Application Default Credentials (ADC): `gcloud auth application-default login`
+  - `gcloud container clusters get-credentials` uses the gcloud user session: `gcloud auth login`
+- Ensure the account used for ADC has permissions to enable services and provision GKE/Cloud SQL/Storage in the selected `project_id`.
+
 ## 1. Configure Terraform input
 
 ```sh
