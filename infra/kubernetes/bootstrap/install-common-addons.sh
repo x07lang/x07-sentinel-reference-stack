@@ -3,6 +3,7 @@ set -euo pipefail
 
 : "${RABBITMQ_PASSWORD:?set RABBITMQ_PASSWORD}"
 : "${RABBITMQ_IMAGE:=rabbitmq:4.1.3-management}"
+export RABBITMQ_IMAGE
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
