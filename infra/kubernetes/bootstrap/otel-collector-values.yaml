@@ -7,10 +7,10 @@ config:
   receivers:
     otlp:
       protocols:
-        http:
-        grpc:
+        http: {}
+        grpc: {}
   processors:
-    batch:
+    batch: {}
   exporters:
     debug: {}
   service:

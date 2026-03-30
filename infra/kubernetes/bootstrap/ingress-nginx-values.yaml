@@ -1,4 +1,7 @@
 controller:
   replicaCount: 2
+  watchIngressWithoutClass: true
+  ingressClassResource:
+    default: true
   service:
     type: LoadBalancer

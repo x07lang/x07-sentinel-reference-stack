@@ -466,6 +466,251 @@
         ],
         [
           "let",
+          "vd",
+          [
+            "ext.data_model.value_number",
+            "d_dec"
+          ]
+        ],
+        [
+          "let",
+          "la",
+          [
+            "std.bytes.len",
+            [
+              "bytes.view",
+              "va"
+            ]
+          ]
+        ],
+        [
+          "let",
+          "lb",
+          [
+            "std.bytes.len",
+            [
+              "bytes.view",
+              "vb"
+            ]
+          ]
+        ],
+        [
+          "let",
+          "lc",
+          [
+            "std.bytes.len",
+            [
+              "bytes.view",
+              "vc"
+            ]
+          ]
+        ],
+        [
+          "let",
+          "ld",
+          [
+            "std.bytes.len",
+            [
+              "bytes.view",
+              "vd"
+            ]
+          ]
+        ],
+        [
+          "let",
+          "elems",
+          [
+            "std.vec.with_capacity",
+            [
+              "+",
+              64,
+              [
+                "+",
+                "la",
+                [
+                  "+",
+                  "lb",
+                  [
+                    "+",
+                    "lc",
+                    "ld"
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "set",
+          "elems",
+          [
+            "std.u32.push_le",
+            "elems",
+            4
+          ]
+        ],
+        [
+          "set",
+          "elems",
+          [
+            "std.u32.push_le",
+            "elems",
+            "la"
+          ]
+        ],
+        [
+          "set",
+          "elems",
+          [
+            "std.vec.extend_bytes",
+            "elems",
+            [
+              "bytes.view",
+              "va"
+            ]
+          ]
+        ],
+        [
+          "set",
+          "elems",
+          [
+            "std.u32.push_le",
+            "elems",
+            "lb"
+          ]
+        ],
+        [
+          "set",
+          "elems",
+          [
+            "std.vec.extend_bytes",
+            "elems",
+            [
+              "bytes.view",
+              "vb"
+            ]
+          ]
+        ],
+        [
+          "set",
+          "elems",
+          [
+            "std.u32.push_le",
+            "elems",
+            "lc"
+          ]
+        ],
+        [
+          "set",
+          "elems",
+          [
+            "std.vec.extend_bytes",
+            "elems",
+            [
+              "bytes.view",
+              "vc"
+            ]
+          ]
+        ],
+        [
+          "set",
+          "elems",
+          [
+            "std.u32.push_le",
+            "elems",
+            "ld"
+          ]
+        ],
+        [
+          "set",
+          "elems",
+          [
+            "std.vec.extend_bytes",
+            "elems",
+            [
+              "bytes.view",
+              "vd"
+            ]
+          ]
+        ],
+        [
+          "let",
+          "elems_b",
+          [
+            "std.vec.as_bytes",
+            "elems"
+          ]
+        ],
+        [
+          "let",
+          "seq_val",
+          [
+            "ext.data_model.value_seq_from_elems",
+            [
+              "bytes.view",
+              "elems_b"
+            ]
+          ]
+        ],
+        [
+          "ext.data_model.doc_ok",
+          [
+            "bytes.view",
+            "seq_val"
+          ]
+        ]
+      ],
+      "kind": "defn",
+      "name": "app.db_params_doc3_string_1_number_v1",
+      "params": [
+        {
+          "name": "a",
+          "ty": "bytes_view"
+        },
+        {
+          "name": "b",
+          "ty": "bytes_view"
+        },
+        {
+          "name": "c",
+          "ty": "bytes_view"
+        },
+        {
+          "name": "d_dec",
+          "ty": "bytes_view"
+        }
+      ],
+      "result": "bytes"
+    },
+    {
+      "body": [
+        "begin",
+        [
+          "let",
+          "va",
+          [
+            "ext.data_model.value_string",
+            "a"
+          ]
+        ],
+        [
+          "let",
+          "vb",
+          [
+            "ext.data_model.value_string",
+            "b"
+          ]
+        ],
+        [
+          "let",
+          "vc",
+          [
+            "ext.data_model.value_string",
+            "c"
+          ]
+        ],
+        [
+          "let",
           "la",
           [
             "std.bytes.len",
@@ -874,251 +1119,6 @@
         },
         {
           "name": "d",
-          "ty": "bytes_view"
-        }
-      ],
-      "result": "bytes"
-    },
-    {
-      "body": [
-        "begin",
-        [
-          "let",
-          "va",
-          [
-            "ext.data_model.value_string",
-            "a"
-          ]
-        ],
-        [
-          "let",
-          "vb",
-          [
-            "ext.data_model.value_string",
-            "b"
-          ]
-        ],
-        [
-          "let",
-          "vc",
-          [
-            "ext.data_model.value_string",
-            "c"
-          ]
-        ],
-        [
-          "let",
-          "vd",
-          [
-            "ext.data_model.value_number",
-            "d_dec"
-          ]
-        ],
-        [
-          "let",
-          "la",
-          [
-            "std.bytes.len",
-            [
-              "bytes.view",
-              "va"
-            ]
-          ]
-        ],
-        [
-          "let",
-          "lb",
-          [
-            "std.bytes.len",
-            [
-              "bytes.view",
-              "vb"
-            ]
-          ]
-        ],
-        [
-          "let",
-          "lc",
-          [
-            "std.bytes.len",
-            [
-              "bytes.view",
-              "vc"
-            ]
-          ]
-        ],
-        [
-          "let",
-          "ld",
-          [
-            "std.bytes.len",
-            [
-              "bytes.view",
-              "vd"
-            ]
-          ]
-        ],
-        [
-          "let",
-          "elems",
-          [
-            "std.vec.with_capacity",
-            [
-              "+",
-              64,
-              [
-                "+",
-                "la",
-                [
-                  "+",
-                  "lb",
-                  [
-                    "+",
-                    "lc",
-                    "ld"
-                  ]
-                ]
-              ]
-            ]
-          ]
-        ],
-        [
-          "set",
-          "elems",
-          [
-            "std.u32.push_le",
-            "elems",
-            4
-          ]
-        ],
-        [
-          "set",
-          "elems",
-          [
-            "std.u32.push_le",
-            "elems",
-            "la"
-          ]
-        ],
-        [
-          "set",
-          "elems",
-          [
-            "std.vec.extend_bytes",
-            "elems",
-            [
-              "bytes.view",
-              "va"
-            ]
-          ]
-        ],
-        [
-          "set",
-          "elems",
-          [
-            "std.u32.push_le",
-            "elems",
-            "lb"
-          ]
-        ],
-        [
-          "set",
-          "elems",
-          [
-            "std.vec.extend_bytes",
-            "elems",
-            [
-              "bytes.view",
-              "vb"
-            ]
-          ]
-        ],
-        [
-          "set",
-          "elems",
-          [
-            "std.u32.push_le",
-            "elems",
-            "lc"
-          ]
-        ],
-        [
-          "set",
-          "elems",
-          [
-            "std.vec.extend_bytes",
-            "elems",
-            [
-              "bytes.view",
-              "vc"
-            ]
-          ]
-        ],
-        [
-          "set",
-          "elems",
-          [
-            "std.u32.push_le",
-            "elems",
-            "ld"
-          ]
-        ],
-        [
-          "set",
-          "elems",
-          [
-            "std.vec.extend_bytes",
-            "elems",
-            [
-              "bytes.view",
-              "vd"
-            ]
-          ]
-        ],
-        [
-          "let",
-          "elems_b",
-          [
-            "std.vec.as_bytes",
-            "elems"
-          ]
-        ],
-        [
-          "let",
-          "seq_val",
-          [
-            "ext.data_model.value_seq_from_elems",
-            [
-              "bytes.view",
-              "elems_b"
-            ]
-          ]
-        ],
-        [
-          "ext.data_model.doc_ok",
-          [
-            "bytes.view",
-            "seq_val"
-          ]
-        ]
-      ],
-      "kind": "defn",
-      "name": "app.db_params_doc3_string_1_number_v1",
-      "params": [
-        {
-          "name": "a",
-          "ty": "bytes_view"
-        },
-        {
-          "name": "b",
-          "ty": "bytes_view"
-        },
-        {
-          "name": "c",
-          "ty": "bytes_view"
-        },
-        {
-          "name": "d_dec",
           "ty": "bytes_view"
         }
       ],
@@ -2437,50 +2437,64 @@
           ]
         ],
         [
-          "if",
+          "begin",
           [
-            "=",
+            "let",
+            "_x07_tmp_copy_decls_12_body_50",
             [
-              "std.db.spec.resp_is_ok_v1",
+              "view.to_bytes",
               [
                 "bytes.view",
                 "resp_outbox"
               ]
-            ],
-            1
+            ]
           ],
-          0,
           [
-            "begin",
+            "if",
             [
-              "let",
-              "msg",
+              "=",
               [
-                "std.db.spec.resp_err_msg_v1",
+                "std.db.spec.resp_is_ok_v1",
                 [
                   "bytes.view",
-                  "resp_outbox"
+                  "_x07_tmp_copy_decls_12_body_50"
                 ]
-              ]
+              ],
+              1
             ],
+            0,
             [
-              "std.db.pg.close_v1",
-              "conn",
+              "begin",
               [
-                "view.to_bytes",
-                "caps_v"
-              ]
-            ],
-            [
-              "return",
-              [
-                "app.http_resp_doc_v1",
-                500,
+                "let",
+                "msg",
                 [
-                  "app.json_error_v1",
+                  "std.db.spec.resp_err_msg_v1",
                   [
                     "bytes.view",
-                    "msg"
+                    "resp_outbox"
+                  ]
+                ]
+              ],
+              [
+                "std.db.pg.close_v1",
+                "conn",
+                [
+                  "view.to_bytes",
+                  "caps_v"
+                ]
+              ],
+              [
+                "return",
+                [
+                  "app.http_resp_doc_v1",
+                  500,
+                  [
+                    "app.json_error_v1",
+                    [
+                      "bytes.view",
+                      "msg"
+                    ]
                   ]
                 ]
               ]
@@ -2590,42 +2604,56 @@
           ]
         ],
         [
-          "if",
+          "begin",
           [
-            "=",
+            "let",
+            "_x07_tmp_copy_decls_12_body_60",
             [
-              "std.obj.s3.spec.resp_is_ok_v1",
+              "view.to_bytes",
               [
                 "bytes.view",
                 "obj_resp"
               ]
-            ],
-            1
+            ]
           ],
-          0,
           [
-            "begin",
+            "if",
             [
-              "let",
-              "msg",
+              "=",
               [
-                "std.obj.s3.spec.resp_err_msg_v1",
+                "std.obj.s3.spec.resp_is_ok_v1",
                 [
                   "bytes.view",
-                  "obj_resp"
+                  "_x07_tmp_copy_decls_12_body_60"
                 ]
-              ]
+              ],
+              1
             ],
+            0,
             [
-              "return",
+              "begin",
               [
-                "app.http_resp_doc_v1",
-                500,
+                "let",
+                "msg",
                 [
-                  "app.json_error_v1",
+                  "std.obj.s3.spec.resp_err_msg_v1",
                   [
                     "bytes.view",
-                    "msg"
+                    "obj_resp"
+                  ]
+                ]
+              ],
+              [
+                "return",
+                [
+                  "app.http_resp_doc_v1",
+                  500,
+                  [
+                    "app.json_error_v1",
+                    [
+                      "bytes.view",
+                      "msg"
+                    ]
                   ]
                 ]
               ]
@@ -3237,43 +3265,57 @@
           ]
         ],
         [
-          "if",
+          "begin",
           [
-            "=",
+            "let",
+            "_x07_tmp_copy_decls_14_body_9",
             [
-              "app.db_ensure_schema_v1",
-              "conn",
+              "view.to_bytes",
               [
                 "bytes.view",
                 "caps"
               ]
-            ],
-            1
+            ]
           ],
-          0,
           [
-            "begin",
+            "if",
             [
-              "std.db.pg.close_v1",
-              "conn",
+              "=",
               [
-                "view.to_bytes",
+                "app.db_ensure_schema_v1",
+                "conn",
                 [
                   "bytes.view",
-                  "caps"
+                  "_x07_tmp_copy_decls_14_body_9"
                 ]
-              ]
+              ],
+              1
             ],
+            0,
             [
-              "return",
+              "begin",
               [
-                "app.http_resp_doc_v1",
-                500,
+                "std.db.pg.close_v1",
+                "conn",
                 [
-                  "app.json_error_v1",
+                  "view.to_bytes",
                   [
-                    "bytes.view_lit",
-                    "db schema ensure failed"
+                    "bytes.view",
+                    "caps"
+                  ]
+                ]
+              ],
+              [
+                "return",
+                [
+                  "app.http_resp_doc_v1",
+                  500,
+                  [
+                    "app.json_error_v1",
+                    [
+                      "bytes.view_lit",
+                      "db schema ensure failed"
+                    ]
                   ]
                 ]
               ]
@@ -3285,7 +3327,7 @@
           "sql_order",
           [
             "bytes.lit",
-            "select id,customer_id,currency,total_minor::text from orders where id = $1::text"
+            "select id,customer_id,currency,total_minor from orders where id = $1::text"
           ]
         ],
         [
@@ -3555,7 +3597,7 @@
           "let",
           "total_s",
           [
-            "ext.data_model.string_get",
+            "ext.data_model.number_get",
             "order_dv",
             "total_off"
           ]
@@ -3771,36 +3813,8 @@
         ],
         [
           "let",
-          "total_i",
-          [
-            "app.parse_u32_dec_or_neg1_v1",
-            [
-              "bytes.view",
-              "total_s"
-            ]
-          ]
-        ],
-        [
-          "let",
-          "total_i2",
-          [
-            "if",
-            [
-              "<",
-              "total_i",
-              0
-            ],
-            0,
-            "total_i"
-          ]
-        ],
-        [
-          "let",
           "total_dec",
-          [
-            "std.fmt.s32_to_dec",
-            "total_i2"
-          ]
+          "total_s"
         ],
         [
           "let",
@@ -5255,43 +5269,57 @@
           ]
         ],
         [
-          "if",
+          "begin",
           [
-            "=",
+            "let",
+            "_x07_tmp_copy_decls_19_body_8",
             [
-              "app.db_ensure_schema_v1",
-              "conn",
+              "view.to_bytes",
               [
                 "bytes.view",
                 "caps"
               ]
-            ],
-            1
+            ]
           ],
-          0,
           [
-            "begin",
+            "if",
             [
-              "std.db.pg.close_v1",
-              "conn",
+              "=",
               [
-                "view.to_bytes",
+                "app.db_ensure_schema_v1",
+                "conn",
                 [
                   "bytes.view",
-                  "caps"
+                  "_x07_tmp_copy_decls_19_body_8"
                 ]
-              ]
+              ],
+              1
             ],
+            0,
             [
-              "return",
+              "begin",
               [
-                "app.http_resp_doc_v1",
-                500,
+                "std.db.pg.close_v1",
+                "conn",
                 [
-                  "app.json_error_v1",
+                  "view.to_bytes",
                   [
-                    "bytes.view_lit",
-                    "db schema ensure failed"
+                    "bytes.view",
+                    "caps"
+                  ]
+                ]
+              ],
+              [
+                "return",
+                [
+                  "app.http_resp_doc_v1",
+                  500,
+                  [
+                    "app.json_error_v1",
+                    [
+                      "bytes.view_lit",
+                      "db schema ensure failed"
+                    ]
                   ]
                 ]
               ]
@@ -5543,101 +5571,115 @@
           ]
         ],
         [
-          "if",
+          "begin",
           [
-            "=",
+            "let",
+            "_x07_tmp_copy_decls_19_body_27",
             [
-              "std.bytes.eq",
+              "view.to_bytes",
               [
                 "bytes.view",
                 "canon"
-              ],
-              [
-                "bytes.view",
-                "err"
-              ]
-            ],
-            1
-          ],
-          [
-            "app.http_resp_doc_v1",
-            500,
-            [
-              "app.json_error_v1",
-              [
-                "bytes.view_lit",
-                "invalid report json"
               ]
             ]
           ],
           [
-            "begin",
+            "if",
             [
-              "let",
-              "wrapper",
+              "=",
               [
-                "std.vec.with_capacity",
-                [
-                  "+",
-                  32,
-                  [
-                    "view.len",
-                    [
-                      "bytes.view",
-                      "canon"
-                    ]
-                  ]
-                ]
-              ]
-            ],
-            [
-              "set",
-              "wrapper",
-              [
-                "std.vec.extend_bytes",
-                "wrapper",
-                [
-                  "bytes.view_lit",
-                  "{\"ok\":true,\"report\":"
-                ]
-              ]
-            ],
-            [
-              "set",
-              "wrapper",
-              [
-                "std.vec.extend_bytes",
-                "wrapper",
+                "std.bytes.eq",
                 [
                   "bytes.view",
-                  "canon"
-                ]
-              ]
-            ],
-            [
-              "set",
-              "wrapper",
-              [
-                "std.vec.extend_bytes",
-                "wrapper",
+                  "_x07_tmp_copy_decls_19_body_27"
+                ],
                 [
-                  "bytes.view_lit",
-                  "}"
+                  "bytes.view",
+                  "err"
                 ]
-              ]
-            ],
-            [
-              "let",
-              "wrapper_b",
-              [
-                "std.vec.as_bytes",
-                "wrapper"
-              ]
+              ],
+              1
             ],
             [
               "app.http_resp_doc_v1",
-              200,
-              "wrapper_b"
+              500,
+              [
+                "app.json_error_v1",
+                [
+                  "bytes.view_lit",
+                  "invalid report json"
+                ]
+              ]
+            ],
+            [
+              "begin",
+              [
+                "let",
+                "wrapper",
+                [
+                  "std.vec.with_capacity",
+                  [
+                    "+",
+                    32,
+                    [
+                      "view.len",
+                      [
+                        "bytes.view",
+                        "canon"
+                      ]
+                    ]
+                  ]
+                ]
+              ],
+              [
+                "set",
+                "wrapper",
+                [
+                  "std.vec.extend_bytes",
+                  "wrapper",
+                  [
+                    "bytes.view_lit",
+                    "{\"ok\":true,\"report\":"
+                  ]
+                ]
+              ],
+              [
+                "set",
+                "wrapper",
+                [
+                  "std.vec.extend_bytes",
+                  "wrapper",
+                  [
+                    "bytes.view",
+                    "canon"
+                  ]
+                ]
+              ],
+              [
+                "set",
+                "wrapper",
+                [
+                  "std.vec.extend_bytes",
+                  "wrapper",
+                  [
+                    "bytes.view_lit",
+                    "}"
+                  ]
+                ]
+              ],
+              [
+                "let",
+                "wrapper_b",
+                [
+                  "std.vec.as_bytes",
+                  "wrapper"
+                ]
+              ],
+              [
+                "app.http_resp_doc_v1",
+                200,
+                "wrapper_b"
+              ]
             ]
           ]
         ]
@@ -5947,221 +5989,144 @@
                     "app.http_reports_latest_v1"
                   ],
                   [
-                    "if",
+                    "begin",
                     [
-                      "=",
+                      "let",
+                      "_x07_tmp_copy_decls_21_body_16_2_3_3_3_3",
                       [
-                        "std.bytes.ends_with",
-                        "path",
+                        "view.to_bytes",
                         [
                           "bytes.view",
                           "p_items"
                         ]
-                      ],
-                      1
-                    ],
-                    [
-                      "app.http_items_list_v1"
+                      ]
                     ],
                     [
                       "if",
                       [
                         "=",
                         [
-                          "std.bytes.starts_with",
+                          "std.bytes.ends_with",
                           "path",
-                          "p_items_prefix_v"
+                          [
+                            "bytes.view",
+                            "_x07_tmp_copy_decls_21_body_16_2_3_3_3_3"
+                          ]
                         ],
                         1
                       ],
                       [
-                        "begin",
-                        [
-                          "let",
-                          "suffix",
-                          [
-                            "view.slice",
-                            "path",
-                            "p_items_prefix_len",
-                            [
-                              "-",
-                              [
-                                "view.len",
-                                "path"
-                              ],
-                              "p_items_prefix_len"
-                            ]
-                          ]
-                        ],
-                        [
-                          "app.http_items_get_v1",
-                          "suffix"
-                        ]
+                        "app.http_items_list_v1"
                       ],
                       [
-                        "begin",
+                        "if",
                         [
-                          "let",
-                          "n_path",
+                          "=",
                           [
-                            "view.len",
-                            "path"
+                            "std.bytes.starts_with",
+                            "path",
+                            "p_items_prefix_v"
+                          ],
+                          1
+                        ],
+                        [
+                          "begin",
+                          [
+                            "let",
+                            "suffix",
+                            [
+                              "view.slice",
+                              "path",
+                              "p_items_prefix_len",
+                              [
+                                "-",
+                                [
+                                  "view.len",
+                                  "path"
+                                ],
+                                "p_items_prefix_len"
+                              ]
+                            ]
+                          ],
+                          [
+                            "app.http_items_get_v1",
+                            "suffix"
                           ]
                         ],
                         [
-                          "let",
-                          "last_slash",
-                          -1
-                        ],
-                        [
-                          "for",
-                          "i",
-                          0,
-                          "n_path",
+                          "begin",
                           [
-                            "begin",
+                            "let",
+                            "n_path",
                             [
-                              "if",
+                              "view.len",
+                              "path"
+                            ]
+                          ],
+                          [
+                            "let",
+                            "last_slash",
+                            -1
+                          ],
+                          [
+                            "for",
+                            "i",
+                            0,
+                            "n_path",
+                            [
+                              "begin",
                               [
-                                "<",
-                                "last_slash",
-                                0
-                              ],
-                              [
-                                "begin",
+                                "if",
                                 [
-                                  "let",
-                                  "j",
-                                  [
-                                    "-",
-                                    [
-                                      "-",
-                                      "n_path",
-                                      1
-                                    ],
-                                    "i"
-                                  ]
+                                  "<",
+                                  "last_slash",
+                                  0
                                 ],
                                 [
-                                  "if",
+                                  "begin",
                                   [
-                                    "=",
+                                    "let",
+                                    "j",
                                     [
-                                      "view.get_u8",
-                                      "path",
-                                      "j"
-                                    ],
-                                    47
+                                      "-",
+                                      [
+                                        "-",
+                                        "n_path",
+                                        1
+                                      ],
+                                      "i"
+                                    ]
                                   ],
                                   [
-                                    "set",
-                                    "last_slash",
-                                    "j"
+                                    "if",
+                                    [
+                                      "=",
+                                      [
+                                        "view.get_u8",
+                                        "path",
+                                        "j"
+                                      ],
+                                      47
+                                    ],
+                                    [
+                                      "set",
+                                      "last_slash",
+                                      "j"
+                                    ],
+                                    0
                                   ],
                                   0
                                 ],
                                 0
-                              ],
-                              0
-                            ]
-                          ]
-                        ],
-                        [
-                          "if",
-                          [
-                            "<",
-                            "last_slash",
-                            0
-                          ],
-                          [
-                            "app.http_resp_doc_v1",
-                            404,
-                            [
-                              "app.json_error_v1",
-                              [
-                                "bytes.view_lit",
-                                "not found"
                               ]
                             ]
                           ],
                           [
                             "if",
                             [
-                              "<u",
+                              "<",
                               "last_slash",
-                              [
-                                "-",
-                                "n_path",
-                                1
-                              ]
-                            ],
-                            [
-                              "begin",
-                              [
-                                "let",
-                                "prefix",
-                                [
-                                  "view.slice",
-                                  "path",
-                                  0,
-                                  "last_slash"
-                                ]
-                              ],
-                              [
-                                "if",
-                                [
-                                  "=",
-                                  [
-                                    "std.bytes.ends_with",
-                                    "prefix",
-                                    [
-                                      "bytes.view",
-                                      "p_items"
-                                    ]
-                                  ],
-                                  1
-                                ],
-                                [
-                                  "begin",
-                                  [
-                                    "let",
-                                    "item_suffix",
-                                    [
-                                      "view.slice",
-                                      "path",
-                                      [
-                                        "+",
-                                        "last_slash",
-                                        1
-                                      ],
-                                      [
-                                        "-",
-                                        "n_path",
-                                        [
-                                          "+",
-                                          "last_slash",
-                                          1
-                                        ]
-                                      ]
-                                    ]
-                                  ],
-                                  [
-                                    "app.http_items_get_v1",
-                                    "item_suffix"
-                                  ]
-                                ],
-                                [
-                                  "app.http_resp_doc_v1",
-                                  404,
-                                  [
-                                    "app.json_error_v1",
-                                    [
-                                      "bytes.view_lit",
-                                      "not found"
-                                    ]
-                                  ]
-                                ]
-                              ]
+                              0
                             ],
                             [
                               "app.http_resp_doc_v1",
@@ -6171,6 +6136,97 @@
                                 [
                                   "bytes.view_lit",
                                   "not found"
+                                ]
+                              ]
+                            ],
+                            [
+                              "if",
+                              [
+                                "<u",
+                                "last_slash",
+                                [
+                                  "-",
+                                  "n_path",
+                                  1
+                                ]
+                              ],
+                              [
+                                "begin",
+                                [
+                                  "let",
+                                  "prefix",
+                                  [
+                                    "view.slice",
+                                    "path",
+                                    0,
+                                    "last_slash"
+                                  ]
+                                ],
+                                [
+                                  "if",
+                                  [
+                                    "=",
+                                    [
+                                      "std.bytes.ends_with",
+                                      "prefix",
+                                      [
+                                        "bytes.view",
+                                        "p_items"
+                                      ]
+                                    ],
+                                    1
+                                  ],
+                                  [
+                                    "begin",
+                                    [
+                                      "let",
+                                      "item_suffix",
+                                      [
+                                        "view.slice",
+                                        "path",
+                                        [
+                                          "+",
+                                          "last_slash",
+                                          1
+                                        ],
+                                        [
+                                          "-",
+                                          "n_path",
+                                          [
+                                            "+",
+                                            "last_slash",
+                                            1
+                                          ]
+                                        ]
+                                      ]
+                                    ],
+                                    [
+                                      "app.http_items_get_v1",
+                                      "item_suffix"
+                                    ]
+                                  ],
+                                  [
+                                    "app.http_resp_doc_v1",
+                                    404,
+                                    [
+                                      "app.json_error_v1",
+                                      [
+                                        "bytes.view_lit",
+                                        "not found"
+                                      ]
+                                    ]
+                                  ]
+                                ]
+                              ],
+                              [
+                                "app.http_resp_doc_v1",
+                                404,
+                                [
+                                  "app.json_error_v1",
+                                  [
+                                    "bytes.view_lit",
+                                    "not found"
+                                  ]
                                 ]
                               ]
                             ]
@@ -6198,22 +6254,17 @@
               1
             ],
             [
-              "if",
+              "begin",
               [
-                "=",
+                "let",
+                "_x07_tmp_copy_decls_21_body_16_3_2",
                 [
-                  "std.bytes.ends_with",
-                  "path",
+                  "view.to_bytes",
                   [
                     "bytes.view",
                     "p_items"
                   ]
-                ],
-                1
-              ],
-              [
-                "app.http_items_create_v1",
-                "body"
+                ]
               ],
               [
                 "if",
@@ -6224,180 +6275,107 @@
                     "path",
                     [
                       "bytes.view",
-                      "p_crawler_messages"
+                      "_x07_tmp_copy_decls_21_body_16_3_2"
                     ]
                   ],
                   1
                 ],
                 [
-                  "app.http_crawler_message_create_v1",
+                  "app.http_items_create_v1",
                   "body"
                 ],
                 [
-                  "begin",
+                  "if",
                   [
-                    "let",
-                    "n_path",
+                    "=",
                     [
-                      "view.len",
-                      "path"
-                    ]
-                  ],
-                  [
-                    "let",
-                    "last_slash",
-                    -1
-                  ],
-                  [
-                    "for",
-                    "i",
-                    0,
-                    "n_path",
-                    [
-                      "begin",
+                      "std.bytes.ends_with",
+                      "path",
                       [
-                        "if",
+                        "bytes.view",
+                        "p_crawler_messages"
+                      ]
+                    ],
+                    1
+                  ],
+                  [
+                    "app.http_crawler_message_create_v1",
+                    "body"
+                  ],
+                  [
+                    "begin",
+                    [
+                      "let",
+                      "n_path",
+                      [
+                        "view.len",
+                        "path"
+                      ]
+                    ],
+                    [
+                      "let",
+                      "last_slash",
+                      -1
+                    ],
+                    [
+                      "for",
+                      "i",
+                      0,
+                      "n_path",
+                      [
+                        "begin",
                         [
-                          "<",
-                          "last_slash",
-                          0
-                        ],
-                        [
-                          "begin",
+                          "if",
                           [
-                            "let",
-                            "j",
-                            [
-                              "-",
-                              [
-                                "-",
-                                "n_path",
-                                1
-                              ],
-                              "i"
-                            ]
+                            "<",
+                            "last_slash",
+                            0
                           ],
                           [
-                            "if",
+                            "begin",
                             [
-                              "=",
+                              "let",
+                              "j",
                               [
-                                "view.get_u8",
-                                "path",
-                                "j"
-                              ],
-                              47
+                                "-",
+                                [
+                                  "-",
+                                  "n_path",
+                                  1
+                                ],
+                                "i"
+                              ]
                             ],
                             [
-                              "set",
-                              "last_slash",
-                              "j"
+                              "if",
+                              [
+                                "=",
+                                [
+                                  "view.get_u8",
+                                  "path",
+                                  "j"
+                                ],
+                                47
+                              ],
+                              [
+                                "set",
+                                "last_slash",
+                                "j"
+                              ],
+                              0
                             ],
                             0
                           ],
                           0
-                        ],
-                        0
-                      ]
-                    ]
-                  ],
-                  [
-                    "if",
-                    [
-                      "<",
-                      "last_slash",
-                      0
-                    ],
-                    [
-                      "app.http_resp_doc_v1",
-                      404,
-                      [
-                        "app.json_error_v1",
-                        [
-                          "bytes.view_lit",
-                          "not found"
                         ]
                       ]
                     ],
                     [
                       "if",
                       [
-                        "<u",
+                        "<",
                         "last_slash",
-                        [
-                          "-",
-                          "n_path",
-                          1
-                        ]
-                      ],
-                      [
-                        "begin",
-                        [
-                          "let",
-                          "prefix",
-                          [
-                            "view.slice",
-                            "path",
-                            0,
-                            "last_slash"
-                          ]
-                        ],
-                        [
-                          "if",
-                          [
-                            "=",
-                            [
-                              "std.bytes.ends_with",
-                              "prefix",
-                              [
-                                "bytes.view",
-                                "p_items"
-                              ]
-                            ],
-                            1
-                          ],
-                          [
-                            "begin",
-                            [
-                              "let",
-                              "item_suffix",
-                              [
-                                "view.slice",
-                                "path",
-                                [
-                                  "+",
-                                  "last_slash",
-                                  1
-                                ],
-                                [
-                                  "-",
-                                  "n_path",
-                                  [
-                                    "+",
-                                    "last_slash",
-                                    1
-                                  ]
-                                ]
-                              ]
-                            ],
-                            [
-                              "app.http_items_update_v1",
-                              "item_suffix",
-                              "body"
-                            ]
-                          ],
-                          [
-                            "app.http_resp_doc_v1",
-                            404,
-                            [
-                              "app.json_error_v1",
-                              [
-                                "bytes.view_lit",
-                                "not found"
-                              ]
-                            ]
-                          ]
-                        ]
+                        0
                       ],
                       [
                         "app.http_resp_doc_v1",
@@ -6407,6 +6385,98 @@
                           [
                             "bytes.view_lit",
                             "not found"
+                          ]
+                        ]
+                      ],
+                      [
+                        "if",
+                        [
+                          "<u",
+                          "last_slash",
+                          [
+                            "-",
+                            "n_path",
+                            1
+                          ]
+                        ],
+                        [
+                          "begin",
+                          [
+                            "let",
+                            "prefix",
+                            [
+                              "view.slice",
+                              "path",
+                              0,
+                              "last_slash"
+                            ]
+                          ],
+                          [
+                            "if",
+                            [
+                              "=",
+                              [
+                                "std.bytes.ends_with",
+                                "prefix",
+                                [
+                                  "bytes.view",
+                                  "p_items"
+                                ]
+                              ],
+                              1
+                            ],
+                            [
+                              "begin",
+                              [
+                                "let",
+                                "item_suffix",
+                                [
+                                  "view.slice",
+                                  "path",
+                                  [
+                                    "+",
+                                    "last_slash",
+                                    1
+                                  ],
+                                  [
+                                    "-",
+                                    "n_path",
+                                    [
+                                      "+",
+                                      "last_slash",
+                                      1
+                                    ]
+                                  ]
+                                ]
+                              ],
+                              [
+                                "app.http_items_update_v1",
+                                "item_suffix",
+                                "body"
+                              ]
+                            ],
+                            [
+                              "app.http_resp_doc_v1",
+                              404,
+                              [
+                                "app.json_error_v1",
+                                [
+                                  "bytes.view_lit",
+                                  "not found"
+                                ]
+                              ]
+                            ]
+                          ]
+                        ],
+                        [
+                          "app.http_resp_doc_v1",
+                          404,
+                          [
+                            "app.json_error_v1",
+                            [
+                              "bytes.view_lit",
+                              "not found"
+                            ]
                           ]
                         ]
                       ]
@@ -7312,27 +7382,41 @@
           ]
         ],
         [
-          "if",
+          "begin",
           [
-            "=",
+            "let",
+            "_x07_tmp_copy_decls_26_body_6",
             [
-              "ext.uuid.uuid_is_err",
+              "view.to_bytes",
               [
                 "bytes.view",
                 "uuid_doc"
               ]
-            ],
-            1
+            ]
           ],
           [
-            "bytes.alloc",
-            0
-          ],
-          [
-            "ext.uuid.uuid_get_string",
+            "if",
             [
-              "bytes.view",
-              "uuid_doc"
+              "=",
+              [
+                "ext.uuid.uuid_is_err",
+                [
+                  "bytes.view",
+                  "_x07_tmp_copy_decls_26_body_6"
+                ]
+              ],
+              1
+            ],
+            [
+              "bytes.alloc",
+              0
+            ],
+            [
+              "ext.uuid.uuid_get_string",
+              [
+                "bytes.view",
+                "uuid_doc"
+              ]
             ]
           ]
         ]
@@ -7830,6 +7914,38 @@
         ],
         [
           "let",
+          "user_dec_b",
+          [
+            "order.domain.url_percent_decode_v1",
+            "user_view"
+          ]
+        ],
+        [
+          "let",
+          "pass_dec_b",
+          [
+            "order.domain.url_percent_decode_v1",
+            "pass_view"
+          ]
+        ],
+        [
+          "let",
+          "user_view_dec",
+          [
+            "bytes.view",
+            "user_dec_b"
+          ]
+        ],
+        [
+          "let",
+          "pass_view_dec",
+          [
+            "bytes.view",
+            "pass_dec_b"
+          ]
+        ],
+        [
+          "let",
           "host_view",
           [
             "view.slice",
@@ -7876,11 +7992,11 @@
                 "+",
                 [
                   "view.len",
-                  "user_view"
+                  "user_view_dec"
                 ],
                 [
                   "view.len",
-                  "pass_view"
+                  "pass_view_dec"
                 ]
               ]
             ]
@@ -7892,7 +8008,7 @@
           [
             "std.vec.extend_bytes",
             "up",
-            "user_view"
+            "user_view_dec"
           ]
         ],
         [
@@ -7910,7 +8026,7 @@
           [
             "std.vec.extend_bytes",
             "up",
-            "pass_view"
+            "pass_view_dec"
           ]
         ],
         [
@@ -7965,10 +8081,7 @@
           [
             "std.vec.extend_bytes",
             "auth",
-            [
-              "bytes.view",
-              "b64"
-            ]
+            "b64"
           ]
         ],
         [
@@ -8142,10 +8255,7 @@
           "p_json",
           [
             "app.json_escape_string_v1",
-            [
-              "bytes.view",
-              "payload_b64"
-            ]
+            "payload_b64"
           ]
         ],
         [

@@ -604,6 +604,38 @@
         ],
         [
           "let",
+          "user_dec_b",
+          [
+            "order.domain.url_percent_decode_v1",
+            "user_view"
+          ]
+        ],
+        [
+          "let",
+          "pass_dec_b",
+          [
+            "order.domain.url_percent_decode_v1",
+            "pass_view"
+          ]
+        ],
+        [
+          "let",
+          "user_view_dec",
+          [
+            "bytes.view",
+            "user_dec_b"
+          ]
+        ],
+        [
+          "let",
+          "pass_view_dec",
+          [
+            "bytes.view",
+            "pass_dec_b"
+          ]
+        ],
+        [
+          "let",
           "host_view",
           [
             "view.slice",
@@ -650,11 +682,11 @@
                 "+",
                 [
                   "view.len",
-                  "user_view"
+                  "user_view_dec"
                 ],
                 [
                   "view.len",
-                  "pass_view"
+                  "pass_view_dec"
                 ]
               ]
             ]
@@ -666,7 +698,7 @@
           [
             "std.vec.extend_bytes",
             "up",
-            "user_view"
+            "user_view_dec"
           ]
         ],
         [
@@ -684,7 +716,7 @@
           [
             "std.vec.extend_bytes",
             "up",
-            "pass_view"
+            "pass_view_dec"
           ]
         ],
         [
@@ -739,10 +771,7 @@
           [
             "std.vec.extend_bytes",
             "auth",
-            [
-              "bytes.view",
-              "b64"
-            ]
+            "b64"
           ]
         ],
         [
@@ -773,25 +802,39 @@
           "let",
           "queue_v",
           [
-            "if",
+            "begin",
             [
-              "=",
+              "let",
+              "_x07_tmp_copy_decls_5_body_42_2",
               [
-                "std.bytes.len",
+                "view.to_bytes",
                 [
                   "bytes.view",
                   "topic_env"
                 ]
+              ]
+            ],
+            [
+              "if",
+              [
+                "=",
+                [
+                  "std.bytes.len",
+                  [
+                    "bytes.view",
+                    "_x07_tmp_copy_decls_5_body_42_2"
+                  ]
+                ],
+                0
               ],
-              0
-            ],
-            [
-              "bytes.view_lit",
-              "order.created"
-            ],
-            [
-              "bytes.view",
-              "topic_env"
+              [
+                "bytes.view_lit",
+                "order.created"
+              ],
+              [
+                "bytes.view",
+                "topic_env"
+              ]
             ]
           ]
         ],
@@ -1425,10 +1468,7 @@
                                               "params",
                                               [
                                                 "app.db_params_doc2_string_v1",
-                                                [
-                                                  "bytes.view",
-                                                  "order_id"
-                                                ],
+                                                "order_id",
                                                 [
                                                   "bytes.view",
                                                   "status"

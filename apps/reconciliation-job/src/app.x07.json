@@ -443,7 +443,10 @@
             "<=",
             [
               "bytes.len",
-              "report_id"
+              [
+                "bytes.view",
+                "report_id"
+              ]
             ],
             0
           ],
@@ -481,7 +484,10 @@
               16,
               [
                 "bytes.len",
-                "report_id"
+                [
+                  "bytes.view",
+                  "report_id"
+                ]
               ]
             ]
           ]
@@ -558,7 +564,10 @@
             "<=",
             [
               "bytes.len",
-              "report_json"
+              [
+                "bytes.view",
+                "report_json"
+              ]
             ],
             0
           ],
@@ -789,27 +798,41 @@
           ]
         ],
         [
-          "if",
+          "begin",
           [
-            "=",
+            "let",
+            "_x07_tmp_copy_decls_4_body_6",
             [
-              "ext.uuid.uuid_is_err",
+              "view.to_bytes",
               [
                 "bytes.view",
                 "uuid_doc"
               ]
-            ],
-            1
+            ]
           ],
           [
-            "bytes.alloc",
-            0
-          ],
-          [
-            "ext.uuid.uuid_get_string",
+            "if",
             [
-              "bytes.view",
-              "uuid_doc"
+              "=",
+              [
+                "ext.uuid.uuid_is_err",
+                [
+                  "bytes.view",
+                  "_x07_tmp_copy_decls_4_body_6"
+                ]
+              ],
+              1
+            ],
+            [
+              "bytes.alloc",
+              0
+            ],
+            [
+              "ext.uuid.uuid_get_string",
+              [
+                "bytes.view",
+                "uuid_doc"
+              ]
             ]
           ]
         ]

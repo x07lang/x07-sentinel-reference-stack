@@ -27,6 +27,7 @@ ARG APP_VERSION
 RUN apt-get update     && apt-get install -y --no-install-recommends ca-certificates curl openssl     && rm -rf /var/lib/apt/lists/*
 
 ENV APP_VERSION="${APP_VERSION}"
+ENV X07_OS_DB_NET_REQUIRE_VERIFY="false"
 
 COPY --from=builder /out/orders-api /usr/local/bin/orders-api
 

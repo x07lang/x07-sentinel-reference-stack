@@ -24,6 +24,17 @@ kubectl -n rabbitmq create secret generic rabbitmq-auth \
 envsubst < "${ROOT_DIR}/rabbitmq-manifest.yaml" | kubectl apply -f - >/dev/null
 kubectl -n rabbitmq rollout status deployment/rabbitmq --timeout=5m
 
+for attempt in {1..30}; do
+  if kubectl -n rabbitmq exec deploy/rabbitmq -- sh -lc 'rabbitmqadmin -u "$RABBITMQ_DEFAULT_USER" -p "$RABBITMQ_DEFAULT_PASS" -V / declare queue name=order.created durable=true >/dev/null'; then
+    break
+  fi
+  if [[ "${attempt}" == "30" ]]; then
+    echo "failed to declare RabbitMQ queue order.created" >&2
+    exit 2
+  fi
+  sleep 2
+done
+
 helm upgrade --install otel-collector open-telemetry/opentelemetry-collector   --namespace observability   --create-namespace   -f "${ROOT_DIR}/otel-collector-values.yaml"
 
 kubectl get ns ingress-nginx cert-manager rabbitmq observability

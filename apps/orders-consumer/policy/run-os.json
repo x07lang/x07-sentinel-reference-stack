@@ -25,6 +25,7 @@
     "enabled": true,
     "allow_keys": [
       "X07_BINDING_*",
+      "X07_OS_DB_NET_REQUIRE_VERIFY",
       "APP_VERSION",
       "PREPROD_VERSION"
     ],

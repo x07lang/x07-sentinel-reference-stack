@@ -80,6 +80,19 @@ api_put_json() {
   curl -fsS -X PUT "${CLOUD_API_BASE_URL}${path}"     -H "Authorization: Bearer ${ACCESS_TOKEN}"     -H "Idempotency-Key: ${idem}"     -H 'content-type: application/json'     --data "${data}"
 }
 
+api_patch_json() {
+  local path="$1"
+  local data="$2"
+  local idem
+  idem="$(idempotency_key "PATCH" "${path}" "${data}")"
+  curl -fsS -X PATCH "${CLOUD_API_BASE_URL}${path}"     -H "Authorization: Bearer ${ACCESS_TOKEN}"     -H "Idempotency-Key: ${idem}"     -H 'content-type: application/json'     --data "${data}"
+}
+
+api_get_status() {
+  local path="$1"
+  curl -sS -o /dev/null -w '%{http_code}' "${CLOUD_API_BASE_URL}${path}"     -H "Authorization: Bearer ${ACCESS_TOKEN}"
+}
+
 api_put_blob() {
   local sha="$1"
   local file_path="$2"

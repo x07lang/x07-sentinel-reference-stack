@@ -18,6 +18,7 @@
   - This stack creates IAM roles for EKS and an IAM user + access key for the S3 binding.
   - If `tofu apply` fails with `AccessDenied` on `iam:*` or `logs:TagResource`, grant those permissions (or use an admin role) and retry.
 - If `tofu apply` fails with `Cannot find version ... for postgres`, update `engine_version` in `infra/terraform/aws/minimal/main.tf` to an engine version available in the selected region.
+- Terraform CLI must satisfy the repo constraint: `terraform >= 1.7.0` (see `infra/terraform/aws/minimal/versions.tf`). OpenTofu is also acceptable.
 
 ## 1. Configure Terraform input
 
@@ -78,6 +79,11 @@ ingress_host="$(kubectl -n ingress-nginx get svc ingress-nginx-controller -o jso
 echo "ingress_host=${ingress_host}"
 echo "TARGET_BASE_URL=https://${ingress_host}"
 ```
+
+Notes:
+
+- This tutorial uses `https://` for the target base URL. With the default ingress-nginx install, TLS is typically a default/self-signed certificate, so verification steps may need `CURL_INSECURE=1`.
+- For production, attach a real certificate (ACM / cert-manager / managed cert) and use a stable DNS name.
 
 ## 5. Build binding values
 
@@ -144,6 +150,26 @@ bash 11-rollback.sh
 ```
 
 ## 11. Tear down
+
+Before destroying the cloud infrastructure, uninstall the in-cluster add-ons so cloud load balancers and related security groups are cleaned up:
+
+```sh
+helm -n ingress-nginx uninstall ingress-nginx || true
+helm -n cert-manager uninstall cert-manager || true
+helm -n observability uninstall otel-collector || true
+kubectl delete ns rabbitmq observability ingress-nginx cert-manager --wait=false || true
+```
+
+If you used a `LoadBalancer` Service (ingress-nginx), wait until the Classic ELB disappears before deleting the VPC. If the cluster is destroyed first, the ELB can become orphaned and block subnet deletion.
+
+If `terraform destroy` fails deleting the reports bucket with `BucketNotEmpty`, delete all object versions:
+
+```sh
+bucket="$(${TF_BIN} output -raw bucket_name)"
+aws s3api list-object-versions --bucket "${bucket}" --output json \
+  | jq '{Objects: ([.Versions[]?, .DeleteMarkers[]?] | map({Key:.Key, VersionId:.VersionId})), Quiet: true}' \
+  | aws s3api delete-objects --bucket "${bucket}" --delete file:///dev/stdin
+```
 
 ```sh
 cd ../../infra/terraform/aws/minimal

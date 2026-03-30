@@ -1,4 +1,5 @@
 {
+  "binding_id": "binding.amqp.msg.orders.${ENVIRONMENT_SLUG}",
   "name": "msg.orders",
   "kind": "amqp",
   "provider_kind": "reference.external",

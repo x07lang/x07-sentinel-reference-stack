@@ -6,6 +6,8 @@ require_env TARGET_BASE_URL
 require_env NAMESPACE
 
 CURL_INSECURE="${CURL_INSECURE:-0}"
+SMOKE_WAIT_SECONDS="${SMOKE_WAIT_SECONDS:-180}"
+SMOKE_POLL_SECONDS="${SMOKE_POLL_SECONDS:-3}"
 curl_args=(-fsS)
 if [[ "${CURL_INSECURE}" == "1" ]]; then
   curl_args+=(-k)
@@ -26,16 +28,89 @@ if command -v kubectl >/dev/null 2>&1 && command -v jq >/dev/null 2>&1; then
   fi
 fi
 
-curl "${curl_args[@]}" "${base_url}/readyz" >/dev/null || {
-  echo "API readiness check failed" >&2
-  exit 1
-}
-
+echo "Waiting for API readiness"
+deadline="$(( $(date +%s) + SMOKE_WAIT_SECONDS ))"
+while true; do
+  if (( $(date +%s) >= deadline )); then
+    echo "timed out waiting for API readiness" >&2
+    curl "${curl_args[@]}" "${base_url}/readyz" >&2 || true
+    exit 1
+  fi
+  if curl "${curl_args[@]}" "${base_url}/readyz" >/dev/null 2>&1; then
+    break
+  fi
+  sleep "${SMOKE_POLL_SECONDS}"
+done
 echo "API readiness OK"
 
 if command -v kubectl >/dev/null 2>&1; then
   kubectl -n "${NAMESPACE}" get deploy,po,svc,ingress,cronjob,job,hpa || true
 fi
+
+if ! command -v jq >/dev/null 2>&1; then
+  echo "missing jq; cannot run full smoke checks" >&2
+  exit 2
+fi
+
+echo "Creating an order"
+order_resp="$(
+  curl "${curl_args[@]}" -X POST "${base_url}/orders" \
+    -H 'content-type: application/json' \
+    --data '{"customer_id":"cust_smoke","currency":"USD","total_minor":1299}'
+)"
+order_id="$(jq -r '.id // .order.id // empty' <<<"${order_resp}")"
+if [[ -z "${order_id}" || "${order_id}" == "null" ]]; then
+  echo "POST /orders did not return an id:" >&2
+  echo "${order_resp}" >&2
+  exit 1
+fi
+echo "order_id=${order_id}"
+
+echo "Waiting for consumer projection"
+deadline="$(( $(date +%s) + SMOKE_WAIT_SECONDS ))"
+while true; do
+  if (( $(date +%s) >= deadline )); then
+    echo "timed out waiting for consumer projection" >&2
+    curl "${curl_args[@]}" "${base_url}/orders/${order_id}" | jq . >&2 || true
+    exit 1
+  fi
+  o="$(curl "${curl_args[@]}" "${base_url}/orders/${order_id}" 2>/dev/null || true)"
+  if [[ -n "${o}" ]] && jq -e '.projection.status == "consumed"' >/dev/null 2>&1 <<<"${o}"; then
+    break
+  fi
+  sleep "${SMOKE_POLL_SECONDS}"
+done
+echo "Consumer projection OK"
+
+if command -v kubectl >/dev/null 2>&1; then
+  if kubectl -n "${NAMESPACE}" get cronjob reconciliation-job >/dev/null 2>&1; then
+    job_name="reconciliation-smoke-$(date +%s)"
+    echo "Starting reconciliation job (${job_name})"
+    kubectl -n "${NAMESPACE}" create job --from=cronjob/reconciliation-job "${job_name}" >/dev/null
+    if ! kubectl -n "${NAMESPACE}" wait --for=condition=complete "job/${job_name}" --timeout=5m >/dev/null; then
+      kubectl -n "${NAMESPACE}" get job "${job_name}" -o wide || true
+      kubectl -n "${NAMESPACE}" describe job "${job_name}" || true
+      exit 1
+    fi
+    echo "Reconciliation job OK"
+  fi
+fi
+
+echo "Fetching latest report"
+deadline="$(( $(date +%s) + SMOKE_WAIT_SECONDS ))"
+while true; do
+  if (( $(date +%s) >= deadline )); then
+    echo "timed out waiting for latest report" >&2
+    curl "${curl_args[@]}" "${base_url}/reports/latest" | jq . >&2 || true
+    exit 1
+  fi
+  report="$(curl "${curl_args[@]}" "${base_url}/reports/latest" 2>/dev/null || true)"
+  if [[ -n "${report}" ]] && jq -e '.ok == true' >/dev/null 2>&1 <<<"${report}"; then
+    break
+  fi
+  sleep "${SMOKE_POLL_SECONDS}"
+done
+echo "Latest report OK"
 
 echo
 echo "Manual follow-up:"

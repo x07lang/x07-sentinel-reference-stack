@@ -19,6 +19,9 @@
   - Terraform uses Application Default Credentials (ADC): `gcloud auth application-default login`
   - `gcloud container clusters get-credentials` uses the gcloud user session: `gcloud auth login`
 - Ensure the account used for ADC has permissions to enable services and provision GKE/Cloud SQL/Storage in the selected `project_id`.
+- The selected `project_id` must have **billing enabled**, or GCP will refuse to activate services like `container.googleapis.com` / `compute.googleapis.com`.
+- This tutorial uses **Cloud Storage HMAC keys** to keep an S3-style binding model. Some org policies (notably `constraints/iam.disableServiceAccountKeyCreation`) can block HMAC key creation; if enforced, either disable it for the project or use a different project/policy.
+- Terraform CLI must satisfy the repo constraint: `terraform >= 1.7.0` (see `infra/terraform/gcp/minimal/versions.tf`). OpenTofu is also acceptable.
 
 ## 1. Configure Terraform input
 
@@ -80,6 +83,11 @@ echo "ingress_ip=${ingress_ip}"
 echo "ingress_host=${ingress_host}"
 echo "TARGET_BASE_URL=https://<use ingress_ip or ingress_host>"
 ```
+
+Notes:
+
+- This tutorial uses `https://` for the target base URL. With the default ingress-nginx install, TLS is typically a default/self-signed certificate, so verification steps may need `CURL_INSECURE=1`.
+- For production, attach a real certificate and use a stable DNS name.
 
 ## 5. Build binding values
 
@@ -146,6 +154,17 @@ bash 11-rollback.sh
 ```
 
 ## 11. Tear down
+
+Before destroying the cloud infrastructure, uninstall the in-cluster add-ons so cloud load balancers are cleaned up:
+
+```sh
+helm -n ingress-nginx uninstall ingress-nginx || true
+helm -n cert-manager uninstall cert-manager || true
+helm -n observability uninstall otel-collector || true
+kubectl delete ns rabbitmq observability ingress-nginx cert-manager --wait=false || true
+```
+
+If `terraform destroy` fails deleting the reports bucket because it is not empty, delete bucket objects before retrying (or set `force_destroy = true` in the bucket resource for test stacks).
 
 ```sh
 cd ../../infra/terraform/gcp/minimal

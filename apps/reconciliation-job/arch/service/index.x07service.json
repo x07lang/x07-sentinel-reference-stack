@@ -22,7 +22,7 @@
       "topology_group": "primary",
       "runtime": {
         "schedule": {
-          "cron": "0 */6 * * *",
+          "cron": "*/1 * * * *",
           "timezone": "UTC",
           "concurrency_policy": "forbid",
           "retry_limit": 3,

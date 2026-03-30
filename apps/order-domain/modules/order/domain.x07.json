@@ -19,7 +19,8 @@
         "order.domain.reconciliation_report_json_v1",
         "order.domain.report_id_from_report_doc_v1",
         "order.domain.source_from_created_doc_v1",
-        "order.domain.total_minor_from_created_doc_v1"
+        "order.domain.total_minor_from_created_doc_v1",
+        "order.domain.url_percent_decode_v1"
       ]
     },
     {
@@ -102,6 +103,99 @@
         }
       ],
       "result": "bytes"
+    },
+    {
+      "body": [
+        "begin",
+        [
+          "if",
+          [
+            "if",
+            [
+              ">=",
+              "b",
+              48
+            ],
+            [
+              "<=",
+              "b",
+              57
+            ],
+            0
+          ],
+          [
+            "return",
+            [
+              "-",
+              "b",
+              48
+            ]
+          ],
+          0
+        ],
+        [
+          "if",
+          [
+            "if",
+            [
+              ">=",
+              "b",
+              65
+            ],
+            [
+              "<=",
+              "b",
+              70
+            ],
+            0
+          ],
+          [
+            "return",
+            [
+              "-",
+              "b",
+              55
+            ]
+          ],
+          0
+        ],
+        [
+          "if",
+          [
+            "if",
+            [
+              ">=",
+              "b",
+              97
+            ],
+            [
+              "<=",
+              "b",
+              102
+            ],
+            0
+          ],
+          [
+            "return",
+            [
+              "-",
+              "b",
+              87
+            ]
+          ],
+          0
+        ],
+        -1
+      ],
+      "kind": "defn",
+      "name": "order.domain._hex_val_u8_v1",
+      "params": [
+        {
+          "name": "b",
+          "ty": "i32"
+        }
+      ],
+      "result": "i32"
     },
     {
       "body": [
@@ -1100,7 +1194,10 @@
             "entries",
             [
               "bytes.len",
-              "k_event_type"
+              [
+                "bytes.view",
+                "k_event_type"
+              ]
             ]
           ]
         ],
@@ -1134,10 +1231,7 @@
           [
             "std.vec.extend_bytes",
             "entries",
-            [
-              "bytes.view",
-              "v_event_type"
-            ]
+            "v_event_type"
           ]
         ],
         [
@@ -1148,7 +1242,10 @@
             "entries",
             [
               "bytes.len",
-              "k_order_id"
+              [
+                "bytes.view",
+                "k_order_id"
+              ]
             ]
           ]
         ],
@@ -1182,10 +1279,7 @@
           [
             "std.vec.extend_bytes",
             "entries",
-            [
-              "bytes.view",
-              "v_order_id"
-            ]
+            "v_order_id"
           ]
         ],
         [
@@ -1196,7 +1290,10 @@
             "entries",
             [
               "bytes.len",
-              "k_customer_id"
+              [
+                "bytes.view",
+                "k_customer_id"
+              ]
             ]
           ]
         ],
@@ -1230,10 +1327,7 @@
           [
             "std.vec.extend_bytes",
             "entries",
-            [
-              "bytes.view",
-              "v_customer_id"
-            ]
+            "v_customer_id"
           ]
         ],
         [
@@ -1244,7 +1338,10 @@
             "entries",
             [
               "bytes.len",
-              "k_currency"
+              [
+                "bytes.view",
+                "k_currency"
+              ]
             ]
           ]
         ],
@@ -1278,10 +1375,7 @@
           [
             "std.vec.extend_bytes",
             "entries",
-            [
-              "bytes.view",
-              "v_currency"
-            ]
+            "v_currency"
           ]
         ],
         [
@@ -1292,7 +1386,10 @@
             "entries",
             [
               "bytes.len",
-              "k_total_minor"
+              [
+                "bytes.view",
+                "k_total_minor"
+              ]
             ]
           ]
         ],
@@ -1326,10 +1423,7 @@
           [
             "std.vec.extend_bytes",
             "entries",
-            [
-              "bytes.view",
-              "v_total_minor"
-            ]
+            "v_total_minor"
           ]
         ],
         [
@@ -1340,7 +1434,10 @@
             "entries",
             [
               "bytes.len",
-              "k_created_at"
+              [
+                "bytes.view",
+                "k_created_at"
+              ]
             ]
           ]
         ],
@@ -1374,10 +1471,7 @@
           [
             "std.vec.extend_bytes",
             "entries",
-            [
-              "bytes.view",
-              "v_created_at"
-            ]
+            "v_created_at"
           ]
         ],
         [
@@ -1388,7 +1482,10 @@
             "entries",
             [
               "bytes.len",
-              "k_source"
+              [
+                "bytes.view",
+                "k_source"
+              ]
             ]
           ]
         ],
@@ -1422,10 +1519,7 @@
           [
             "std.vec.extend_bytes",
             "entries",
-            [
-              "bytes.view",
-              "v_source"
-            ]
+            "v_source"
           ]
         ],
         [
@@ -1453,7 +1547,10 @@
             "=",
             [
               "bytes.len",
-              "map_val"
+              [
+                "bytes.view",
+                "map_val"
+              ]
             ],
             0
           ],
@@ -1471,10 +1568,7 @@
           "doc",
           [
             "ext.data_model.doc_ok",
-            [
-              "bytes.view",
-              "map_val"
-            ]
+            "map_val"
           ]
         ],
         [
@@ -1896,7 +1990,10 @@
             "entries",
             [
               "bytes.len",
-              "k_report_id"
+              [
+                "bytes.view",
+                "k_report_id"
+              ]
             ]
           ]
         ],
@@ -1930,10 +2027,7 @@
           [
             "std.vec.extend_bytes",
             "entries",
-            [
-              "bytes.view",
-              "v_report_id"
-            ]
+            "v_report_id"
           ]
         ],
         [
@@ -1944,7 +2038,10 @@
             "entries",
             [
               "bytes.len",
-              "k_generated_at"
+              [
+                "bytes.view",
+                "k_generated_at"
+              ]
             ]
           ]
         ],
@@ -1978,10 +2075,7 @@
           [
             "std.vec.extend_bytes",
             "entries",
-            [
-              "bytes.view",
-              "v_generated_at"
-            ]
+            "v_generated_at"
           ]
         ],
         [
@@ -1992,7 +2086,10 @@
             "entries",
             [
               "bytes.len",
-              "k_order_count"
+              [
+                "bytes.view",
+                "k_order_count"
+              ]
             ]
           ]
         ],
@@ -2026,10 +2123,7 @@
           [
             "std.vec.extend_bytes",
             "entries",
-            [
-              "bytes.view",
-              "v_order_count"
-            ]
+            "v_order_count"
           ]
         ],
         [
@@ -2040,7 +2134,10 @@
             "entries",
             [
               "bytes.len",
-              "k_projected_count"
+              [
+                "bytes.view",
+                "k_projected_count"
+              ]
             ]
           ]
         ],
@@ -2074,10 +2171,7 @@
           [
             "std.vec.extend_bytes",
             "entries",
-            [
-              "bytes.view",
-              "v_projected_count"
-            ]
+            "v_projected_count"
           ]
         ],
         [
@@ -2088,7 +2182,10 @@
             "entries",
             [
               "bytes.len",
-              "k_missing_projection_count"
+              [
+                "bytes.view",
+                "k_missing_projection_count"
+              ]
             ]
           ]
         ],
@@ -2122,10 +2219,7 @@
           [
             "std.vec.extend_bytes",
             "entries",
-            [
-              "bytes.view",
-              "v_missing_count"
-            ]
+            "v_missing_count"
           ]
         ],
         [
@@ -2153,7 +2247,10 @@
                 "entries",
                 [
                   "bytes.len",
-                  "k_object_key"
+                  [
+                    "bytes.view",
+                    "k_object_key"
+                  ]
                 ]
               ]
             ],
@@ -2187,10 +2284,7 @@
               [
                 "std.vec.extend_bytes",
                 "entries",
-                [
-                  "bytes.view",
-                  "v_object_key"
-                ]
+                "v_object_key"
               ]
             ]
           ],
@@ -2239,10 +2333,7 @@
           "doc",
           [
             "ext.data_model.doc_ok",
-            [
-              "bytes.view",
-              "map_val"
-            ]
+            "map_val"
           ]
         ],
         [
@@ -2536,6 +2627,212 @@
         }
       ],
       "result": "i32"
+    },
+    {
+      "body": [
+        "begin",
+        [
+          "let",
+          "n",
+          [
+            "view.len",
+            "encoded"
+          ]
+        ],
+        [
+          "let",
+          "out",
+          [
+            "std.vec.with_capacity",
+            "n"
+          ]
+        ],
+        [
+          "let",
+          "skip",
+          0
+        ],
+        [
+          "for",
+          "i",
+          0,
+          "n",
+          [
+            "begin",
+            [
+              "if",
+              [
+                ">",
+                "skip",
+                0
+              ],
+              [
+                "begin",
+                [
+                  "set",
+                  "skip",
+                  [
+                    "-",
+                    "skip",
+                    1
+                  ]
+                ],
+                0
+              ],
+              [
+                "begin",
+                [
+                  "let",
+                  "b",
+                  [
+                    "view.get_u8",
+                    "encoded",
+                    "i"
+                  ]
+                ],
+                [
+                  "if",
+                  [
+                    "if",
+                    [
+                      "=",
+                      "b",
+                      37
+                    ],
+                    [
+                      "<",
+                      [
+                        "+",
+                        "i",
+                        2
+                      ],
+                      "n"
+                    ],
+                    0
+                  ],
+                  [
+                    "begin",
+                    [
+                      "let",
+                      "h",
+                      [
+                        "order.domain._hex_val_u8_v1",
+                        [
+                          "view.get_u8",
+                          "encoded",
+                          [
+                            "+",
+                            "i",
+                            1
+                          ]
+                        ]
+                      ]
+                    ],
+                    [
+                      "let",
+                      "l",
+                      [
+                        "order.domain._hex_val_u8_v1",
+                        [
+                          "view.get_u8",
+                          "encoded",
+                          [
+                            "+",
+                            "i",
+                            2
+                          ]
+                        ]
+                      ]
+                    ],
+                    [
+                      "if",
+                      [
+                        "if",
+                        [
+                          ">=",
+                          "h",
+                          0
+                        ],
+                        [
+                          ">=",
+                          "l",
+                          0
+                        ],
+                        0
+                      ],
+                      [
+                        "begin",
+                        [
+                          "set",
+                          "out",
+                          [
+                            "std.vec.push",
+                            "out",
+                            [
+                              "+",
+                              [
+                                "*",
+                                "h",
+                                16
+                              ],
+                              "l"
+                            ]
+                          ]
+                        ],
+                        [
+                          "set",
+                          "skip",
+                          2
+                        ],
+                        0
+                      ],
+                      [
+                        "begin",
+                        [
+                          "set",
+                          "out",
+                          [
+                            "std.vec.push",
+                            "out",
+                            "b"
+                          ]
+                        ],
+                        0
+                      ]
+                    ]
+                  ],
+                  [
+                    "begin",
+                    [
+                      "set",
+                      "out",
+                      [
+                        "std.vec.push",
+                        "out",
+                        "b"
+                      ]
+                    ],
+                    0
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "std.vec.as_bytes",
+          "out"
+        ]
+      ],
+      "kind": "defn",
+      "name": "order.domain.url_percent_decode_v1",
+      "params": [
+        {
+          "name": "encoded",
+          "ty": "bytes_view"
+        }
+      ],
+      "result": "bytes"
     }
   ],
   "imports": [

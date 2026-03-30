@@ -1,4 +1,5 @@
 {
+  "binding_id": "binding.otlp.telemetry.otlp.${ENVIRONMENT_SLUG}",
   "name": "telemetry.otlp",
   "kind": "otlp",
   "provider_kind": "reference.external",
