@@ -128,7 +128,7 @@ bash 04-create-bindings.sh
 ## 9. Build, pack, upload, submit, approve
 
 ```sh
-bash 05-build-images.sh
+PUSH=1 bash 05-build-images.sh
 bash 06-pack-workloads.sh
 bash 07-upload-cas.sh
 bash 08-submit-releases.sh

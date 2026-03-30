@@ -18,6 +18,7 @@ bash sentinel/scripts/05-build-images.sh
 
 Notes:
 - EKS/GKE nodes are typically `linux/amd64`. If you need a different platform, set `DOCKER_PLATFORM` (for example `DOCKER_PLATFORM=linux/arm64`).
+- For real cluster deployments, set `IMAGE_PREFIX` to a registry reachable by your Kubernetes nodes (for example `ghcr.io/<org>/<repo>`, ECR, or Artifact Registry) and run with `PUSH=1`.
 
 ## Pack workloads
 
