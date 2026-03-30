@@ -51,11 +51,11 @@ module "eks" {
 
   eks_managed_node_groups = {
     default = {
-      desired_size   = 2
-      min_size       = 2
-      max_size       = 3
-      instance_types = var.node_instance_types
-      capacity_type  = "ON_DEMAND"
+      desired_size                   = 2
+      min_size                       = 2
+      max_size                       = 3
+      instance_types                 = var.node_instance_types
+      capacity_type                  = "ON_DEMAND"
       use_latest_ami_release_version = false
     }
   }

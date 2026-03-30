@@ -11,7 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v3
-      - run: terraform fmt -check -recursive infra/terraform
       - run: bash scripts/ci/terraform-validate.sh
 
   local_smoke:

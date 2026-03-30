@@ -15,6 +15,9 @@ if [[ -z "${TF_BIN}" ]]; then
   fi
 fi
 
+echo "==> terraform fmt check"
+"${TF_BIN}" fmt -check -recursive "${ROOT_DIR}/infra/terraform"
+
 for dir in   "${ROOT_DIR}/infra/terraform/aws/minimal"   "${ROOT_DIR}/infra/terraform/gcp/minimal"
 do
   echo "==> validating ${dir}"
