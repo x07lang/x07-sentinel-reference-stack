@@ -93,7 +93,6 @@ docs/
   28-contract-locks-and-review.md
   29-x07-guide-map.md
   30-claim-coverage.md
-  31-generated-artifacts-and-drift.md
 ```
 
 ## Quick start paths
@@ -121,7 +120,7 @@ docs/
 ### x07 primitives path
 
 1. Read [docs/27-order-domain-primitives.md](docs/27-order-domain-primitives.md)
-2. Generate and refresh committed contract outputs:
+2. Generate pinned contracts:
 
    ```sh
    make order-domain-contracts
@@ -150,11 +149,7 @@ docs/
 
    - [docs/29-x07-guide-map.md](docs/29-x07-guide-map.md)
 
-7. Review how committed generated artifacts fit into the certificate-first workflow:
-
-   - [docs/31-generated-artifacts-and-drift.md](docs/31-generated-artifacts-and-drift.md)
-
-8. Emit the trust posture report:
+7. Emit the trust posture report:
 
    ```sh
    make order-domain-trust
