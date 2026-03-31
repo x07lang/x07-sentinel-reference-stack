@@ -1,5 +1,9 @@
 # x07 Sentinel reference stack
 
+## Agent Entrypoint
+
+Start here: https://x07lang.org/docs/getting-started/agent-quickstart
+
 A public, canonical reference repo for deploying a small but complete backend system to **x07 Sentinel** on **customer-managed Kubernetes**.
 
 This repository proves the enterprise story with one backend domain and three service shapes:
@@ -89,6 +93,7 @@ docs/
   28-contract-locks-and-review.md
   29-x07-guide-map.md
   30-claim-coverage.md
+  31-generated-artifacts-and-drift.md
 ```
 
 ## Quick start paths
@@ -116,7 +121,7 @@ docs/
 ### x07 primitives path
 
 1. Read [docs/27-order-domain-primitives.md](docs/27-order-domain-primitives.md)
-2. Generate pinned contracts:
+2. Generate and refresh committed contract outputs:
 
    ```sh
    make order-domain-contracts
@@ -145,7 +150,11 @@ docs/
 
    - [docs/29-x07-guide-map.md](docs/29-x07-guide-map.md)
 
-7. Emit the trust posture report:
+7. Review how committed generated artifacts fit into the certificate-first workflow:
+
+   - [docs/31-generated-artifacts-and-drift.md](docs/31-generated-artifacts-and-drift.md)
+
+8. Emit the trust posture report:
 
    ```sh
    make order-domain-trust
