@@ -43,6 +43,24 @@ while true; do
 done
 echo "API readiness OK"
 
+if command -v kubectl >/dev/null 2>&1; then
+  consumer_deploy="$(
+    kubectl -n "${NAMESPACE}" get deploy --no-headers 2>/dev/null \
+      | awk '{print $1}' \
+      | grep -E '^orders-consumer' \
+      | head -n 1 || true
+  )"
+  if [[ -n "${consumer_deploy}" ]]; then
+    echo "Waiting for consumer readiness (${consumer_deploy})"
+    if ! kubectl -n "${NAMESPACE}" wait --for=condition=available "deployment/${consumer_deploy}" --timeout="${SMOKE_WAIT_SECONDS}s" >/dev/null; then
+      kubectl -n "${NAMESPACE}" get deploy,po -o wide || true
+      kubectl -n "${NAMESPACE}" describe "deployment/${consumer_deploy}" || true
+      exit 1
+    fi
+    echo "Consumer deployment OK"
+  fi
+fi
+
 queue_ensured="0"
 
 if command -v kubectl >/dev/null 2>&1; then
