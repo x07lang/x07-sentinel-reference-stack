@@ -590,6 +590,24 @@
         ],
         [
           "let",
+          "_report_preview",
+          [
+            "app.runtime.report_preview_v1",
+            [
+              "bytes.view",
+              "report_id"
+            ],
+            [
+              "bytes.view",
+              "generated_at"
+            ],
+            "order_count",
+            "projected_count",
+            "missing_projection_count"
+          ]
+        ],
+        [
+          "let",
           "report_json_obj",
           [
             "view.to_bytes",
@@ -861,7 +879,8 @@
     "std.os.rand.spec",
     "std.parse",
     "std.u32",
-    "std.vec"
+    "std.vec",
+    "app.runtime"
   ],
   "kind": "module",
   "module_id": "app",

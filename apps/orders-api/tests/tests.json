@@ -1,0 +1,18 @@
+{
+  "schema_version": "x07.tests_manifest@0.2.0",
+  "tests": [
+    {
+      "id": "runtime/order-created-event-json",
+      "entry": "tests.runtime.test_order_created_event_json_v1",
+      "expect": "pass",
+      "world": "run-os"
+    },
+    {
+      "id": "runtime/task-scope-parallel-checksum",
+      "entry": "tests.runtime.test_task_scope_parallel_checksum_v1",
+      "expect": "pass",
+      "returns": "bytes_status_v1",
+      "world": "run-os"
+    }
+  ]
+}

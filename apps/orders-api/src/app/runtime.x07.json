@@ -1,0 +1,234 @@
+{
+  "decls": [
+    {
+      "kind": "export",
+      "names": [
+        "app.runtime.order_created_event_json_v1"
+      ]
+    },
+    {
+      "kind": "defn",
+      "name": "app.runtime._doc_to_canon_json_bytes_v1",
+      "params": [
+        {
+          "name": "doc",
+          "ty": "bytes_view"
+        }
+      ],
+      "result": "bytes",
+      "body": [
+        "begin",
+        [
+          "let",
+          "json_doc",
+          [
+            "ext.data_model.json.emit_canon",
+            "doc"
+          ]
+        ],
+        [
+          "let",
+          "jv",
+          [
+            "bytes.view",
+            "json_doc"
+          ]
+        ],
+        [
+          "if",
+          [
+            "=",
+            [
+              "ext.data_model.doc_is_err",
+              "jv"
+            ],
+            1
+          ],
+          [
+            "bytes.alloc",
+            0
+          ],
+          [
+            "begin",
+            [
+              "let",
+              "n",
+              [
+                "view.len",
+                "jv"
+              ]
+            ],
+            [
+              "if",
+              [
+                "<=",
+                "n",
+                1
+              ],
+              [
+                "bytes.alloc",
+                0
+              ],
+              [
+                "view.to_bytes",
+                [
+                  "view.slice",
+                  "jv",
+                  1,
+                  [
+                    "-",
+                    "n",
+                    1
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    },
+    {
+      "kind": "defn",
+      "name": "app.runtime.order_created_event_json_v1",
+      "params": [
+        {
+          "name": "order_id",
+          "ty": "bytes_view"
+        },
+        {
+          "name": "customer_id",
+          "ty": "bytes_view"
+        },
+        {
+          "name": "currency",
+          "ty": "bytes_view"
+        },
+        {
+          "name": "total_minor",
+          "ty": "bytes_view"
+        },
+        {
+          "name": "created_at",
+          "ty": "bytes_view"
+        },
+        {
+          "name": "source",
+          "ty": "bytes_view"
+        }
+      ],
+      "result": "bytes",
+      "body": [
+        "budget.scope_from_arch_v1",
+        [
+          "bytes.lit",
+          "http_request_v1"
+        ],
+        [
+          "begin",
+          [
+            "let",
+            "event_type",
+            [
+              "bytes.lit",
+              "order.created"
+            ]
+          ],
+          [
+            "let",
+            "doc_res",
+            [
+              "reference_stack.schema.order_created_v1.encode_doc_v1",
+              [
+                "bytes.view",
+                "event_type"
+              ],
+              "order_id",
+              "customer_id",
+              "currency",
+              "total_minor",
+              "created_at",
+              [
+                "option_bytes.some",
+                [
+                  "view.to_bytes",
+                  "source"
+                ]
+              ]
+            ]
+          ],
+          [
+            "if",
+            [
+              "=",
+              [
+                "result_bytes.is_ok",
+                "doc_res"
+              ],
+              0
+            ],
+            [
+              "bytes.alloc",
+              0
+            ],
+            [
+              "begin",
+              [
+                "let",
+                "doc",
+                [
+                  "result_bytes.unwrap_or",
+                  "doc_res",
+                  [
+                    "bytes.alloc",
+                    0
+                  ]
+                ]
+              ],
+              [
+                "let",
+                "typed",
+                [
+                  "reference_stack.schema.order_created_v1.cast_doc_view_v1",
+                  [
+                    "bytes.view",
+                    "doc"
+                  ]
+                ]
+              ],
+              [
+                "if",
+                [
+                  "=",
+                  [
+                    "result_bytes_view.is_ok",
+                    "typed"
+                  ],
+                  0
+                ],
+                [
+                  "bytes.alloc",
+                  0
+                ],
+                [
+                  "app.runtime._doc_to_canon_json_bytes_v1",
+                  [
+                    "bytes.view",
+                    "doc"
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    }
+  ],
+  "imports": [
+    "ext.data_model",
+    "ext.data_model.json",
+    "reference_stack.schema.order_created_v1"
+  ],
+  "kind": "module",
+  "module_id": "app.runtime",
+  "schema_version": "x07.x07ast@0.8.0"
+}

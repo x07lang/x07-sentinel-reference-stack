@@ -1,0 +1,245 @@
+{
+  "decls": [
+    {
+      "kind": "export",
+      "names": [
+        "tests.runtime.test_report_preview_v1",
+        "tests.runtime.test_reconciliation_report_core_json_v1",
+        "tests.runtime.test_report_preview_rr_roundtrip_v1"
+      ]
+    },
+    {
+      "kind": "defn",
+      "name": "tests.runtime.test_report_preview_v1",
+      "params": [],
+      "result": "result_i32",
+      "body": [
+        "begin",
+        [
+          "let",
+          "b_report_id",
+          [
+            "bytes.lit",
+            "rep_1001"
+          ]
+        ],
+        [
+          "let",
+          "b_created_at",
+          [
+            "bytes.lit",
+            "2026-03-30T13:00:00Z"
+          ]
+        ],
+        [
+          "let",
+          "preview",
+          [
+            "app.runtime.report_preview_v1",
+            [
+              "bytes.view",
+              "b_report_id"
+            ],
+            [
+              "bytes.view",
+              "b_created_at"
+            ],
+            1250,
+            1248,
+            2
+          ]
+        ],
+        [
+          "try",
+          [
+            "std.test.assert_true",
+            [
+              ">",
+              [
+                "bytes.len",
+                "preview"
+              ],
+              0
+            ],
+            [
+              "std.test.code_assert_true"
+            ]
+          ]
+        ],
+        [
+          "std.test.pass"
+        ]
+      ]
+    },
+    {
+      "kind": "defn",
+      "name": "tests.runtime.test_reconciliation_report_core_json_v1",
+      "params": [],
+      "result": "result_i32",
+      "body": [
+        "begin",
+        [
+          "let",
+          "b_report_id",
+          [
+            "bytes.lit",
+            "rep_1001"
+          ]
+        ],
+        [
+          "let",
+          "b_created_at",
+          [
+            "bytes.lit",
+            "2026-03-30T13:00:00Z"
+          ]
+        ],
+        [
+          "let",
+          "b_total_orders",
+          [
+            "bytes.lit",
+            "1250"
+          ]
+        ],
+        [
+          "let",
+          "b_total_projected",
+          [
+            "bytes.lit",
+            "1248"
+          ]
+        ],
+        [
+          "let",
+          "b_mismatches",
+          [
+            "bytes.lit",
+            "2"
+          ]
+        ],
+        [
+          "let",
+          "doc_json",
+          [
+            "app.runtime.reconciliation_report_core_json_v1",
+            [
+              "bytes.view",
+              "b_report_id"
+            ],
+            [
+              "bytes.view",
+              "b_created_at"
+            ],
+            [
+              "bytes.view",
+              "b_total_orders"
+            ],
+            [
+              "bytes.view",
+              "b_total_projected"
+            ],
+            [
+              "bytes.view",
+              "b_mismatches"
+            ]
+          ]
+        ],
+        [
+          "try",
+          [
+            "std.test.assert_true",
+            [
+              ">",
+              [
+                "bytes.len",
+                "doc_json"
+              ],
+              0
+            ],
+            [
+              "std.test.code_assert_true"
+            ]
+          ]
+        ],
+        [
+          "let",
+          "doc",
+          [
+            "ext.json.data_model.parse",
+            [
+              "bytes.view",
+              "doc_json"
+            ]
+          ]
+        ],
+        [
+          "let",
+          "typed",
+          [
+            "reference_stack.schema.reconciliation_report_v1.cast_doc_view_v1",
+            [
+              "bytes.view",
+              "doc"
+            ]
+          ]
+        ],
+        [
+          "try",
+          [
+            "std.test.assert_true",
+            [
+              "result_bytes_view.is_ok",
+              "typed"
+            ],
+            [
+              "std.test.code_assert_true"
+            ]
+          ]
+        ],
+        [
+          "std.test.pass"
+        ]
+      ]
+    },
+    {
+      "kind": "defn",
+      "name": "tests.runtime.test_report_preview_rr_roundtrip_v1",
+      "params": [],
+      "result": "result_i32",
+      "body": [
+        "begin",
+        [
+          "let",
+          "ok",
+          [
+            "app.runtime.report_preview_rr_roundtrip_ok_v1"
+          ]
+        ],
+        [
+          "try",
+          [
+            "std.test.assert_i32_eq",
+            "ok",
+            1,
+            [
+              "std.test.code_assert_i32_eq"
+            ]
+          ]
+        ],
+        [
+          "std.test.pass"
+        ]
+      ]
+    }
+  ],
+  "imports": [
+    "app.runtime",
+    "ext.json.data_model",
+    "reference_stack.schema.reconciliation_report_v1",
+    "std.test"
+  ],
+  "kind": "module",
+  "module_id": "tests.runtime",
+  "schema_version": "x07.x07ast@0.8.0"
+}

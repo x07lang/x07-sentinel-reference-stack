@@ -7,7 +7,7 @@ COMPOSE_PROJECT_NAME="${COMPOSE_PROJECT_NAME:-x07rs}"
 COMPOSE_FILE="${ROOT_DIR}/scripts/local/docker-compose.yml"
 NETWORK="${COMPOSE_PROJECT_NAME}_default"
 
-X07_TAG="${X07_TAG:-v0.1.106}"
+X07_TAG="${X07_TAG:-v0.1.107}"
 KEEP="${KEEP:-0}"
 
 cleanup() {

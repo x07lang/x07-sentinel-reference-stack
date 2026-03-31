@@ -112,3 +112,13 @@ Use this repo path together with:
 ## Generated-artifact review path
 
 Once you understand the source contracts, read [31-generated-artifacts-and-drift.md](31-generated-artifacts-and-drift.md) together with the official toolchain docs for schema derive, state machines, and review/trust. That is the repo's next step toward certificate-first review.
+
+
+## Runtime primitives and replay
+
+Once you have read the core guide map, continue with:
+
+- [32-runtime-primitives.md](32-runtime-primitives.md)
+- [33-record-replay-and-perf.md](33-record-replay-and-perf.md)
+
+Those two pages show how the reference stack now maps the official x07 guides onto the live service code, not only the pure-core package.

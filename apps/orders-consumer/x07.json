@@ -85,7 +85,10 @@
   "entry": "src/main.x07.json",
   "lockfile": "x07.lock.json",
   "module_roots": [
-    "src"
+    "src",
+    "tests",
+    "order-domain",
+    "order-domain/gen/schema/order_created/modules"
   ],
   "patch": {
     "ext-data-model": {

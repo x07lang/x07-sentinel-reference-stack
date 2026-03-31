@@ -1,0 +1,17 @@
+{
+  "schema_version": "x07.tests_manifest@0.2.0",
+  "tests": [
+    {
+      "id": "runtime/order-event-project-order-id",
+      "entry": "tests.runtime.test_order_event_project_order_id_v1",
+      "expect": "pass",
+      "world": "run-os"
+    },
+    {
+      "id": "runtime/project-batch-valid-count",
+      "entry": "tests.runtime.test_project_batch_valid_count_v1",
+      "expect": "pass",
+      "world": "run-os"
+    }
+  ]
+}

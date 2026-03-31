@@ -1437,6 +1437,17 @@
                                     ],
                                     [
                                       "let",
+                                      "_typed_project_gate",
+                                      [
+                                        "app.runtime.order_event_project_order_id_v1",
+                                        [
+                                          "bytes.view",
+                                          "payload_json"
+                                        ]
+                                      ]
+                                    ],
+                                    [
+                                      "let",
                                       "parsed",
                                       [
                                         "order.domain.parse_order_created_doc_v1",
@@ -1755,7 +1766,8 @@
     "std.os.env",
     "std.os.process",
     "std.u32",
-    "std.vec"
+    "std.vec",
+    "app.runtime"
   ],
   "kind": "module",
   "module_id": "app",

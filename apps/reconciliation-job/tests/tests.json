@@ -1,0 +1,23 @@
+{
+  "schema_version": "x07.tests_manifest@0.2.0",
+  "tests": [
+    {
+      "id": "runtime/report-preview",
+      "entry": "tests.runtime.test_report_preview_v1",
+      "expect": "pass",
+      "world": "run-os"
+    },
+    {
+      "id": "runtime/reconciliation-report-core-json",
+      "entry": "tests.runtime.test_reconciliation_report_core_json_v1",
+      "expect": "pass",
+      "world": "run-os"
+    },
+    {
+      "id": "runtime/report-preview-rr-roundtrip",
+      "entry": "tests.runtime.test_report_preview_rr_roundtrip_v1",
+      "expect": "pass",
+      "world": "run-os"
+    }
+  ]
+}

@@ -2324,7 +2324,7 @@
           "let",
           "event_json",
           [
-            "order.domain.order_created_json_v1",
+            "app.runtime.order_created_event_json_v1",
             [
               "bytes.view",
               "order_id"
@@ -2337,7 +2337,13 @@
               "bytes.view",
               "currency"
             ],
-            "total_minor",
+            [
+              "bytes.view",
+              [
+                "std.fmt.s32_to_dec",
+                "total_minor"
+              ]
+            ],
             [
               "bytes.view",
               "created_at"
@@ -8677,19 +8683,26 @@
               "let",
               "resp",
               [
-                "app.http_route_v1",
+                "budget.scope_from_arch_v1",
                 [
-                  "bytes.view",
-                  "method"
+                  "bytes.lit",
+                  "http_request_v1"
                 ],
                 [
-                  "bytes.view",
-                  "path"
-                ],
-                "version",
-                [
-                  "bytes.view",
-                  "body_bytes"
+                  "app.http_route_v1",
+                  [
+                    "bytes.view",
+                    "method"
+                  ],
+                  [
+                    "bytes.view",
+                    "path"
+                  ],
+                  "version",
+                  [
+                    "bytes.view",
+                    "body_bytes"
+                  ]
                 ]
               ]
             ],
@@ -9203,7 +9216,9 @@
     "std.os.rand.spec",
     "std.parse",
     "std.u32",
-    "std.vec"
+    "std.vec",
+    "app.runtime",
+    "reference_stack.schema.order_created_v1"
   ],
   "kind": "module",
   "module_id": "app",

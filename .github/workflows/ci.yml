@@ -6,7 +6,7 @@ on:
     branches: [ main ]
 
 env:
-  X07_TOOLCHAIN_TAG: "v0.1.106"
+  X07_TOOLCHAIN_TAG: "v0.1.107"
 
 jobs:
   terraform:
@@ -82,6 +82,9 @@ jobs:
       - name: Run trust profile check + trust report
         shell: bash
         run: bash apps/order-domain/ci/trust.sh
+      - name: Run runtime service primitive tests
+        shell: bash
+        run: bash scripts/ci/runtime-services.sh
 
       - name: Upload order-domain artifacts
         if: always()
@@ -92,4 +95,7 @@ jobs:
             apps/order-domain/arch/*.lock.json
             apps/order-domain/gen/
             apps/order-domain/target/
+            apps/orders-api/target/
+            apps/orders-consumer/target/
+            apps/reconciliation-job/target/
           if-no-files-found: error

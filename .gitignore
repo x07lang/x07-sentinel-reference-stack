@@ -30,3 +30,6 @@ tmp/
 
 # Order-domain build outputs (generated contract snapshots under apps/order-domain/gen/ are committed)
 apps/order-domain/target/
+
+# Service build outputs
+apps/*/target/

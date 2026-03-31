@@ -1,0 +1,105 @@
+{
+  "decls": [
+    {
+      "kind": "export",
+      "names": [
+        "tests.runtime.test_order_event_project_order_id_v1",
+        "tests.runtime.test_project_batch_valid_count_v1"
+      ]
+    },
+    {
+      "kind": "defn",
+      "name": "tests.runtime.test_order_event_project_order_id_v1",
+      "params": [],
+      "result": "result_i32",
+      "body": [
+        "begin",
+        [
+          "let",
+          "payload",
+          [
+            "bytes.lit",
+            "{\"created_at\":\"2026-03-30T12:00:00Z\",\"currency\":\"USD\",\"customer_id\":\"cust_1001\",\"event_type\":\"order.created\",\"order_id\":\"ord_1001\",\"source\":\"orders-api\",\"total_minor\":1299}"
+          ]
+        ],
+        [
+          "let",
+          "order_id",
+          [
+            "app.runtime.order_event_project_order_id_v1",
+            [
+              "bytes.view",
+              "payload"
+            ]
+          ]
+        ],
+        [
+          "try",
+          [
+            "std.test.assert_bytes_eq",
+            "order_id",
+            [
+              "bytes.lit",
+              "ord_1001"
+            ],
+            [
+              "std.test.code_assert_bytes_eq"
+            ]
+          ]
+        ],
+        [
+          "std.test.pass"
+        ]
+      ]
+    },
+    {
+      "kind": "defn",
+      "name": "tests.runtime.test_project_batch_valid_count_v1",
+      "params": [],
+      "result": "result_i32",
+      "body": [
+        "begin",
+        [
+          "let",
+          "lines",
+          [
+            "bytes.lit",
+            "{\"created_at\":\"2026-03-30T12:00:00Z\",\"currency\":\"USD\",\"customer_id\":\"cust_1001\",\"event_type\":\"order.created\",\"order_id\":\"ord_1001\",\"source\":\"orders-api\",\"total_minor\":1299}\nnot-json\n{\"created_at\":\"2026-03-30T12:01:00Z\",\"currency\":\"USD\",\"customer_id\":\"cust_1002\",\"event_type\":\"order.created\",\"order_id\":\"ord_1002\",\"source\":\"orders-api\",\"total_minor\":1999}\n"
+          ]
+        ],
+        [
+          "let",
+          "valid",
+          [
+            "app.runtime.project_batch_valid_count_v1",
+            [
+              "bytes.view",
+              "lines"
+            ]
+          ]
+        ],
+        [
+          "try",
+          [
+            "std.test.assert_i32_eq",
+            "valid",
+            2,
+            [
+              "std.test.code_assert_i32_eq"
+            ]
+          ]
+        ],
+        [
+          "std.test.pass"
+        ]
+      ]
+    }
+  ],
+  "imports": [
+    "app.runtime",
+    "std.test"
+  ],
+  "kind": "module",
+  "module_id": "tests.runtime",
+  "schema_version": "x07.x07ast@0.8.0"
+}

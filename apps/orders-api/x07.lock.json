@@ -279,7 +279,7 @@
       "package_manifest_sha256": "6cf32c574741a294674b12bbfa443124e4346222fe30c84bb8dcd8bf7ca2e4eb",
       "module_root": "modules",
       "modules_sha256": {
-        "order.core": "67b46d38d6ee2caaccf32f10191c998fdb34c786a292c139e580847d040a9194",
+        "order.core": "03879d8c7bb06718a17dbe5aff255fddc0a8bb5f1232fcebc13ef1aa25919347",
         "order.domain": "6338ab7d6e18dc33880460a479f6edadae1c88105bb0d73113159d8542074b85"
       }
     }

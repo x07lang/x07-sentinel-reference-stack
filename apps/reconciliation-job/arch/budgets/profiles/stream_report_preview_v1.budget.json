@@ -1,0 +1,15 @@
+{
+  "schema_version": "x07.budget.profile@0.1.0",
+  "id": "stream_report_preview_v1",
+  "v": 1,
+  "cfg": {
+    "mode": "trap_v1",
+    "label": "reconciliation-job.preview-pipe.v1",
+    "alloc_bytes": 8388608,
+    "alloc_calls": 16000,
+    "realloc_calls": 4000,
+    "memcpy_bytes": 33554432,
+    "sched_ticks": 120000,
+    "fuel": 0
+  }
+}

@@ -13,7 +13,7 @@ x07up component add wasm
 ## Build runtime images
 
 ```sh
-X07_TAG=v0.1.106 bash sentinel/scripts/05-build-images.sh
+X07_TAG=v0.1.107 bash sentinel/scripts/05-build-images.sh
 ```
 
 Notes:

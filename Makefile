@@ -1,7 +1,7 @@
 PROJECT_NAME ?= x07-sentinel-reference-stack
 TF_BIN ?= terraform
 
-.PHONY: help terraform-fmt terraform-validate aws-init gcp-init local-up local-down local-smoke order-domain-contracts order-domain-generated-drift order-domain-pin order-domain-arch-check order-domain-review order-domain-test order-domain-verify order-domain-trust order-domain-ci
+.PHONY: help terraform-fmt terraform-validate aws-init gcp-init local-up local-down local-smoke order-domain-contracts order-domain-generated-drift order-domain-pin order-domain-arch-check order-domain-review order-domain-test order-domain-verify order-domain-trust order-domain-ci runtime-services
 
 help:
 	@echo "Targets:"
@@ -21,6 +21,7 @@ help:
 	@echo "  order-domain-verify   - run coverage/prove + proof replay for apps/order-domain"
 	@echo "  order-domain-trust    - run trust profile check + trust report for apps/order-domain"
 	@echo "  order-domain-ci       - run contracts, drift gates, tests, verify, and trust flows together"
+	@echo "  runtime-services      - run service-adjacent primitive tests for api, consumer, and job"
 
 terraform-fmt:
 	$(TF_BIN) fmt -recursive infra/terraform
@@ -69,3 +70,7 @@ order-domain-trust:
 	bash apps/order-domain/ci/trust.sh
 
 order-domain-ci: order-domain-pin order-domain-generated-drift order-domain-arch-check order-domain-test order-domain-verify order-domain-trust
+
+
+runtime-services:
+	bash scripts/ci/runtime-services.sh

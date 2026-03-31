@@ -94,6 +94,8 @@ docs/
   29-x07-guide-map.md
   30-claim-coverage.md
   31-generated-artifacts-and-drift.md
+  32-runtime-primitives.md
+  33-record-replay-and-perf.md
 ```
 
 ## Quick start paths
@@ -154,7 +156,12 @@ docs/
 
    - [docs/31-generated-artifacts-and-drift.md](docs/31-generated-artifacts-and-drift.md)
 
-8. Emit the trust posture report:
+8. Read how the runtime services now map high-level primitives into the actual example system:
+
+   - [docs/32-runtime-primitives.md](docs/32-runtime-primitives.md)
+   - [docs/33-record-replay-and-perf.md](docs/33-record-replay-and-perf.md)
+
+9. Emit the trust posture report:
 
    ```sh
    make order-domain-trust

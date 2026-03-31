@@ -105,7 +105,9 @@
   "entry": "src/main.x07.json",
   "lockfile": "x07.lock.json",
   "module_roots": [
-    "src"
+    "src",
+    "tests",
+    "order-domain/gen/schema/reconciliation_report/modules"
   ],
   "patch": {
     "ext-data-model": {
