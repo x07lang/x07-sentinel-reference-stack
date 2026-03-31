@@ -23,12 +23,13 @@ schemas/                x07schema sources for branded bytes + generated validato
 arch/                   Trust/boundary/state-machine inputs
 tests/                  Deterministic tests + PBT for the pure core
 verification/           Pure entrypoint used by x07 verify / trust report
-ci/                     Scripts for derive, test, verify, and trust flows
+ci/                     Scripts for derive, drift, test, verify, and trust flows
+gen/                    Checked-in generated contract outputs reviewed in PRs
 ```
 
 ## Quick start
 
-Generate schema and state-machine artifacts:
+Generate and refresh committed schema and state-machine artifacts:
 
 ```sh
 make order-domain-contracts
@@ -97,3 +98,10 @@ These are the best official guides to read alongside this package:
 
 
 For the follow-up review discipline, also read [../../docs/28-contract-locks-and-review.md](../../docs/28-contract-locks-and-review.md).
+
+
+## New in this patch: committed generated artifacts
+
+The repo now checks in generated outputs under `gen/` and treats drift in those files as a first-class CI failure. That makes schema-derived surfaces and generated state-machine code part of the normal review flow instead of hidden temporary build products.
+
+For the review model behind this, read [../../docs/31-generated-artifacts-and-drift.md](../../docs/31-generated-artifacts-and-drift.md).

@@ -9,7 +9,7 @@
   },
   "indexes": {
     "arch/sm/index.x07sm.json": {
-      "jcs_sha256_hex": "161b47e60b6028ce0a48fea4d65cc96d4246111bf7defba71ae3e45b6fc6ac3e"
+      "jcs_sha256_hex": "15d9dbbe4b977d2f957ce776db6de44f292f58486a598836b6b7b52d9a5b54d1"
     },
     "boundaries": {
       "jcs_sha256_hex": "1c70dd32ee2342131185c6e43780c582681a8661e1f087fb0e43523c900278da"

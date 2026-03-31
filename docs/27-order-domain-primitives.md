@@ -38,8 +38,8 @@ Schema sources live under:
 
 Generation writes into:
 
-- `apps/order-domain/.generated/schema/order_created/`
-- `apps/order-domain/.generated/schema/reconciliation_report/`
+- `apps/order-domain/gen/schema/order_created/`
+- `apps/order-domain/gen/schema/reconciliation_report/`
 
 Those generated modules are the repo’s first explicit demonstration of:
 - typed document boundaries
@@ -53,13 +53,9 @@ The source-of-truth lifecycle spec lives at:
 
 - `apps/order-domain/arch/sm/specs/order_lifecycle.sm.json`
 
-The current transitions use the minimal `actions.noop_v1` implementation:
-
-- `apps/order-domain/modules/actions.x07.json`
-
 Generation writes into:
 
-- `apps/order-domain/.generated/gen/sm/`
+- `apps/order-domain/gen/sm/`
 
 This gives the repo a pinned `step(state,event)` contract instead of hand-written transition code.
 
@@ -119,7 +115,7 @@ make order-domain-trust
 
 ## What comes next
 
-The next step is now documented in [28-contract-locks-and-review.md](28-contract-locks-and-review.md):
+The next step is now documented in [28-contract-locks-and-review.md](28-contract-locks-and-review.md) and [31-generated-artifacts-and-drift.md](31-generated-artifacts-and-drift.md):
 - pin arch + contract locks with `x07 arch check --write-lock`
 - run `x07 arch check` in CI as a first-class gate
 - generate semantic review artifacts with `x07 review diff`
@@ -132,3 +128,6 @@ After that, thread these primitives deeper into the runtime services:
 
 
 For a broader map back to the official x07 guides, read [29-x07-guide-map.md](29-x07-guide-map.md).
+
+
+This repo now checks in generated schema/state-machine outputs under `apps/order-domain/gen/` so users can review the derived contract surface directly in pull requests.

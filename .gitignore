@@ -28,6 +28,5 @@ tmp/
 .vscode/
 .idea/
 
-# Order-domain generated verification artifacts
-apps/order-domain/.generated/
+# Order-domain build outputs (generated contract snapshots under apps/order-domain/gen/ are committed)
 apps/order-domain/target/

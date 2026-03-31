@@ -147,7 +147,7 @@
     },
     "sm": {
       "index_path": "arch/sm/index.x07sm.json",
-      "gen_dir": ".generated/gen/sm",
+      "gen_dir": "gen/sm",
       "require_gen_uptodate": true
     },
     "canonical_json": {

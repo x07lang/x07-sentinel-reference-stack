@@ -6,7 +6,10 @@
   "module_roots": [
     "verification/src",
     "modules",
-    "tests"
+    "tests",
+    "gen/schema/order_created/modules",
+    "gen/schema/reconciliation_report/modules",
+    "gen/sm"
   ],
   "lockfile": "x07.lock.json",
   "dependencies": [

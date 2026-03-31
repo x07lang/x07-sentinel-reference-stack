@@ -59,6 +59,10 @@ jobs:
         shell: bash
         run: bash apps/order-domain/ci/pin_contracts.sh
 
+      - name: Fail on uncommitted generated artifact drift
+        shell: bash
+        run: bash scripts/ci/order-domain-generated-drift.sh
+
       - name: Fail on uncommitted lock drift
         shell: bash
         run: bash scripts/ci/order-domain-lock-drift.sh
@@ -86,6 +90,6 @@ jobs:
           name: order-domain-artifacts
           path: |
             apps/order-domain/arch/*.lock.json
-            apps/order-domain/.generated/
+            apps/order-domain/gen/
             apps/order-domain/target/
           if-no-files-found: error

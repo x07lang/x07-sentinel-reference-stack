@@ -105,3 +105,6 @@ These official docs explain the concepts this patch operationalizes:
 
 
 For the wider guide map that explains where these concepts sit in the official documentation set, read [29-x07-guide-map.md](29-x07-guide-map.md).
+
+
+The follow-up patch that commits generated schema and state-machine outputs is documented in [31-generated-artifacts-and-drift.md](31-generated-artifacts-and-drift.md).

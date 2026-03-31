@@ -107,3 +107,8 @@ Use this repo path together with:
 4. docs/26-verification.md
 5. docs/27-order-domain-primitives.md
 6. docs/28-contract-locks-and-review.md
+
+
+## Generated-artifact review path
+
+Once you understand the source contracts, read [31-generated-artifacts-and-drift.md](31-generated-artifacts-and-drift.md) together with the official toolchain docs for schema derive, state machines, and review/trust. That is the repo's next step toward certificate-first review.

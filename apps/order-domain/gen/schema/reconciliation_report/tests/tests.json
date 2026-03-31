@@ -1,0 +1,11 @@
+{
+  "schema_version": "x07.tests_manifest@0.2.0",
+  "tests": [
+    {
+      "id": "reconciliation_report_v1",
+      "entry": "reference_stack.schema.reconciliation_report_v1.tests.test_vectors_v1",
+      "world": "solve-pure",
+      "expect": "pass"
+    }
+  ]
+}

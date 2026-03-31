@@ -8,7 +8,8 @@
       "spec_path": "arch/sm/specs/order_lifecycle.sm.json",
       "gen_module_id": "gen.sm.order.lifecycle_v1",
       "gen_paths": [
-        ".generated/gen/sm/order/lifecycle_v1.x07.json"
+        "gen/sm/order/lifecycle_v1.x07.json",
+        "gen/sm/order/lifecycle_v1/tests.x07.json"
       ]
     }
   ]

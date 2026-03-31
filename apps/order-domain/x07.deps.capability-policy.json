@@ -1,0 +1,11 @@
+{
+  "schema_version": "x07.deps.capability_policy@0.1.0",
+  "policy_id": "order-domain-pure-default",
+  "default": {
+    "deny_sensitive_namespaces": [
+      "std.os.net",
+      "std.os.process"
+    ]
+  },
+  "packages": []
+}
