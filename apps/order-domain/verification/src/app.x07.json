@@ -1,21 +1,6 @@
 {
   "decls": [
     {
-      "kind": "export",
-      "names": [
-        "app.main"
-      ]
-    },
-    {
-      "kind": "defasync",
-      "name": "app.main",
-      "params": [
-        {
-          "name": "in_bytes",
-          "ty": "bytes_view"
-        }
-      ],
-      "result": "bytes",
       "body": [
         "begin",
         [
@@ -30,7 +15,16 @@
           "bytes.alloc",
           0
         ]
-      ]
+      ],
+      "kind": "defn",
+      "name": "app.main",
+      "params": [
+        {
+          "name": "in_bytes",
+          "ty": "bytes_view"
+        }
+      ],
+      "result": "bytes"
     }
   ],
   "imports": [
@@ -40,4 +34,3 @@
   "module_id": "app",
   "schema_version": "x07.x07ast@0.8.0"
 }
-

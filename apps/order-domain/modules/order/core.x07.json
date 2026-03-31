@@ -1,0 +1,82 @@
+{
+  "decls": [
+    {
+      "kind": "export",
+      "names": [
+        "order.core.missing_projection_count_v1"
+      ]
+    },
+    {
+      "body": [
+        "-",
+        "order_count",
+        "projected_count"
+      ],
+      "ensures": [
+        {
+          "expr": [
+            ">=",
+            "__result",
+            0
+          ],
+          "id": "e0"
+        },
+        {
+          "expr": [
+            "=",
+            [
+              "+",
+              "__result",
+              "projected_count"
+            ],
+            "order_count"
+          ],
+          "id": "e1"
+        }
+      ],
+      "kind": "defn",
+      "name": "order.core.missing_projection_count_v1",
+      "params": [
+        {
+          "name": "order_count",
+          "ty": "i32"
+        },
+        {
+          "name": "projected_count",
+          "ty": "i32"
+        }
+      ],
+      "requires": [
+        {
+          "expr": [
+            ">=",
+            "order_count",
+            0
+          ],
+          "id": "r0"
+        },
+        {
+          "expr": [
+            ">=",
+            "projected_count",
+            0
+          ],
+          "id": "r1"
+        },
+        {
+          "expr": [
+            ">=",
+            "order_count",
+            "projected_count"
+          ],
+          "id": "r2"
+        }
+      ],
+      "result": "i32"
+    }
+  ],
+  "imports": [],
+  "kind": "module",
+  "module_id": "order.core",
+  "schema_version": "x07.x07ast@0.8.0"
+}

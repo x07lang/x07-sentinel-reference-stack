@@ -1,0 +1,107 @@
+{
+  "schema_version": "x07schema.specrows@0.2.0",
+  "package": {
+    "name": "reference_stack",
+    "version": "0.1.0"
+  },
+  "defaults": {
+    "codec": "ext.data_model.doc_v1",
+    "canon_v1": {
+      "mode": "strict_reject_v1",
+      "map_key_order": "lex_u8_v1",
+      "unknown_fields": "reject_v1"
+    },
+    "number_style_default_v1": "int_ascii_v1",
+    "allow_unknown_fields": false,
+    "budgets": {
+      "max_doc_bytes": 4096,
+      "max_depth": 64,
+      "max_map_entries": 32,
+      "max_seq_items": 64,
+      "max_string_bytes": 256,
+      "max_number_bytes": 32
+    }
+  },
+  "rows": [
+    [
+      "type",
+      "reconciliation_report",
+      1,
+      "struct",
+      {
+        "err_base": 481000,
+        "brand": "reference_stack.reconciliation_report_v1"
+      }
+    ],
+    [
+      "field",
+      "reconciliation_report",
+      1,
+      "report_id",
+      "bytes",
+      {
+        "required": true,
+        "max_string_bytes": 128
+      }
+    ],
+    [
+      "field",
+      "reconciliation_report",
+      2,
+      "generated_at",
+      "bytes",
+      {
+        "required": true,
+        "max_string_bytes": 64
+      }
+    ],
+    [
+      "field",
+      "reconciliation_report",
+      3,
+      "order_count",
+      "number",
+      {
+        "required": true,
+        "max_number_bytes": 20,
+        "number_style_v1": "uint_ascii_v1"
+      }
+    ],
+    [
+      "field",
+      "reconciliation_report",
+      4,
+      "projected_count",
+      "number",
+      {
+        "required": true,
+        "max_number_bytes": 20,
+        "number_style_v1": "uint_ascii_v1"
+      }
+    ],
+    [
+      "field",
+      "reconciliation_report",
+      5,
+      "missing_projection_count",
+      "number",
+      {
+        "required": true,
+        "max_number_bytes": 20,
+        "number_style_v1": "uint_ascii_v1"
+      }
+    ],
+    [
+      "example",
+      "reconciliation_report",
+      "ex0_balanced",
+      {
+        "report_id": "rep_1001",
+        "generated_at": "2026-03-30T13:00:00Z",
+        "order_count": "1250",
+        "projected_count": "1248",
+        "missing_projection_count": "2"
+      }
+    ]
+  ]
+}

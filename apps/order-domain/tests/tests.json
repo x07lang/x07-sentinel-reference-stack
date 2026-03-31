@@ -1,0 +1,43 @@
+{
+  "schema_version": "x07.tests_manifest@0.2.0",
+  "tests": [
+    {
+      "id": "smoke/missing_projection_basic",
+      "entry": "tests.core.smoke_missing_projection_basic",
+      "expect": "pass",
+      "world": "solve-pure"
+    },
+    {
+      "id": "smoke/missing_projection_zero",
+      "entry": "tests.core.smoke_missing_projection_zero",
+      "expect": "pass",
+      "world": "solve-pure"
+    },
+    {
+      "id": "pbt/missing_projection_equation",
+      "entry": "tests.core.pbt_missing_projection_equation",
+      "expect": "pass",
+      "world": "solve-pure",
+      "returns": "bytes_status_v1",
+      "pbt": {
+        "cases": 64,
+        "max_shrinks": 128,
+        "params": [
+          {
+            "name": "payload",
+            "gen": {
+              "kind": "bytes",
+              "max_len": 2
+            }
+          }
+        ],
+        "case_budget": {
+          "fuel": 250000,
+          "timeout_ms": 300,
+          "max_mem_bytes": 16777216,
+          "max_output_bytes": 65536
+        }
+      }
+    }
+  ]
+}

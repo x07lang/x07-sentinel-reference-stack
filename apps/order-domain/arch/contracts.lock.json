@@ -1,0 +1,19 @@
+{
+  "files": {
+    "arch/boundaries/index.x07boundary.json": {
+      "jcs_sha256_hex": "1c70dd32ee2342131185c6e43780c582681a8661e1f087fb0e43523c900278da"
+    },
+    "arch/sm/specs/order_lifecycle.sm.json": {
+      "jcs_sha256_hex": "bd22cc881186009898c7cac0c4e9abe61b379150049eed2ccf599b3713f7096a"
+    }
+  },
+  "indexes": {
+    "arch/sm/index.x07sm.json": {
+      "jcs_sha256_hex": "161b47e60b6028ce0a48fea4d65cc96d4246111bf7defba71ae3e45b6fc6ac3e"
+    },
+    "boundaries": {
+      "jcs_sha256_hex": "1c70dd32ee2342131185c6e43780c582681a8661e1f087fb0e43523c900278da"
+    }
+  },
+  "schema_version": "x07.arch.contracts.lock@0.1.0"
+}

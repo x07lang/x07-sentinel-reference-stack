@@ -5,7 +5,11 @@ source "$(dirname "$0")/lib.sh"
 require_env X07_TAG
 APP_VERSION="${APP_VERSION:-$(date +%Y%m%d%H%M%S)}"
 IMAGE_PREFIX="${IMAGE_PREFIX:-local/reference-stack}"
-DOCKER_PLATFORM="${DOCKER_PLATFORM:-linux/amd64}"
+default_platform="linux/amd64"
+case "$(uname -m 2>/dev/null || true)" in
+  arm64|aarch64) default_platform="linux/arm64" ;;
+esac
+DOCKER_PLATFORM="${DOCKER_PLATFORM:-${default_platform}}"
 PUSH="${PUSH:-0}"
 
 mkdir -p "${OUT_DIR}/images"

@@ -5,12 +5,16 @@ on:
   push:
     branches: [ main ]
 
+env:
+  X07_TOOLCHAIN_TAG: "v0.1.106"
+
 jobs:
   terraform:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v3
+      - run: terraform fmt -check -recursive infra/terraform
       - run: bash scripts/ci/terraform-validate.sh
 
   local_smoke:
@@ -19,3 +23,69 @@ jobs:
       - uses: actions/checkout@v4
       - run: sudo apt-get update && sudo apt-get install -y jq
       - run: make local-smoke
+
+  order_domain:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install system deps
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            ca-certificates \
+            build-essential \
+            clang \
+            pkg-config \
+            libcurl4-openssl-dev \
+            curl \
+            unzip \
+            jq
+
+      - name: Install formal verification tools
+        shell: bash
+        run: |
+          curl -fsSL "https://raw.githubusercontent.com/x07lang/x07/${X07_TOOLCHAIN_TAG}/scripts/ci/install_formal_verification_tools_linux.sh" | bash
+
+      - name: Install x07
+        shell: bash
+        run: cargo install --locked --git https://github.com/x07lang/x07 --tag "$X07_TOOLCHAIN_TAG" x07
+
+      - name: Generate contract artifacts and refresh arch locks
+        shell: bash
+        run: bash apps/order-domain/ci/pin_contracts.sh
+
+      - name: Fail on uncommitted lock drift
+        shell: bash
+        run: bash scripts/ci/order-domain-lock-drift.sh
+
+      - name: Run x07 arch check with pinned lock files
+        shell: bash
+        run: bash apps/order-domain/ci/arch_check.sh
+
+      - name: Run deterministic tests + PBT
+        shell: bash
+        run: bash apps/order-domain/ci/test.sh
+
+      - name: Run verify coverage + prove + proof replay
+        shell: bash
+        run: bash apps/order-domain/ci/verify.sh
+
+      - name: Run trust profile check + trust report
+        shell: bash
+        run: bash apps/order-domain/ci/trust.sh
+
+      - name: Upload order-domain artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: order-domain-artifacts
+          path: |
+            apps/order-domain/arch/*.lock.json
+            apps/order-domain/.generated/
+            apps/order-domain/target/
+          if-no-files-found: error

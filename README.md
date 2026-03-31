@@ -13,6 +13,7 @@ It also ships:
 - shared contract artifacts in **`apps/order-domain/`**
 - Terraform for **AWS** and **GCP**
 - Sentinel payloads and scripts for:
+
   - target registration
   - secret upload
   - binding creation
@@ -21,6 +22,7 @@ It also ships:
   - release submit / approval
   - smoke verification
   - rollback
+
 - step-by-step tutorials from **onboarding → deploy → verify → rollback**
 
 ## What this repo proves
@@ -29,23 +31,32 @@ It also ships:
 - x07 Platform packages workloads into Sentinel-compatible packs.
 - Sentinel deploys and rolls back on your Kubernetes cluster.
 - The example uses:
+
   - PostgreSQL
   - AMQP / RabbitMQ
   - S3-compatible object storage
   - hosted secrets
   - OTLP telemetry
+
 - The same application topology can be reproduced on **AWS** and **GCP**.
 
 ## Current scope
 
 - `make local-smoke` exercises the full system locally (no cloud spend).
 - AWS/GCP Terraform + Sentinel scripts are included for the real deployment path, but require cloud credentials and Sentinel access to run end-to-end.
+- `apps/order-domain/` is now the canonical **Domain Pack teaching surface** for early x07 primitives:
+
+  - schema-derived branded bytes
+  - generated state machines
+  - property-based tests
+  - function contracts + prove/coverage
+  - trust-profile and trust-report review artifacts
 
 ## Repo layout
 
 ```text
 apps/
-  order-domain/         Shared contracts and report schemas
+  order-domain/         Shared contracts, generated-contract inputs, and pure verification core
   orders-api/           HTTP service
   orders-consumer/      Event consumer
   reconciliation-job/   Scheduled job
@@ -74,6 +85,9 @@ docs/
   24-verify-and-rollback.md
   25-audit-and-incidents.md
   26-verification.md
+  27-order-domain-primitives.md
+  28-contract-locks-and-review.md
+  29-x07-guide-map.md
   30-claim-coverage.md
 ```
 
@@ -85,6 +99,7 @@ docs/
 2. Create infra with [docs/10-aws-tutorial.md](docs/10-aws-tutorial.md)
 3. Register the cluster and bindings in Sentinel with [docs/20-sentinel-onboarding.md](docs/20-sentinel-onboarding.md)
 4. Build, pack, submit, approve, verify, and roll back with:
+
    - [docs/23-build-pack-release.md](docs/23-build-pack-release.md)
    - [docs/24-verify-and-rollback.md](docs/24-verify-and-rollback.md)
 
@@ -94,8 +109,47 @@ docs/
 2. Create infra with [docs/11-gcp-tutorial.md](docs/11-gcp-tutorial.md)
 3. Register the cluster and bindings in Sentinel with [docs/20-sentinel-onboarding.md](docs/20-sentinel-onboarding.md)
 4. Build, pack, submit, approve, verify, and roll back with:
+
    - [docs/23-build-pack-release.md](docs/23-build-pack-release.md)
    - [docs/24-verify-and-rollback.md](docs/24-verify-and-rollback.md)
+
+### x07 primitives path
+
+1. Read [docs/27-order-domain-primitives.md](docs/27-order-domain-primitives.md)
+2. Generate pinned contracts:
+
+   ```sh
+   make order-domain-contracts
+   ```
+
+3. Run deterministic tests + PBT:
+
+   ```sh
+   make order-domain-test
+   ```
+
+4. Run coverage/prove + proof replay:
+
+   ```sh
+   make order-domain-verify
+   ```
+
+5. Pin contract locks and drift-check posture:
+
+   ```sh
+   make order-domain-pin
+   make order-domain-arch-check
+   ```
+
+6. Read the official guide map for the concepts used by this repo:
+
+   - [docs/29-x07-guide-map.md](docs/29-x07-guide-map.md)
+
+7. Emit the trust posture report:
+
+   ```sh
+   make order-domain-trust
+   ```
 
 ## Architecture
 
@@ -113,6 +167,14 @@ flowchart LR
       consumer[orders-consumer]
       job[reconciliation-job]
     end
+
+    subgraph domainpack[Domain Pack]
+      od[apps/order-domain]
+    end
+
+    od --> api
+    od --> consumer
+    od --> job
 
     k8s --> api
     k8s --> consumer

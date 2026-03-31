@@ -1,0 +1,23 @@
+{
+  "schema_version": "x07.sm.spec@0.1.0",
+  "machine_id": "order.lifecycle",
+  "version": 1,
+  "world": "solve-pure",
+  "states": [
+    { "id": 0, "name": "accepted", "terminal": false },
+    { "id": 1, "name": "projected", "terminal": false },
+    { "id": 2, "name": "reconciled", "terminal": true },
+    { "id": 3, "name": "failed", "terminal": true }
+  ],
+  "events": [
+    { "id": 0, "name": "project" },
+    { "id": 1, "name": "reconcile" },
+    { "id": 2, "name": "fail" }
+  ],
+  "transitions": [
+    { "id": 0, "from": 0, "on": 0, "to": 1, "action": "actions.noop_v1" },
+    { "id": 1, "from": 1, "on": 1, "to": 2, "action": "actions.noop_v1" },
+    { "id": 2, "from": 0, "on": 2, "to": 3, "action": "actions.noop_v1" },
+    { "id": 3, "from": 1, "on": 2, "to": 3, "action": "actions.noop_v1" }
+  ]
+}

@@ -1,0 +1,201 @@
+{
+  "decls": [
+    {
+      "kind": "export",
+      "names": [
+        "tests.core.pbt_missing_projection_equation",
+        "tests.core.smoke_missing_projection_basic",
+        "tests.core.smoke_missing_projection_zero"
+      ]
+    },
+    {
+      "body": [
+        "begin",
+        [
+          "if",
+          [
+            "!=",
+            [
+              "bytes.len",
+              "payload"
+            ],
+            2
+          ],
+          [
+            "return",
+            [
+              "std.test.status_ok"
+            ]
+          ],
+          0
+        ],
+        [
+          "let",
+          "pv",
+          [
+            "bytes.view",
+            "payload"
+          ]
+        ],
+        [
+          "let",
+          "order_count",
+          [
+            "view.get_u8",
+            "pv",
+            0
+          ]
+        ],
+        [
+          "let",
+          "raw_projected",
+          [
+            "view.get_u8",
+            "pv",
+            1
+          ]
+        ],
+        [
+          "let",
+          "projected_count",
+          [
+            "%",
+            "raw_projected",
+            [
+              "+",
+              "order_count",
+              1
+            ]
+          ]
+        ],
+        [
+          "let",
+          "missing",
+          [
+            "order.core.missing_projection_count_v1",
+            "order_count",
+            "projected_count"
+          ]
+        ],
+        [
+          "if",
+          [
+            "=",
+            [
+              "+",
+              "missing",
+              "projected_count"
+            ],
+            "order_count"
+          ],
+          [
+            "std.test.status_ok"
+          ],
+          [
+            "std.test.status_fail",
+            410201
+          ]
+        ]
+      ],
+      "kind": "defn",
+      "name": "tests.core.pbt_missing_projection_equation",
+      "params": [
+        {
+          "name": "payload",
+          "ty": "bytes"
+        }
+      ],
+      "result": "bytes"
+    },
+    {
+      "body": [
+        "begin",
+        [
+          "let",
+          "got",
+          [
+            "order.core.missing_projection_count_v1",
+            10,
+            7
+          ]
+        ],
+        [
+          "try",
+          [
+            "std.test.assert_i32_eq",
+            "got",
+            3,
+            [
+              "std.test.code_assert_i32_eq"
+            ]
+          ]
+        ],
+        [
+          "try",
+          [
+            "std.test.assert_i32_eq",
+            [
+              "=",
+              [
+                "+",
+                7,
+                "got"
+              ],
+              10
+            ],
+            1,
+            [
+              "std.test.code_assert_i32_eq"
+            ]
+          ]
+        ],
+        [
+          "std.test.pass"
+        ]
+      ],
+      "kind": "defn",
+      "name": "tests.core.smoke_missing_projection_basic",
+      "params": [],
+      "result": "result_i32"
+    },
+    {
+      "body": [
+        "begin",
+        [
+          "let",
+          "got",
+          [
+            "order.core.missing_projection_count_v1",
+            11,
+            11
+          ]
+        ],
+        [
+          "try",
+          [
+            "std.test.assert_i32_eq",
+            "got",
+            0,
+            [
+              "std.test.code_assert_i32_eq"
+            ]
+          ]
+        ],
+        [
+          "std.test.pass"
+        ]
+      ],
+      "kind": "defn",
+      "name": "tests.core.smoke_missing_projection_zero",
+      "params": [],
+      "result": "result_i32"
+    }
+  ],
+  "imports": [
+    "order.core",
+    "std.test"
+  ],
+  "kind": "module",
+  "module_id": "tests.core",
+  "schema_version": "x07.x07ast@0.8.0"
+}

@@ -1,17 +1,14 @@
 {
   "decls": [],
   "imports": [
-    "app"
+    "order.core"
   ],
   "kind": "entry",
   "module_id": "main",
   "schema_version": "x07.x07ast@0.8.0",
   "solve": [
-    "await",
-    [
-      "app.main",
-      "input"
-    ]
+    "order.core.missing_projection_count_v1",
+    10,
+    7
   ]
 }
-

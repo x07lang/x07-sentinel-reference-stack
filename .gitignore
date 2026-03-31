@@ -27,3 +27,7 @@ tmp/
 .DS_Store
 .vscode/
 .idea/
+
+# Order-domain generated verification artifacts
+apps/order-domain/.generated/
+apps/order-domain/target/

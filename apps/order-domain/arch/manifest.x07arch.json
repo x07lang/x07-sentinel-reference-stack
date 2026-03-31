@@ -1,0 +1,166 @@
+{
+  "schema_version": "x07.arch.manifest@0.3.0",
+  "repo": {
+    "id": "order_domain_reference_stack",
+    "root": "."
+  },
+  "externals": {
+    "allowed_import_prefixes": [
+      "std.",
+      "ext.",
+      "gen."
+    ],
+    "allowed_exact": [
+      "ext.data_model",
+      "ext.data_model.json",
+      "ext.json.data_model",
+      "std.bytes",
+      "std.fmt",
+      "std.parse",
+      "std.test",
+      "std.u32",
+      "std.vec"
+    ]
+  },
+  "nodes": [
+    {
+      "id": "order_domain_core",
+      "match": {
+        "module_prefixes": [],
+        "path_globs": [
+          "modules/order/core.x07.json",
+          "verification/src/**/*.x07.json"
+        ]
+      },
+      "world": "solve-pure",
+      "trust_zone": "verified_core",
+      "visibility": {
+        "mode": "public",
+        "visible_to": []
+      },
+      "imports": {
+        "deny_prefixes": [
+          "std.os.",
+          "ext.net."
+        ],
+        "allow_prefixes": [
+          "order",
+          "main",
+          "std."
+        ]
+      }
+    },
+    {
+      "id": "order_domain_adapters",
+      "match": {
+        "module_prefixes": [],
+        "path_globs": [
+          "modules/actions.x07.json",
+          "modules/order/domain.x07.json"
+        ]
+      },
+      "world": "solve-pure",
+      "trust_zone": "untrusted",
+      "visibility": {
+        "mode": "restricted",
+        "visible_to": [
+          "tests"
+        ]
+      },
+      "imports": {
+        "deny_prefixes": [
+          "std.os.",
+          "ext.net."
+        ],
+        "allow_prefixes": [
+          "order",
+          "std.",
+          "ext."
+        ]
+      }
+    },
+    {
+      "id": "tests",
+      "match": {
+        "module_prefixes": [],
+        "path_globs": [
+          "tests/**/*.x07.json"
+        ]
+      },
+      "world": "solve-pure",
+      "trust_zone": "test_only",
+      "visibility": {
+        "mode": "restricted",
+        "visible_to": []
+      },
+      "imports": {
+        "deny_prefixes": [
+          "std.os.",
+          "ext.net."
+        ],
+        "allow_prefixes": [
+          "order",
+          "tests",
+          "std."
+        ]
+      }
+    }
+  ],
+  "rules": [
+    {
+      "kind": "layers_v1",
+      "id": "layers.main_v1",
+      "layers": [
+        "order_domain_core",
+        "order_domain_adapters",
+        "tests"
+      ],
+      "direction": "down"
+    },
+    {
+      "kind": "deny_cycles_v1",
+      "id": "deny_cycles.nodes_v1",
+      "scope": "nodes"
+    }
+  ],
+  "checks": {
+    "deny_cycles": true,
+    "deny_orphans": true,
+    "enforce_visibility": true,
+    "enforce_world_caps": true,
+    "allowlist_mode": {
+      "enabled": true,
+      "default_allow_external": false,
+      "default_allow_internal": false
+    },
+    "brand_boundary_v1": {
+      "enabled": true
+    },
+    "world_of_imported_v1": {
+      "enabled": true
+    }
+  },
+  "contracts_v1": {
+    "boundaries": {
+      "index_path": "arch/boundaries/index.x07boundary.json",
+      "enforce": "error"
+    },
+    "sm": {
+      "index_path": "arch/sm/index.x07sm.json",
+      "gen_dir": ".generated/gen/sm",
+      "require_gen_uptodate": true
+    },
+    "canonical_json": {
+      "mode": "jcs_rfc8785_v1"
+    }
+  },
+  "tool_budgets": {
+    "max_modules": 1000,
+    "max_edges": 2000,
+    "max_diags": 1000,
+    "contracts_budgets": {
+      "max_contract_files": 128,
+      "max_contract_bytes": 2097152
+    }
+  }
+}

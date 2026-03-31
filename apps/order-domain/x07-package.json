@@ -3,10 +3,11 @@
   "name": "order-domain",
   "version": "0.1.0",
   "description": "Shared order + reconciliation contracts for the Sentinel reference stack.",
-  "docs": "Shared order-domain helpers used by orders-api, orders-consumer, and reconciliation-job.\n\nModules:\n- order.domain\n",
+  "docs": "Shared order-domain helpers used by orders-api, orders-consumer, and reconciliation-job.\n\nModules:\n- order.domain\n- order.core\n",
   "module_root": "modules",
   "modules": [
-    "order.domain"
+    "order.domain",
+    "order.core"
   ],
   "meta": {
     "determinism_tier": "pure",

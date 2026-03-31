@@ -1,0 +1,36 @@
+{
+  "schema_version": "x07.arch.boundaries.index@0.1.0",
+  "boundaries": [
+    {
+      "id": "order.core.missing_projection_count_v1",
+      "symbol": "order.core.missing_projection_count_v1",
+      "node_id": "order_domain_core",
+      "kind": "public_function",
+      "from_zone": "verified_core",
+      "to_zone": "verified_core",
+      "worlds_allowed": ["solve-pure"],
+      "input": {
+        "params": [
+          { "name": "order_count", "ty": "i32" },
+          { "name": "projected_count", "ty": "i32" }
+        ]
+      },
+      "output": { "ty": "i32" },
+      "smoke": {
+        "entry": "tests.core.smoke_missing_projection_basic",
+        "tests": [
+          "smoke/missing_projection_basic",
+          "smoke/missing_projection_zero"
+        ]
+      },
+      "pbt": {
+        "required": true,
+        "tests": ["pbt/missing_projection_equation"]
+      },
+      "verify": {
+        "required": true,
+        "mode": "prove"
+      }
+    }
+  ]
+}

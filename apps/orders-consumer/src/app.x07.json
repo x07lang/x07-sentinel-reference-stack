@@ -1080,7 +1080,13 @@
           "open_resp",
           [
             "std.db.pg.open_v1",
-            "dsn",
+            [
+              "view.to_bytes",
+              [
+                "bytes.view",
+                "dsn"
+              ]
+            ],
             [
               "view.to_bytes",
               "caps_v"
@@ -1413,6 +1419,24 @@
                                     ],
                                     [
                                       "let",
+                                      "_write_last_payload",
+                                      [
+                                        "os.fs.write_file",
+                                        [
+                                          "bytes.lit",
+                                          "/tmp/consumer_last_payload.json"
+                                        ],
+                                        [
+                                          "view.to_bytes",
+                                          [
+                                            "bytes.view",
+                                            "payload_json"
+                                          ]
+                                        ]
+                                      ]
+                                    ],
+                                    [
+                                      "let",
                                       "parsed",
                                       [
                                         "order.domain.parse_order_created_doc_v1",
@@ -1476,16 +1500,178 @@
                                               ]
                                             ],
                                             [
-                                              "std.db.pg.exec_v1",
-                                              "conn",
-                                              "sql_upsert",
-                                              "params",
+                                              "let",
+                                              "_write_last_order_id",
                                               [
-                                                "std.db.pg.spec.flags_none_v1"
+                                                "os.fs.write_file",
+                                                [
+                                                  "bytes.lit",
+                                                  "/tmp/consumer_last_order_id"
+                                                ],
+                                                "order_id"
+                                              ]
+                                            ],
+                                            [
+                                              "let",
+                                              "upsert_resp",
+                                              [
+                                                "std.db.pg.open_v1",
+                                                [
+                                                  "view.to_bytes",
+                                                  [
+                                                    "bytes.view",
+                                                    "dsn"
+                                                  ]
+                                                ],
+                                                [
+                                                  "view.to_bytes",
+                                                  "caps_v"
+                                                ]
+                                              ]
+                                            ],
+                                            [
+                                              "let",
+                                              "ov2",
+                                              [
+                                                "bytes.view",
+                                                "upsert_resp"
+                                              ]
+                                            ],
+                                            [
+                                              "if",
+                                              [
+                                                "=",
+                                                [
+                                                  "std.db.spec.resp_is_ok_v1",
+                                                  "ov2"
+                                                ],
+                                                1
                                               ],
                                               [
-                                                "view.to_bytes",
-                                                "caps_v"
+                                                "begin",
+                                                [
+                                                  "let",
+                                                  "conn2",
+                                                  [
+                                                    "std.u32.read_le_at",
+                                                    [
+                                                      "std.db.spec.resp_ok_payload_view_v1",
+                                                      [
+                                                        "bytes.view",
+                                                        "upsert_resp"
+                                                      ]
+                                                    ],
+                                                    0
+                                                  ]
+                                                ],
+                                                [
+                                                  "let",
+                                                  "upsert_resp2",
+                                                  [
+                                                    "std.db.pg.exec_v1",
+                                                    "conn2",
+                                                    "sql_upsert",
+                                                    "params",
+                                                    [
+                                                      "std.db.pg.spec.flags_none_v1"
+                                                    ],
+                                                    [
+                                                      "view.to_bytes",
+                                                      "caps_v"
+                                                    ]
+                                                  ]
+                                                ],
+                                                [
+                                                  "let",
+                                                  "urv",
+                                                  [
+                                                    "bytes.view",
+                                                    "upsert_resp2"
+                                                  ]
+                                                ],
+                                                [
+                                                  "if",
+                                                  [
+                                                    "=",
+                                                    [
+                                                      "std.db.spec.resp_is_ok_v1",
+                                                      "urv"
+                                                    ],
+                                                    1
+                                                  ],
+                                                  [
+                                                    "let",
+                                                    "_write_db_ok",
+                                                    [
+                                                      "os.fs.write_file",
+                                                      [
+                                                        "bytes.lit",
+                                                        "/tmp/consumer_last_db_status"
+                                                      ],
+                                                      [
+                                                        "bytes.lit",
+                                                        "ok\n"
+                                                      ]
+                                                    ]
+                                                  ],
+                                                  [
+                                                    "begin",
+                                                    [
+                                                      "let",
+                                                      "errmsg",
+                                                      [
+                                                        "std.db.spec.resp_err_msg_v1",
+                                                        "urv"
+                                                      ]
+                                                    ],
+                                                    [
+                                                      "let",
+                                                      "_write_db_err",
+                                                      [
+                                                        "os.fs.write_file",
+                                                        [
+                                                          "bytes.lit",
+                                                          "/tmp/consumer_last_db_status"
+                                                        ],
+                                                        "errmsg"
+                                                      ]
+                                                    ],
+                                                    0
+                                                  ]
+                                                ],
+                                                [
+                                                  "std.db.pg.close_v1",
+                                                  "conn2",
+                                                  [
+                                                    "view.to_bytes",
+                                                    "caps_v"
+                                                  ]
+                                                ],
+                                                0
+                                              ],
+                                              [
+                                                "begin",
+                                                [
+                                                  "let",
+                                                  "errmsg_open",
+                                                  [
+                                                    "std.db.spec.resp_err_msg_v1",
+                                                    "ov2"
+                                                  ]
+                                                ],
+                                                [
+                                                  "let",
+                                                  "_write_db_err",
+                                                  [
+                                                    "os.fs.write_file",
+                                                    [
+                                                      "bytes.lit",
+                                                      "/tmp/consumer_last_db_status"
+                                                    ],
+                                                    "errmsg_open"
+                                                  ]
+                                                ],
+                                                0
                                               ]
                                             ],
                                             0

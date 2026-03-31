@@ -228,9 +228,10 @@
       "name": "order-domain",
       "version": "0.1.0",
       "path": "order-domain",
-      "package_manifest_sha256": "aac49504c52a9aa7cb37b4f687245e3ad7f536313f6c5c6b45632ec314400c74",
+      "package_manifest_sha256": "6cf32c574741a294674b12bbfa443124e4346222fe30c84bb8dcd8bf7ca2e4eb",
       "module_root": "modules",
       "modules_sha256": {
+        "order.core": "67b46d38d6ee2caaccf32f10191c998fdb34c786a292c139e580847d040a9194",
         "order.domain": "6338ab7d6e18dc33880460a479f6edadae1c88105bb0d73113159d8542074b85"
       }
     }

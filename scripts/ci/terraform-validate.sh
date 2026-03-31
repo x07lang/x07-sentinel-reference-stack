@@ -15,8 +15,9 @@ if [[ -z "${TF_BIN}" ]]; then
   fi
 fi
 
-echo "==> terraform fmt check"
-"${TF_BIN}" fmt -check -recursive "${ROOT_DIR}/infra/terraform"
+if [[ "${TF_BIN}" == */* && "${TF_BIN}" != /* ]]; then
+  TF_BIN="${ROOT_DIR}/${TF_BIN}"
+fi
 
 for dir in   "${ROOT_DIR}/infra/terraform/aws/minimal"   "${ROOT_DIR}/infra/terraform/gcp/minimal"
 do

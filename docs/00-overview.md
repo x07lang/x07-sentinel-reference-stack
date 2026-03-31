@@ -39,7 +39,7 @@ Responsibilities:
 - event envelope shape
 - reconciliation report metadata
 
-In the initial public release these are JSON schemas and conventions, not a finished shared x07 package.
+In the initial public release these are JSON schemas and conventions plus a growing x07 assurance surface: branded boundaries, state-machine contracts, property tests, verify/prove flows, and pinned review locks.
 
 ## Bindings used in the tutorial
 

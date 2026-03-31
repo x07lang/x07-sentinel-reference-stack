@@ -1,0 +1,20 @@
+{
+  "jcs_sha256_hex": "c10e98e3429323aab3abdf6d43ee1138526a7408a7f988d5c5c1b852991e5bfe",
+  "manifest_path": "arch/manifest.x07arch.json",
+  "module_scan": {
+    "exclude_globs": [
+      "**/.git/**",
+      "**/.x07/**",
+      "**/.generated/**",
+      "**/dist/**",
+      "**/gen/**",
+      "**/node_modules/**",
+      "**/target/**",
+      "**/tmp/**"
+    ],
+    "include_globs": [
+      "**/*.x07.json"
+    ]
+  },
+  "schema_version": "x07.arch.manifest.lock@0.1.0"
+}

@@ -43,8 +43,65 @@ while true; do
 done
 echo "API readiness OK"
 
+queue_ensured="0"
+
 if command -v kubectl >/dev/null 2>&1; then
   kubectl -n "${NAMESPACE}" get deploy,po,svc,ingress,cronjob,job,hpa || true
+
+  if kubectl -n rabbitmq get deploy/rabbitmq >/dev/null 2>&1; then
+    echo "Ensuring RabbitMQ queue exists"
+    deadline="$(( $(date +%s) + SMOKE_WAIT_SECONDS ))"
+    while true; do
+      if (( $(date +%s) >= deadline )); then
+        echo "timed out ensuring RabbitMQ queue exists" >&2
+        kubectl -n rabbitmq get deploy,po,svc || true
+        exit 1
+      fi
+      if kubectl -n rabbitmq exec deploy/rabbitmq -- sh -lc 'rabbitmqadmin -u "$RABBITMQ_DEFAULT_USER" -p "$RABBITMQ_DEFAULT_PASS" -V / declare queue name=order.created durable=true >/dev/null' >/dev/null 2>&1; then
+        break
+      fi
+      sleep "${SMOKE_POLL_SECONDS}"
+    done
+    echo "RabbitMQ queue OK"
+    queue_ensured="1"
+  fi
+fi
+
+if [[ "${queue_ensured}" != "1" ]]; then
+  local_mode="0"
+  case "${base_url}" in
+    http://127.0.0.1*|https://127.0.0.1*|http://localhost*|https://localhost*) local_mode="1" ;;
+  esac
+
+  mgmt_base_url="${RABBITMQ_MGMT_BASE_URL:-http://127.0.0.1:15672}"
+  mgmt_user="${RABBITMQ_MGMT_USER:-x07}"
+  mgmt_pass="${RABBITMQ_MGMT_PASS:-x07}"
+  mgmt_vhost_enc="${RABBITMQ_MGMT_VHOST_ENC:-%2f}"
+
+  echo "Ensuring RabbitMQ queue exists (management API)"
+  deadline="$(( $(date +%s) + SMOKE_WAIT_SECONDS ))"
+  while true; do
+    if curl -fsS --connect-timeout 2 --max-time 5 \
+      -u "${mgmt_user}:${mgmt_pass}" \
+      -X PUT "${mgmt_base_url%/}/api/queues/${mgmt_vhost_enc}/order.created" \
+      -H 'content-type: application/json' \
+      --data '{"durable":true}' >/dev/null 2>&1; then
+      echo "RabbitMQ queue OK"
+      queue_ensured="1"
+      break
+    fi
+
+    if (( $(date +%s) >= deadline )); then
+      if [[ "${local_mode}" == "1" ]]; then
+        echo "timed out ensuring RabbitMQ queue exists (management API: ${mgmt_base_url})" >&2
+        exit 1
+      fi
+      echo "could not ensure RabbitMQ queue via management API; continuing" >&2
+      break
+    fi
+
+    sleep "${SMOKE_POLL_SECONDS}"
+  done
 fi
 
 if ! command -v jq >/dev/null 2>&1; then
@@ -83,10 +140,17 @@ done
 echo "Consumer projection OK"
 
 if command -v kubectl >/dev/null 2>&1; then
+  cronjob_name=""
   if kubectl -n "${NAMESPACE}" get cronjob reconciliation-job >/dev/null 2>&1; then
+    cronjob_name="reconciliation-job"
+  else
+    cronjob_name="$(kubectl -n "${NAMESPACE}" get cronjob -o json | jq -r '[.items[].metadata.name | select(test("^reconciliation-job($|-)" ))][0] // empty')"
+  fi
+
+  if [[ -n "${cronjob_name}" ]]; then
     job_name="reconciliation-smoke-$(date +%s)"
-    echo "Starting reconciliation job (${job_name})"
-    kubectl -n "${NAMESPACE}" create job --from=cronjob/reconciliation-job "${job_name}" >/dev/null
+    echo "Starting reconciliation job (${job_name} from ${cronjob_name})"
+    kubectl -n "${NAMESPACE}" create job --from="cronjob/${cronjob_name}" "${job_name}" >/dev/null
     if ! kubectl -n "${NAMESPACE}" wait --for=condition=complete "job/${job_name}" --timeout=5m >/dev/null; then
       kubectl -n "${NAMESPACE}" get job "${job_name}" -o wide || true
       kubectl -n "${NAMESPACE}" describe job "${job_name}" || true
