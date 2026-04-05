@@ -7,8 +7,34 @@ COMPOSE_PROJECT_NAME="${COMPOSE_PROJECT_NAME:-x07rs}"
 COMPOSE_FILE="${ROOT_DIR}/scripts/local/docker-compose.yml"
 NETWORK="${COMPOSE_PROJECT_NAME}_default"
 
-X07_TAG="${X07_TAG:-v0.1.107}"
+X07_TAG="${X07_TAG:-${X07_TOOLCHAIN_TAG:-v0.1.107}}"
 KEEP="${KEEP:-0}"
+
+default_platform="linux/amd64"
+case "$(uname -m 2>/dev/null || true)" in
+  arm64|aarch64) default_platform="linux/arm64" ;;
+esac
+DOCKER_PLATFORM="${DOCKER_PLATFORM:-${default_platform}}"
+export DOCKER_PLATFORM
+
+check_x07_asset() {
+  local arch platform x07_version asset url
+  arch="x86_64"
+  case "${DOCKER_PLATFORM}" in
+    *arm64*) arch="aarch64" ;;
+  esac
+  platform="unknown-linux-gnu"
+  x07_version="${X07_TAG#v}"
+  asset="x07-${x07_version}-${arch}-${platform}.tar.gz"
+  url="https://github.com/x07lang/x07/releases/download/${X07_TAG}/${asset}"
+
+  echo "Checking x07 release asset availability: ${url}"
+  curl --proto '=https' --tlsv1.2 --retry 10 --retry-connrefused --retry-delay 1 \
+    --location --silent --show-error --fail --max-time 60 \
+    --output /dev/null --head "${url}"
+}
+
+check_x07_asset
 
 cleanup() {
   if [[ "${KEEP}" == "1" ]]; then

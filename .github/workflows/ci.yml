@@ -7,6 +7,7 @@ on:
 
 env:
   X07_TOOLCHAIN_TAG: "v0.1.107"
+  X07_TAG: "v0.1.107"
 
 jobs:
   terraform:
