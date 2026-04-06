@@ -80,7 +80,7 @@ jobs:
           echo "/opt/x07/bin" >> "${GITHUB_PATH}"
           export PATH="/opt/x07/bin:${PATH}"
           x07 --version
-          x07-os-runner --version
+          x07-os-runner --help >/dev/null
 
       - name: Generate contract artifacts and refresh arch locks
         shell: bash
