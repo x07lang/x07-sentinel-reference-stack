@@ -2339,10 +2339,7 @@
             ],
             [
               "bytes.view",
-              [
-                "std.fmt.s32_to_dec",
-                "total_minor"
-              ]
+              "total_s"
             ],
             [
               "bytes.view",
