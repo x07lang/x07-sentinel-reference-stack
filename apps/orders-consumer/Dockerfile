@@ -14,7 +14,10 @@ COPY apps/order-domain ./order-domain
 WORKDIR /build/orders-consumer
 COPY apps/orders-consumer/x07.json ./x07.json
 COPY apps/orders-consumer/x07.lock.json ./x07.lock.json
+COPY apps/orders-consumer/arch ./arch
+COPY apps/orders-consumer/policy ./policy
 COPY apps/orders-consumer/src ./src
+COPY apps/orders-consumer/tests ./tests
 
 RUN ln -s ../order-domain order-domain
 RUN x07 pkg lock --project x07.json

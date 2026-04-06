@@ -1,0 +1,918 @@
+{
+  "format": "x07.stdlib.lock@0.1.0",
+  "lock_version": 1,
+  "packages": [
+    {
+      "name": "std.bit",
+      "path": "stdlib/std/0.1.1/modules/std/bit.x07.json",
+      "relpath": "std/0.1.1/modules/std/bit.x07.json",
+      "sha256": "9ef9c39769f36dbd125a702e00d8f96a3682c0de5984baf1ffb1dad9476e2829",
+      "size_bytes": 538,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.bit",
+      "path": "stdlib/std/0.1.2/modules/std/bit.x07.json",
+      "relpath": "std/0.1.2/modules/std/bit.x07.json",
+      "sha256": "9ef9c39769f36dbd125a702e00d8f96a3682c0de5984baf1ffb1dad9476e2829",
+      "size_bytes": 538,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.bitset",
+      "path": "stdlib/std/0.1.1/modules/std/bitset.x07.json",
+      "relpath": "std/0.1.1/modules/std/bitset.x07.json",
+      "sha256": "ceab4899c8379a57f5f410c84183ec9735e3d1283fa7d43bf18e624ce8b11208",
+      "size_bytes": 1910,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.bitset",
+      "path": "stdlib/std/0.1.2/modules/std/bitset.x07.json",
+      "relpath": "std/0.1.2/modules/std/bitset.x07.json",
+      "sha256": "b19e4a7bfe15bedec7dcde24b55b4214ca537ed31c4b128997b411c683d0c18d",
+      "size_bytes": 1910,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.btree_map",
+      "path": "stdlib/std/0.1.1/modules/std/btree_map.x07.json",
+      "relpath": "std/0.1.1/modules/std/btree_map.x07.json",
+      "sha256": "ff754442a1cb9c58f72f8b06a31a4d590120aca1dc9e1522dda1caee0253208e",
+      "size_bytes": 3460,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.btree_map",
+      "path": "stdlib/std/0.1.2/modules/std/btree_map.x07.json",
+      "relpath": "std/0.1.2/modules/std/btree_map.x07.json",
+      "sha256": "35004c26846aa40152c5376fab37247f98a98157eca07e3e004fbbe6662909b1",
+      "size_bytes": 6669,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.btree_set",
+      "path": "stdlib/std/0.1.1/modules/std/btree_set.x07.json",
+      "relpath": "std/0.1.1/modules/std/btree_set.x07.json",
+      "sha256": "792565f02e92563099b3478b0462b6c194ed1c6831199002c99c3bb9281af6ee",
+      "size_bytes": 2148,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.btree_set",
+      "path": "stdlib/std/0.1.2/modules/std/btree_set.x07.json",
+      "relpath": "std/0.1.2/modules/std/btree_set.x07.json",
+      "sha256": "49d64e50332b02f6ddfd523d23dbb1855031db11de2f02ae9d4836e8f38a71bc",
+      "size_bytes": 3807,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.bytes",
+      "path": "stdlib/std/0.1.0/modules/std/bytes.x07.json",
+      "relpath": "std/0.1.0/modules/std/bytes.x07.json",
+      "sha256": "7f849af0f9b1495b352512a3f1f3981c939f6a197d9554500e3234375a43b3d6",
+      "size_bytes": 2123,
+      "version": "0.1.0"
+    },
+    {
+      "name": "std.bytes",
+      "path": "stdlib/std/0.1.1/modules/std/bytes.x07.json",
+      "relpath": "std/0.1.1/modules/std/bytes.x07.json",
+      "sha256": "6de2f97c9f3d700611a34191b4d465556347e683779e4746d5fb95ffaa5c595d",
+      "size_bytes": 5181,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.bytes",
+      "path": "stdlib/std/0.1.2/modules/std/bytes.x07.json",
+      "relpath": "std/0.1.2/modules/std/bytes.x07.json",
+      "sha256": "6de2f97c9f3d700611a34191b4d465556347e683779e4746d5fb95ffaa5c595d",
+      "size_bytes": 5181,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.codec",
+      "path": "stdlib/std/0.1.0/modules/std/codec.x07.json",
+      "relpath": "std/0.1.0/modules/std/codec.x07.json",
+      "sha256": "4c2b668af2b4117629f3613c5a2be9b8ca4f069f832de5b283783a6564a5a6e0",
+      "size_bytes": 476,
+      "version": "0.1.0"
+    },
+    {
+      "generated_by": "x07import",
+      "name": "std.codec",
+      "path": "stdlib/std/0.1.1/modules/std/codec.x07.json",
+      "relpath": "std/0.1.1/modules/std/codec.x07.json",
+      "sha256": "9afd46861c92f77b0dc491f7d06522ffb5952fbf449ab930ca61542c41c380d3",
+      "size_bytes": 686,
+      "source_path": "tests/x07import/fixtures/import_sources/rust/std_codec@0.1.1/codec.rs",
+      "source_sha256": "50afeb382f2d1d514636c4c60d2537ae4e50f23e8509635dbc6013b762f02907",
+      "version": "0.1.1"
+    },
+    {
+      "generated_by": "x07import",
+      "name": "std.codec",
+      "path": "stdlib/std/0.1.2/modules/std/codec.x07.json",
+      "relpath": "std/0.1.2/modules/std/codec.x07.json",
+      "sha256": "9afd46861c92f77b0dc491f7d06522ffb5952fbf449ab930ca61542c41c380d3",
+      "size_bytes": 686,
+      "source_path": "tests/x07import/fixtures/import_sources/rust/std_codec@0.1.1/codec.rs",
+      "source_sha256": "50afeb382f2d1d514636c4c60d2537ae4e50f23e8509635dbc6013b762f02907",
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.csv",
+      "path": "stdlib/std/0.1.0/modules/std/csv.x07.json",
+      "relpath": "std/0.1.0/modules/std/csv.x07.json",
+      "sha256": "d2fe8f2a67785eed3f690ce531221e03285ce3838c4b97f76acea32ff3d8764e",
+      "size_bytes": 316,
+      "version": "0.1.0"
+    },
+    {
+      "name": "std.csv",
+      "path": "stdlib/std/0.1.1/modules/std/csv.x07.json",
+      "relpath": "std/0.1.1/modules/std/csv.x07.json",
+      "sha256": "24c868c842e3cfa714d50b154a6428fbca83d1c710b23861c1d8c1c88dac2556",
+      "size_bytes": 2315,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.csv",
+      "path": "stdlib/std/0.1.2/modules/std/csv.x07.json",
+      "relpath": "std/0.1.2/modules/std/csv.x07.json",
+      "sha256": "24c868c842e3cfa714d50b154a6428fbca83d1c710b23861c1d8c1c88dac2556",
+      "size_bytes": 2315,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.deque",
+      "path": "stdlib/std/0.1.2/modules/std/deque.x07.json",
+      "relpath": "std/0.1.2/modules/std/deque.x07.json",
+      "sha256": "979d8cddcc035f5af5d0254df773e158e0e6c0633a55e703252bb4728ea7f511",
+      "size_bytes": 4817,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.deque_u32",
+      "path": "stdlib/std/0.1.1/modules/std/deque_u32.x07.json",
+      "relpath": "std/0.1.1/modules/std/deque_u32.x07.json",
+      "sha256": "f5840fa4d9a85f2edadfb67007d10846d0b846bc596fe02823583db37b6bbcfc",
+      "size_bytes": 4309,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.deque_u32",
+      "path": "stdlib/std/0.1.2/modules/std/deque_u32.x07.json",
+      "relpath": "std/0.1.2/modules/std/deque_u32.x07.json",
+      "sha256": "4a0504c76a0fa97b0954e88b6795fa8f9563232e9fd3ba8122f861a4de9470c5",
+      "size_bytes": 1262,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.fmt",
+      "path": "stdlib/std/0.1.0/modules/std/fmt.x07.json",
+      "relpath": "std/0.1.0/modules/std/fmt.x07.json",
+      "sha256": "413c2117f8a4431e980c2df492e263cd9da03a1b74bffc8fc966b033d2fc3025",
+      "size_bytes": 421,
+      "version": "0.1.0"
+    },
+    {
+      "generated_by": "x07import",
+      "name": "std.fmt",
+      "path": "stdlib/std/0.1.1/modules/std/fmt.x07.json",
+      "relpath": "std/0.1.1/modules/std/fmt.x07.json",
+      "sha256": "ab5317805faea37ac19e60752c0804cc56c740b07c9822545a6ec7dc2b83afa0",
+      "size_bytes": 622,
+      "source_path": "tests/x07import/fixtures/import_sources/rust/std_fmt@0.1.1/fmt.rs",
+      "source_sha256": "0b0105da3643fc13127dad87446cf5a50714126ba7a215b84ee327989e732224",
+      "version": "0.1.1"
+    },
+    {
+      "generated_by": "x07import",
+      "name": "std.fmt",
+      "path": "stdlib/std/0.1.2/modules/std/fmt.x07.json",
+      "relpath": "std/0.1.2/modules/std/fmt.x07.json",
+      "sha256": "ab5317805faea37ac19e60752c0804cc56c740b07c9822545a6ec7dc2b83afa0",
+      "size_bytes": 622,
+      "source_path": "tests/x07import/fixtures/import_sources/rust/std_fmt@0.1.1/fmt.rs",
+      "source_sha256": "0b0105da3643fc13127dad87446cf5a50714126ba7a215b84ee327989e732224",
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.fs",
+      "path": "stdlib/std/0.1.0/modules/std/fs.x07.json",
+      "relpath": "std/0.1.0/modules/std/fs.x07.json",
+      "sha256": "7c0620b9bd6830ba6ea695412afbddf37eeaf832e5528f50ff7de7888792e3ac",
+      "size_bytes": 260,
+      "version": "0.1.0"
+    },
+    {
+      "name": "std.fs",
+      "path": "stdlib/std/0.1.1/modules/std/fs.x07.json",
+      "relpath": "std/0.1.1/modules/std/fs.x07.json",
+      "sha256": "4b59a0ec169ae60b1e0f1fa99ec9d6eef97f8414ea8f29e127decbfa511c80e3",
+      "size_bytes": 1286,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.fs",
+      "path": "stdlib/std/0.1.2/modules/std/fs.x07.json",
+      "relpath": "std/0.1.2/modules/std/fs.x07.json",
+      "sha256": "4b59a0ec169ae60b1e0f1fa99ec9d6eef97f8414ea8f29e127decbfa511c80e3",
+      "size_bytes": 1286,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.hash",
+      "path": "stdlib/std/0.1.1/modules/std/hash.x07.json",
+      "relpath": "std/0.1.1/modules/std/hash.x07.json",
+      "sha256": "7a5c8010d52c0bbb953ab41ee1e545ea8a20862f28ff645e53daf82ec845d3b3",
+      "size_bytes": 1333,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.hash",
+      "path": "stdlib/std/0.1.2/modules/std/hash.x07.json",
+      "relpath": "std/0.1.2/modules/std/hash.x07.json",
+      "sha256": "7a5c8010d52c0bbb953ab41ee1e545ea8a20862f28ff645e53daf82ec845d3b3",
+      "size_bytes": 1333,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.hash_map",
+      "path": "stdlib/std/0.1.1/modules/std/hash_map.x07.json",
+      "relpath": "std/0.1.1/modules/std/hash_map.x07.json",
+      "sha256": "ed4467b2891ce7f8cce5f20dac5eb439f1bc0f5093c1b52d13c53ba9148e9305",
+      "size_bytes": 1978,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.hash_map",
+      "path": "stdlib/std/0.1.2/modules/std/hash_map.x07.json",
+      "relpath": "std/0.1.2/modules/std/hash_map.x07.json",
+      "sha256": "094ab59c43349d10943e1f91bf8a6ebf22bb88b0a32e8456aaa326ae87ee6afb",
+      "size_bytes": 3678,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.hash_map_value",
+      "path": "stdlib/std/0.1.2/modules/std/hash_map_value.x07.json",
+      "relpath": "std/0.1.2/modules/std/hash_map_value.x07.json",
+      "sha256": "f9ba63fc380d5f6b487285a1f29d937ddb971128e0903bdd54b58aa3f24d4e98",
+      "size_bytes": 3874,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.hash_set",
+      "path": "stdlib/std/0.1.1/modules/std/hash_set.x07.json",
+      "relpath": "std/0.1.1/modules/std/hash_set.x07.json",
+      "sha256": "7bb969ed6ec8b8c9767db7c2c07fed0de610b95f57043dace1a5d2d05b913900",
+      "size_bytes": 6930,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.hash_set",
+      "path": "stdlib/std/0.1.2/modules/std/hash_set.x07.json",
+      "relpath": "std/0.1.2/modules/std/hash_set.x07.json",
+      "sha256": "09a4afb5294ea78f00a77b2765bc6f37b412165671534317f550f68f2709e203",
+      "size_bytes": 8020,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.heap",
+      "path": "stdlib/std/0.1.2/modules/std/heap.x07.json",
+      "relpath": "std/0.1.2/modules/std/heap.x07.json",
+      "sha256": "a142eae221289ba62499eeed76f7ba3f9d9396d9e5ca61733c4def8e39632df3",
+      "size_bytes": 5076,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.heap_u32",
+      "path": "stdlib/std/0.1.1/modules/std/heap_u32.x07.json",
+      "relpath": "std/0.1.1/modules/std/heap_u32.x07.json",
+      "sha256": "8352dd282678925ac811bb84a449b328c9c210139b31d4c5127ff0640e0ea425",
+      "size_bytes": 4312,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.heap_u32",
+      "path": "stdlib/std/0.1.2/modules/std/heap_u32.x07.json",
+      "relpath": "std/0.1.2/modules/std/heap_u32.x07.json",
+      "sha256": "c031a7b4565ff7e97b64db1e53efd6d14d34db9ad04c3f23736e5e77155c8c06",
+      "size_bytes": 1213,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.http.envelope",
+      "path": "stdlib/std/0.1.2/modules/std/http/envelope.x07.json",
+      "relpath": "std/0.1.2/modules/std/http/envelope.x07.json",
+      "sha256": "e59296d4628b292de950553030e3e97f0b2a58a39bc81312f7bba5d3c2d0ee1a",
+      "size_bytes": 5078,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.io",
+      "path": "stdlib/std/0.1.1/modules/std/io.x07.json",
+      "relpath": "std/0.1.1/modules/std/io.x07.json",
+      "sha256": "c6e78f11a9467a992256a7a3c7490ffb67858cd2614095352e47bc5147d9ad11",
+      "size_bytes": 709,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.io",
+      "path": "stdlib/std/0.1.2/modules/std/io.x07.json",
+      "relpath": "std/0.1.2/modules/std/io.x07.json",
+      "sha256": "c6e78f11a9467a992256a7a3c7490ffb67858cd2614095352e47bc5147d9ad11",
+      "size_bytes": 709,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.io.bufread",
+      "path": "stdlib/std/0.1.1/modules/std/io/bufread.x07.json",
+      "relpath": "std/0.1.1/modules/std/io/bufread.x07.json",
+      "sha256": "1120d1385c9dee776cdb0699581b58e355221befc827e06b253a103507bdf322",
+      "size_bytes": 658,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.io.bufread",
+      "path": "stdlib/std/0.1.2/modules/std/io/bufread.x07.json",
+      "relpath": "std/0.1.2/modules/std/io/bufread.x07.json",
+      "sha256": "1120d1385c9dee776cdb0699581b58e355221befc827e06b253a103507bdf322",
+      "size_bytes": 658,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.json",
+      "path": "stdlib/std/0.1.0/modules/std/json.x07.json",
+      "relpath": "std/0.1.0/modules/std/json.x07.json",
+      "sha256": "75994759da144979aa1497117713b548e4a0639f2d71fb4356ad8815b6c281fc",
+      "size_bytes": 15943,
+      "version": "0.1.0"
+    },
+    {
+      "name": "std.json",
+      "path": "stdlib/std/0.1.1/modules/std/json.x07.json",
+      "relpath": "std/0.1.1/modules/std/json.x07.json",
+      "sha256": "c7faeb12ef4333f5f579e83a857758fc5b90cf18dd567213ce91ac54b9135e87",
+      "size_bytes": 31615,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.json",
+      "path": "stdlib/std/0.1.2/modules/std/json.x07.json",
+      "relpath": "std/0.1.2/modules/std/json.x07.json",
+      "sha256": "c7faeb12ef4333f5f579e83a857758fc5b90cf18dd567213ce91ac54b9135e87",
+      "size_bytes": 31615,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.kv",
+      "path": "stdlib/std/0.1.0/modules/std/kv.x07.json",
+      "relpath": "std/0.1.0/modules/std/kv.x07.json",
+      "sha256": "e96c94e057ad6da4dd98df161e4e64f4b0c1f4853aff1e742f3f47c82c036301",
+      "size_bytes": 416,
+      "version": "0.1.0"
+    },
+    {
+      "name": "std.kv",
+      "path": "stdlib/std/0.1.1/modules/std/kv.x07.json",
+      "relpath": "std/0.1.1/modules/std/kv.x07.json",
+      "sha256": "9e074c158dc7612dda9f9bc9e353dc390c2ea34b6eeba2660e5c61dd7ef5f75f",
+      "size_bytes": 877,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.kv",
+      "path": "stdlib/std/0.1.2/modules/std/kv.x07.json",
+      "relpath": "std/0.1.2/modules/std/kv.x07.json",
+      "sha256": "9e074c158dc7612dda9f9bc9e353dc390c2ea34b6eeba2660e5c61dd7ef5f75f",
+      "size_bytes": 877,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.lru_cache",
+      "path": "stdlib/std/0.1.1/modules/std/lru_cache.x07.json",
+      "relpath": "std/0.1.1/modules/std/lru_cache.x07.json",
+      "sha256": "c8cc737f0debb95d6b7dc1b9a549ffc74e2dff2e5375fe24b9caff19c3cec05e",
+      "size_bytes": 8583,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.lru_cache",
+      "path": "stdlib/std/0.1.2/modules/std/lru_cache.x07.json",
+      "relpath": "std/0.1.2/modules/std/lru_cache.x07.json",
+      "sha256": "ecfcabe1ded0e9b4b0e3edde9e61e72986b8a1f7ed44936100347d2150f9e885",
+      "size_bytes": 10147,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.map",
+      "path": "stdlib/std/0.1.0/modules/std/map.x07.json",
+      "relpath": "std/0.1.0/modules/std/map.x07.json",
+      "sha256": "af786e3abce2447b4eb72f40525cccb8ca799b4d64417494c7acaf1339cadb84",
+      "size_bytes": 3998,
+      "version": "0.1.0"
+    },
+    {
+      "name": "std.map",
+      "path": "stdlib/std/0.1.1/modules/std/map.x07.json",
+      "relpath": "std/0.1.1/modules/std/map.x07.json",
+      "sha256": "e75025542c62950350340166108b828e1b1f12a567113035592152f94908f278",
+      "size_bytes": 2007,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.map",
+      "path": "stdlib/std/0.1.2/modules/std/map.x07.json",
+      "relpath": "std/0.1.2/modules/std/map.x07.json",
+      "sha256": "e75025542c62950350340166108b828e1b1f12a567113035592152f94908f278",
+      "size_bytes": 2007,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.option",
+      "path": "stdlib/std/0.1.0/modules/std/option.x07.json",
+      "relpath": "std/0.1.0/modules/std/option.x07.json",
+      "sha256": "45d30d441795511e75241990e75d0a0f23fa973ca00f7cd88fe5b5e6e8c6234e",
+      "size_bytes": 1591,
+      "version": "0.1.0"
+    },
+    {
+      "name": "std.option",
+      "path": "stdlib/std/0.1.1/modules/std/option.x07.json",
+      "relpath": "std/0.1.1/modules/std/option.x07.json",
+      "sha256": "6c059407cf26e7942f9bfdb89f88a004ce7fe905d0fd8d9591f277f54e68ef73",
+      "size_bytes": 1663,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.option",
+      "path": "stdlib/std/0.1.2/modules/std/option.x07.json",
+      "relpath": "std/0.1.2/modules/std/option.x07.json",
+      "sha256": "6c059407cf26e7942f9bfdb89f88a004ce7fe905d0fd8d9591f277f54e68ef73",
+      "size_bytes": 1663,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.parse",
+      "path": "stdlib/std/0.1.0/modules/std/parse.x07.json",
+      "relpath": "std/0.1.0/modules/std/parse.x07.json",
+      "sha256": "446554748995cef4043d1886efb71f3f157062ee2fd19c38c6a5538c6b4cef16",
+      "size_bytes": 4229,
+      "version": "0.1.0"
+    },
+    {
+      "name": "std.parse",
+      "path": "stdlib/std/0.1.1/modules/std/parse.x07.json",
+      "relpath": "std/0.1.1/modules/std/parse.x07.json",
+      "sha256": "9c667882740007c6763159f166cdab6f7140424dbcdf08db001c23444a1da0bc",
+      "size_bytes": 4318,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.parse",
+      "path": "stdlib/std/0.1.2/modules/std/parse.x07.json",
+      "relpath": "std/0.1.2/modules/std/parse.x07.json",
+      "sha256": "9c667882740007c6763159f166cdab6f7140424dbcdf08db001c23444a1da0bc",
+      "size_bytes": 4318,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.path",
+      "path": "stdlib/std/0.1.1/modules/std/path.x07.json",
+      "relpath": "std/0.1.1/modules/std/path.x07.json",
+      "sha256": "22eb50afa0269d4c8823bb3d59bb8418f20e2d90e41ad53be536fb889b52b13b",
+      "size_bytes": 1850,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.path",
+      "path": "stdlib/std/0.1.2/modules/std/path.x07.json",
+      "relpath": "std/0.1.2/modules/std/path.x07.json",
+      "sha256": "22eb50afa0269d4c8823bb3d59bb8418f20e2d90e41ad53be536fb889b52b13b",
+      "size_bytes": 1850,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.pbt.case_v1",
+      "path": "stdlib/std/0.1.1/modules/std/pbt/case_v1.x07.json",
+      "relpath": "std/0.1.1/modules/std/pbt/case_v1.x07.json",
+      "sha256": "c8a72c802baf55b38525c18ca26bb1fa6f52e6afd866eb28d302896daa2d2d3f",
+      "size_bytes": 2442,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.pbt.case_v1",
+      "path": "stdlib/std/0.1.2/modules/std/pbt/case_v1.x07.json",
+      "relpath": "std/0.1.2/modules/std/pbt/case_v1.x07.json",
+      "sha256": "c8a72c802baf55b38525c18ca26bb1fa6f52e6afd866eb28d302896daa2d2d3f",
+      "size_bytes": 2442,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.pbt.gen_v1",
+      "path": "stdlib/std/0.1.1/modules/std/pbt/gen_v1.x07.json",
+      "relpath": "std/0.1.1/modules/std/pbt/gen_v1.x07.json",
+      "sha256": "48ab2f24b269e0ec62c531db6fec93b452869a282065fbd8128fdba4dc4ea9cd",
+      "size_bytes": 2503,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.pbt.gen_v1",
+      "path": "stdlib/std/0.1.2/modules/std/pbt/gen_v1.x07.json",
+      "relpath": "std/0.1.2/modules/std/pbt/gen_v1.x07.json",
+      "sha256": "48ab2f24b269e0ec62c531db6fec93b452869a282065fbd8128fdba4dc4ea9cd",
+      "size_bytes": 2503,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.pbt.shrink_v1",
+      "path": "stdlib/std/0.1.1/modules/std/pbt/shrink_v1.x07.json",
+      "relpath": "std/0.1.1/modules/std/pbt/shrink_v1.x07.json",
+      "sha256": "17842d6fa7c3e9eacf8fe55ee23d908d77527c17f04047bccd7c9164cf4795f4",
+      "size_bytes": 3978,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.pbt.shrink_v1",
+      "path": "stdlib/std/0.1.2/modules/std/pbt/shrink_v1.x07.json",
+      "relpath": "std/0.1.2/modules/std/pbt/shrink_v1.x07.json",
+      "sha256": "17842d6fa7c3e9eacf8fe55ee23d908d77527c17f04047bccd7c9164cf4795f4",
+      "size_bytes": 3978,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.prng",
+      "path": "stdlib/std/0.1.0/modules/std/prng.x07.json",
+      "relpath": "std/0.1.0/modules/std/prng.x07.json",
+      "sha256": "395eb1df77720b257853f7af5d1a3ffbb17800452c03511dd9821b8353bc9b23",
+      "size_bytes": 290,
+      "version": "0.1.0"
+    },
+    {
+      "name": "std.prng",
+      "path": "stdlib/std/0.1.1/modules/std/prng.x07.json",
+      "relpath": "std/0.1.1/modules/std/prng.x07.json",
+      "sha256": "85649e7c1f7d1ab27cf9c53d9a7492a55fb69e42419db43a95fed401dd6a0360",
+      "size_bytes": 2713,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.prng",
+      "path": "stdlib/std/0.1.2/modules/std/prng.x07.json",
+      "relpath": "std/0.1.2/modules/std/prng.x07.json",
+      "sha256": "85649e7c1f7d1ab27cf9c53d9a7492a55fb69e42419db43a95fed401dd6a0360",
+      "size_bytes": 2713,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.process",
+      "path": "stdlib/std/0.1.1/modules/std/process.x07.json",
+      "relpath": "std/0.1.1/modules/std/process.x07.json",
+      "sha256": "54ed22dcc3faab1265a3eb11d58b05a4e78066ade24e05bd519ecb6a67863bd3",
+      "size_bytes": 312,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.process",
+      "path": "stdlib/std/0.1.2/modules/std/process.x07.json",
+      "relpath": "std/0.1.2/modules/std/process.x07.json",
+      "sha256": "54ed22dcc3faab1265a3eb11d58b05a4e78066ade24e05bd519ecb6a67863bd3",
+      "size_bytes": 312,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.regex-lite",
+      "path": "stdlib/std/0.1.0/modules/std/regex-lite.x07.json",
+      "relpath": "std/0.1.0/modules/std/regex-lite.x07.json",
+      "sha256": "d21a8c61734cbf346ec870157c2a063cabe4a843ee6148a21de7af62b6564263",
+      "size_bytes": 1011,
+      "version": "0.1.0"
+    },
+    {
+      "generated_by": "x07import",
+      "name": "std.regex-lite",
+      "path": "stdlib/std/0.1.1/modules/std/regex-lite.x07.json",
+      "relpath": "std/0.1.1/modules/std/regex-lite.x07.json",
+      "sha256": "5f8e6900660d1b96a9caf0e51cab2d5bf5e4fc83308a661e9c1089ae1b01a225",
+      "size_bytes": 5716,
+      "source_path": "tests/x07import/fixtures/import_sources/rust/std_regex_lite@0.1.1/regex_lite.rs",
+      "source_sha256": "752285b7baf9f3d007a968aee328d097b9ef0fb981b601cdba6c8fe561e56ffb",
+      "version": "0.1.1"
+    },
+    {
+      "generated_by": "x07import",
+      "name": "std.regex-lite",
+      "path": "stdlib/std/0.1.2/modules/std/regex-lite.x07.json",
+      "relpath": "std/0.1.2/modules/std/regex-lite.x07.json",
+      "sha256": "5f8e6900660d1b96a9caf0e51cab2d5bf5e4fc83308a661e9c1089ae1b01a225",
+      "size_bytes": 5716,
+      "source_path": "tests/x07import/fixtures/import_sources/rust/std_regex_lite@0.1.1/regex_lite.rs",
+      "source_sha256": "752285b7baf9f3d007a968aee328d097b9ef0fb981b601cdba6c8fe561e56ffb",
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.result",
+      "path": "stdlib/std/0.1.0/modules/std/result.x07.json",
+      "relpath": "std/0.1.0/modules/std/result.x07.json",
+      "sha256": "cc26af916908d49442b6705d21ede472aaa73fbd1e9560664f3adf2d0daa95fc",
+      "size_bytes": 2859,
+      "version": "0.1.0"
+    },
+    {
+      "name": "std.result",
+      "path": "stdlib/std/0.1.1/modules/std/result.x07.json",
+      "relpath": "std/0.1.1/modules/std/result.x07.json",
+      "sha256": "a8f36ac7bc8193d49e829ea6f672589d71bf175bf01ae516d9cc3931945e1c33",
+      "size_bytes": 2936,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.result",
+      "path": "stdlib/std/0.1.2/modules/std/result.x07.json",
+      "relpath": "std/0.1.2/modules/std/result.x07.json",
+      "sha256": "a8f36ac7bc8193d49e829ea6f672589d71bf175bf01ae516d9cc3931945e1c33",
+      "size_bytes": 2936,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.rr",
+      "path": "stdlib/std/0.1.0/modules/std/rr.x07.json",
+      "relpath": "std/0.1.0/modules/std/rr.x07.json",
+      "sha256": "85d54d3d840b56f636403b87eacb8245a6ba4118a5094233cec962bbc0de5712",
+      "size_bytes": 282,
+      "version": "0.1.0"
+    },
+    {
+      "name": "std.rr",
+      "path": "stdlib/std/0.1.1/modules/std/rr.x07.json",
+      "relpath": "std/0.1.1/modules/std/rr.x07.json",
+      "sha256": "a43944e1db282ccf46b6a505e1b63d36a206e3f1b17fe8addd26a4b8ba949319",
+      "size_bytes": 1445,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.rr",
+      "path": "stdlib/std/0.1.2/modules/std/rr.x07.json",
+      "relpath": "std/0.1.2/modules/std/rr.x07.json",
+      "sha256": "a43944e1db282ccf46b6a505e1b63d36a206e3f1b17fe8addd26a4b8ba949319",
+      "size_bytes": 1445,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.set",
+      "path": "stdlib/std/0.1.0/modules/std/set.x07.json",
+      "relpath": "std/0.1.0/modules/std/set.x07.json",
+      "sha256": "b3135c44cb1b8a08928859398c8f125e46508e2c3d44a9025d2fd1bdcbef6cc0",
+      "size_bytes": 3793,
+      "version": "0.1.0"
+    },
+    {
+      "name": "std.set",
+      "path": "stdlib/std/0.1.1/modules/std/set.x07.json",
+      "relpath": "std/0.1.1/modules/std/set.x07.json",
+      "sha256": "153b732be240dae7b5a6d45e9b0687e54d5d935657bdd714a6ba42e2c3f9c727",
+      "size_bytes": 2678,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.set",
+      "path": "stdlib/std/0.1.2/modules/std/set.x07.json",
+      "relpath": "std/0.1.2/modules/std/set.x07.json",
+      "sha256": "153b732be240dae7b5a6d45e9b0687e54d5d935657bdd714a6ba42e2c3f9c727",
+      "size_bytes": 2678,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.slab",
+      "path": "stdlib/std/0.1.1/modules/std/slab.x07.json",
+      "relpath": "std/0.1.1/modules/std/slab.x07.json",
+      "sha256": "7f7d304f5c47d0e3558d687d887f734aa39510fb351d136351be34fb63cc8006",
+      "size_bytes": 4861,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.slab",
+      "path": "stdlib/std/0.1.2/modules/std/slab.x07.json",
+      "relpath": "std/0.1.2/modules/std/slab.x07.json",
+      "sha256": "e5af307dc78ff8f636263f1a23732a1381e024bc8da16fc1b0d706717eae3945",
+      "size_bytes": 6835,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.slice",
+      "path": "stdlib/std/0.1.0/modules/std/slice.x07.json",
+      "relpath": "std/0.1.0/modules/std/slice.x07.json",
+      "sha256": "7fd561ce8299c3a71339abf043dec7e3b98ac8d87f6b8d02f169756832361074",
+      "size_bytes": 845,
+      "version": "0.1.0"
+    },
+    {
+      "name": "std.slice",
+      "path": "stdlib/std/0.1.1/modules/std/slice.x07.json",
+      "relpath": "std/0.1.1/modules/std/slice.x07.json",
+      "sha256": "7a6bbaa1b049c7c1acf1d708cb68d25404b54cc8185f0be901d386ba6c3efd5e",
+      "size_bytes": 618,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.slice",
+      "path": "stdlib/std/0.1.2/modules/std/slice.x07.json",
+      "relpath": "std/0.1.2/modules/std/slice.x07.json",
+      "sha256": "7a6bbaa1b049c7c1acf1d708cb68d25404b54cc8185f0be901d386ba6c3efd5e",
+      "size_bytes": 618,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.small_map",
+      "path": "stdlib/std/0.1.1/modules/std/small_map.x07.json",
+      "relpath": "std/0.1.1/modules/std/small_map.x07.json",
+      "sha256": "a402f5b6326236771f990be4ec3872004718677c978aea065a5b815e28c22ac0",
+      "size_bytes": 7906,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.small_map",
+      "path": "stdlib/std/0.1.2/modules/std/small_map.x07.json",
+      "relpath": "std/0.1.2/modules/std/small_map.x07.json",
+      "sha256": "708fdf747ed1f82f96ba3fb807f483afa44866081195a700bce077fee1e774ad",
+      "size_bytes": 9323,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.small_set",
+      "path": "stdlib/std/0.1.1/modules/std/small_set.x07.json",
+      "relpath": "std/0.1.1/modules/std/small_set.x07.json",
+      "sha256": "e8529fc13564998714f8af6daa8be5e2ae603abaa9a09ce9dc92e7c75ab3ec1d",
+      "size_bytes": 2678,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.small_set",
+      "path": "stdlib/std/0.1.2/modules/std/small_set.x07.json",
+      "relpath": "std/0.1.2/modules/std/small_set.x07.json",
+      "sha256": "6849ada9bec472962a990ee521ab07ac1ab137be205fe4feb71d10317f8f93d6",
+      "size_bytes": 3487,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.test",
+      "path": "stdlib/std/0.1.1/modules/std/test.x07.json",
+      "relpath": "std/0.1.1/modules/std/test.x07.json",
+      "sha256": "d5f6401a9e9cf35ba1628a653559478fea78e26cabedd75d897b5118531da6ac",
+      "size_bytes": 3054,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.test",
+      "path": "stdlib/std/0.1.2/modules/std/test.x07.json",
+      "relpath": "std/0.1.2/modules/std/test.x07.json",
+      "sha256": "d5f6401a9e9cf35ba1628a653559478fea78e26cabedd75d897b5118531da6ac",
+      "size_bytes": 3054,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.text.ascii",
+      "path": "stdlib/std/0.1.0/modules/std/text/ascii.x07.json",
+      "relpath": "std/0.1.0/modules/std/text/ascii.x07.json",
+      "sha256": "869ec90f7a9adc1143e651612e32ba3300b0a101abce80a590602f3f07edca35",
+      "size_bytes": 3544,
+      "version": "0.1.0"
+    },
+    {
+      "generated_by": "x07import",
+      "name": "std.text.ascii",
+      "path": "stdlib/std/0.1.1/modules/std/text/ascii.x07.json",
+      "relpath": "std/0.1.1/modules/std/text/ascii.x07.json",
+      "sha256": "26e53a437c9b07c29a387602d122616fa1831d6f8c0f2b018cc2af3670ffd9b1",
+      "size_bytes": 8369,
+      "source_path": "tests/x07import/fixtures/import_sources/rust/std_text_ascii@0.1.1/ascii.rs",
+      "source_sha256": "47a0ed64ce97778363a5cc264001898182518315635682ba845c8d191eb615df",
+      "version": "0.1.1"
+    },
+    {
+      "generated_by": "x07import",
+      "name": "std.text.ascii",
+      "path": "stdlib/std/0.1.2/modules/std/text/ascii.x07.json",
+      "relpath": "std/0.1.2/modules/std/text/ascii.x07.json",
+      "sha256": "26e53a437c9b07c29a387602d122616fa1831d6f8c0f2b018cc2af3670ffd9b1",
+      "size_bytes": 8369,
+      "source_path": "tests/x07import/fixtures/import_sources/rust/std_text_ascii@0.1.1/ascii.rs",
+      "source_sha256": "47a0ed64ce97778363a5cc264001898182518315635682ba845c8d191eb615df",
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.text.slices",
+      "path": "stdlib/std/0.1.1/modules/std/text/slices.x07.json",
+      "relpath": "std/0.1.1/modules/std/text/slices.x07.json",
+      "sha256": "8257c046835d9045c1b07b2918751af1a737a518316f3c5e9a2af1e76589e354",
+      "size_bytes": 4906,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.text.slices",
+      "path": "stdlib/std/0.1.2/modules/std/text/slices.x07.json",
+      "relpath": "std/0.1.2/modules/std/text/slices.x07.json",
+      "sha256": "8257c046835d9045c1b07b2918751af1a737a518316f3c5e9a2af1e76589e354",
+      "size_bytes": 4906,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.text.utf8",
+      "path": "stdlib/std/0.1.0/modules/std/text/utf8.x07.json",
+      "relpath": "std/0.1.0/modules/std/text/utf8.x07.json",
+      "sha256": "d08a1c6e35655e71bed2f62fe90ee23fc1f2da3593ce41ce68e8c95198a5fbe4",
+      "size_bytes": 3112,
+      "version": "0.1.0"
+    },
+    {
+      "generated_by": "x07import",
+      "name": "std.text.utf8",
+      "path": "stdlib/std/0.1.1/modules/std/text/utf8.x07.json",
+      "relpath": "std/0.1.1/modules/std/text/utf8.x07.json",
+      "sha256": "cd32b680451a1b639d2ff74b24156ebc032984314bdd0c55857828647b342c1b",
+      "size_bytes": 4023,
+      "source_path": "tests/x07import/fixtures/import_sources/rust/std_text_utf8@0.1.1/utf8.rs",
+      "source_sha256": "2a870193f685d77f9f3068ecf278a677bf06d65a22c22b26c1ab227f2de0c6c2",
+      "version": "0.1.1"
+    },
+    {
+      "generated_by": "x07import",
+      "name": "std.text.utf8",
+      "path": "stdlib/std/0.1.2/modules/std/text/utf8.x07.json",
+      "relpath": "std/0.1.2/modules/std/text/utf8.x07.json",
+      "sha256": "cd32b680451a1b639d2ff74b24156ebc032984314bdd0c55857828647b342c1b",
+      "size_bytes": 4023,
+      "source_path": "tests/x07import/fixtures/import_sources/rust/std_text_utf8@0.1.1/utf8.rs",
+      "source_sha256": "2a870193f685d77f9f3068ecf278a677bf06d65a22c22b26c1ab227f2de0c6c2",
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.u32",
+      "path": "stdlib/std/0.1.1/modules/std/u32.x07.json",
+      "relpath": "std/0.1.1/modules/std/u32.x07.json",
+      "sha256": "7924a1df0a8b6486434303374e4bf5cbf1656c3b4ea0d6ab53ea9da551124122",
+      "size_bytes": 2329,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.u32",
+      "path": "stdlib/std/0.1.2/modules/std/u32.x07.json",
+      "relpath": "std/0.1.2/modules/std/u32.x07.json",
+      "sha256": "7924a1df0a8b6486434303374e4bf5cbf1656c3b4ea0d6ab53ea9da551124122",
+      "size_bytes": 2329,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.vec",
+      "path": "stdlib/std/0.1.0/modules/std/vec.x07.json",
+      "relpath": "std/0.1.0/modules/std/vec.x07.json",
+      "sha256": "e7259f23531106887fb7cbdf68f5cfecbb107d302d30effd39bc4fd70f889244",
+      "size_bytes": 1540,
+      "version": "0.1.0"
+    },
+    {
+      "name": "std.vec",
+      "path": "stdlib/std/0.1.1/modules/std/vec.x07.json",
+      "relpath": "std/0.1.1/modules/std/vec.x07.json",
+      "sha256": "3d08e861cc11f0d000934626363b7d66fa97d4cc1996af415eca87544f3d9dbc",
+      "size_bytes": 1296,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.vec",
+      "path": "stdlib/std/0.1.2/modules/std/vec.x07.json",
+      "relpath": "std/0.1.2/modules/std/vec.x07.json",
+      "sha256": "d889d2da1ac7e41008b23885ad176ed1bb41ecfdcd74b0071abc96e26116f226",
+      "size_bytes": 1296,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.vec_value",
+      "path": "stdlib/std/0.1.2/modules/std/vec_value.x07.json",
+      "relpath": "std/0.1.2/modules/std/vec_value.x07.json",
+      "sha256": "6c17de1e9ae88efa6e05fc6db8be97b01506098fe9c253c8eb18c80d72bf03a7",
+      "size_bytes": 2724,
+      "version": "0.1.2"
+    },
+    {
+      "name": "std.world.fs",
+      "path": "stdlib/std/0.1.1/modules/std/world/fs.x07.json",
+      "relpath": "std/0.1.1/modules/std/world/fs.x07.json",
+      "sha256": "c0efe0d399a2b2a4359aee8731b91fc8704af1a9126238e80990ce2a386b0375",
+      "size_bytes": 472,
+      "version": "0.1.1"
+    },
+    {
+      "name": "std.world.fs",
+      "path": "stdlib/std/0.1.2/modules/std/world/fs.x07.json",
+      "relpath": "std/0.1.2/modules/std/world/fs.x07.json",
+      "sha256": "c0efe0d399a2b2a4359aee8731b91fc8704af1a9126238e80990ce2a386b0375",
+      "size_bytes": 472,
+      "version": "0.1.2"
+    }
+  ],
+  "stdlib_hash": "e0cfa07751db2fd4fd87010ce6d20c211adaa09fc8e23b43655ed3ea69dc35b6",
+  "stdlib_root": "stdlib/std"
+}

@@ -14,7 +14,10 @@ COPY apps/order-domain ./order-domain
 WORKDIR /build/reconciliation-job
 COPY apps/reconciliation-job/x07.json ./x07.json
 COPY apps/reconciliation-job/x07.lock.json ./x07.lock.json
+COPY apps/reconciliation-job/arch ./arch
+COPY apps/reconciliation-job/policy ./policy
 COPY apps/reconciliation-job/src ./src
+COPY apps/reconciliation-job/tests ./tests
 
 RUN ln -s ../order-domain order-domain
 RUN x07 pkg lock --project x07.json
