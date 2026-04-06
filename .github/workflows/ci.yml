@@ -52,9 +52,34 @@ jobs:
         run: |
           curl -fsSL "https://raw.githubusercontent.com/x07lang/x07/${X07_TOOLCHAIN_TAG}/scripts/ci/install_formal_verification_tools_linux.sh" | bash
 
-      - name: Install x07
+      - name: Install x07 toolchain
         shell: bash
-        run: cargo install --locked --git https://github.com/x07lang/x07 --tag "$X07_TOOLCHAIN_TAG" x07
+        run: |
+          set -euo pipefail
+
+          arch="$(uname -m)"
+          case "${arch}" in
+            x86_64|amd64) arch="x86_64" ;;
+            aarch64|arm64) arch="aarch64" ;;
+            *) echo "unsupported arch: ${arch}" >&2; exit 2 ;;
+          esac
+
+          platform="unknown-linux-gnu"
+          x07_version="${X07_TOOLCHAIN_TAG#v}"
+          asset="x07-${x07_version}-${arch}-${platform}.tar.gz"
+          url="https://github.com/x07lang/x07/releases/download/${X07_TOOLCHAIN_TAG}/${asset}"
+
+          curl --proto '=https' --tlsv1.2 --retry 10 --retry-connrefused --retry-delay 1 \
+            --location --silent --show-error --fail-with-body --max-time 300 \
+            --output /tmp/x07.tar.gz "${url}"
+
+          sudo mkdir -p /opt/x07
+          sudo tar -xzf /tmp/x07.tar.gz -C /opt/x07
+          rm -f /tmp/x07.tar.gz
+
+          echo "/opt/x07/bin" >> "${GITHUB_PATH}"
+          x07 --version
+          x07-os-runner --version
 
       - name: Generate contract artifacts and refresh arch locks
         shell: bash
