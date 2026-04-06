@@ -78,6 +78,7 @@ jobs:
           rm -f /tmp/x07.tar.gz
 
           echo "/opt/x07/bin" >> "${GITHUB_PATH}"
+          export PATH="/opt/x07/bin:${PATH}"
           x07 --version
           x07-os-runner --version
 
