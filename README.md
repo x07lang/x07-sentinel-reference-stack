@@ -1,234 +1,62 @@
-# x07 Sentinel reference stack
+# x07-sentinel-reference-stack
 
-## Agent Entrypoint
+Reference backend stack for deploying X07 workloads to x07 Sentinel on customer-managed Kubernetes.
 
-Start here: https://x07lang.org/docs/getting-started/agent-quickstart
+This repo is the public “small but complete” example for the Sentinel backend story. It combines one shared domain pack with three service shapes and the supporting infra, bindings, and rollout walkthroughs needed to move from local smoke to real cloud deployment.
 
-A public, canonical reference repo for deploying a small but complete backend system to **x07 Sentinel** on **customer-managed Kubernetes**.
+## What This Repo Proves
 
-This repository proves the enterprise story with one backend domain and three service shapes:
+- X07 services can be packaged into Sentinel-compatible workload artifacts
+- the same example topology can be deployed on customer-managed Kubernetes
+- the system can be reproduced across AWS and GCP
+- the domain layer can stay deterministic and reviewable while the runtime layer grows into a real backend stack
 
-- **`orders-api`** — HTTP API service
-- **`orders-consumer`** — event consumer
-- **`reconciliation-job`** — scheduled job
+## Main Components
 
-It also ships:
+- `orders-api`: HTTP service
+- `orders-consumer`: event consumer
+- `reconciliation-job`: scheduled job
+- `apps/order-domain/`: shared contracts and verification-focused domain pack
 
-- shared contract artifacts in **`apps/order-domain/`**
-- Terraform for **AWS** and **GCP**
-- Sentinel payloads and scripts for:
+## Choose Your Path
 
-  - target registration
-  - secret upload
-  - binding creation
-  - workload packing
-  - CAS upload
-  - release submit / approval
-  - smoke verification
-  - rollback
+### Local smoke
 
-- step-by-step tutorials from **onboarding → deploy → verify → rollback**
-
-## What this repo proves
-
-- x07 services compile to native runtime images.
-- x07 Platform packages workloads into Sentinel-compatible packs.
-- Sentinel deploys and rolls back on your Kubernetes cluster.
-- The example uses:
-
-  - PostgreSQL
-  - AMQP / RabbitMQ
-  - S3-compatible object storage
-  - hosted secrets
-  - OTLP telemetry
-
-- The same application topology can be reproduced on **AWS** and **GCP**.
-
-## Current scope
-
-- `make local-smoke` exercises the full system locally (no cloud spend).
-- AWS/GCP Terraform + Sentinel scripts are included for the real deployment path, but require cloud credentials and Sentinel access to run end-to-end.
-- `apps/order-domain/` is now the canonical **Domain Pack teaching surface** for early x07 primitives:
-
-  - schema-derived branded bytes
-  - generated state machines
-  - property-based tests
-  - function contracts + prove/coverage
-  - trust-profile and trust-report review artifacts
-
-## Repo layout
-
-```text
-apps/
-  order-domain/         Shared contracts, generated-contract inputs, and pure verification core
-  orders-api/           HTTP service
-  orders-consumer/      Event consumer
-  reconciliation-job/   Scheduled job
-
-infra/
-  terraform/aws/minimal/
-  terraform/gcp/minimal/
-  kubernetes/bootstrap/
-
-sentinel/
-  payloads/
-  scripts/
-  examples/
-
-docs/
-  00-overview.md
-  01-onboarding.md
-  02-architecture.md
-  03-local-smoke.md
-  10-aws-tutorial.md
-  11-gcp-tutorial.md
-  20-sentinel-onboarding.md
-  21-register-target.md
-  22-create-bindings.md
-  23-build-pack-release.md
-  24-verify-and-rollback.md
-  25-audit-and-incidents.md
-  26-verification.md
-  27-order-domain-primitives.md
-  28-contract-locks-and-review.md
-  29-x07-guide-map.md
-  30-claim-coverage.md
-  31-generated-artifacts-and-drift.md
-  32-runtime-primitives.md
-  33-record-replay-and-perf.md
+```sh
+make local-smoke
 ```
 
-## Quick start paths
+### AWS or GCP tutorial
 
-### AWS path
+Start in:
 
-1. Read [docs/01-onboarding.md](docs/01-onboarding.md)
-2. Create infra with [docs/10-aws-tutorial.md](docs/10-aws-tutorial.md)
-3. Register the cluster and bindings in Sentinel with [docs/20-sentinel-onboarding.md](docs/20-sentinel-onboarding.md)
-4. Build, pack, submit, approve, verify, and roll back with:
+- [`docs/10-aws-tutorial.md`](docs/10-aws-tutorial.md)
+- [`docs/11-gcp-tutorial.md`](docs/11-gcp-tutorial.md)
 
-   - [docs/23-build-pack-release.md](docs/23-build-pack-release.md)
-   - [docs/24-verify-and-rollback.md](docs/24-verify-and-rollback.md)
+### Domain-pack and primitives path
 
-### GCP path
+If you want the contract and verification side first:
 
-1. Read [docs/01-onboarding.md](docs/01-onboarding.md)
-2. Create infra with [docs/11-gcp-tutorial.md](docs/11-gcp-tutorial.md)
-3. Register the cluster and bindings in Sentinel with [docs/20-sentinel-onboarding.md](docs/20-sentinel-onboarding.md)
-4. Build, pack, submit, approve, verify, and roll back with:
-
-   - [docs/23-build-pack-release.md](docs/23-build-pack-release.md)
-   - [docs/24-verify-and-rollback.md](docs/24-verify-and-rollback.md)
-
-### x07 primitives path
-
-1. Read [docs/27-order-domain-primitives.md](docs/27-order-domain-primitives.md)
-2. Generate and refresh committed contract outputs:
-
-   ```sh
-   make order-domain-contracts
-   ```
-
-3. Run deterministic tests + PBT:
-
-   ```sh
-   make order-domain-test
-   ```
-
-4. Run coverage/prove + proof replay:
-
-   ```sh
-   make order-domain-verify
-   ```
-
-5. Pin contract locks and drift-check posture:
-
-   ```sh
-   make order-domain-pin
-   make order-domain-arch-check
-   ```
-
-6. Read the official guide map for the concepts used by this repo:
-
-   - [docs/29-x07-guide-map.md](docs/29-x07-guide-map.md)
-
-7. Review how committed generated artifacts fit into the certificate-first workflow:
-
-   - [docs/31-generated-artifacts-and-drift.md](docs/31-generated-artifacts-and-drift.md)
-
-8. Read how the runtime services now map high-level primitives into the actual example system:
-
-   - [docs/32-runtime-primitives.md](docs/32-runtime-primitives.md)
-   - [docs/33-record-replay-and-perf.md](docs/33-record-replay-and-perf.md)
-
-9. Emit the trust posture report:
-
-   ```sh
-   make order-domain-trust
-   ```
-
-## Architecture
-
-```mermaid
-flowchart LR
-    user[Operator / Admin] --> sentinel[x07 Sentinel]
-    sentinel --> k8s[Customer Kubernetes cluster]
-    sentinel --> db[(PostgreSQL)]
-    sentinel --> obj[(S3-compatible object storage)]
-    sentinel --> broker[(RabbitMQ)]
-    sentinel --> otlp[(OTLP collector)]
-
-    subgraph workloads[Reference workloads]
-      api[orders-api]
-      consumer[orders-consumer]
-      job[reconciliation-job]
-    end
-
-    subgraph domainpack[Domain Pack]
-      od[apps/order-domain]
-    end
-
-    od --> api
-    od --> consumer
-    od --> job
-
-    k8s --> api
-    k8s --> consumer
-    k8s --> job
-
-    api --> db
-    api --> obj
-    api --> broker
-    api --> otlp
-
-    consumer --> db
-    consumer --> broker
-    consumer --> otlp
-
-    job --> db
-    job --> obj
-    job --> otlp
+```sh
+make order-domain-contracts
+make order-domain-test
+make order-domain-verify
+make order-domain-trust
 ```
 
-## Tutorial stance
+## Repo Layout
 
-The tutorials mirror the real Sentinel experience:
+- `apps/`: domain pack plus service projects
+- `infra/`: Terraform and Kubernetes bootstrap
+- `sentinel/`: payloads, scripts, and examples for Sentinel flows
+- `docs/`: onboarding, cloud tutorials, Sentinel walkthroughs, and verification notes
 
-- onboarding and sign-in
-- org / project / environment setup
-- target registration
-- bindings and secret upload
-- release submit and approval
-- verify and rollback
-- audit trail review
+## How It Fits The X07 Ecosystem
 
-The API path is shown wherever possible so the repo stays reproducible.
-
-## Screenshots
-
-Add screenshots under `docs/screenshots/` as you validate the stack on a real Sentinel environment.
-
-See [docs/screenshots/README.md](docs/screenshots/README.md).
+- [`x07`](https://github.com/x07lang/x07) provides the language and verification tooling
+- [`x07-wasm-backend`](https://github.com/x07lang/x07-wasm-backend) produces the workload artifacts
+- [`x07-platform`](https://github.com/x07lang/x07-platform) and Sentinel operate the release and rollback loop
+- this repo shows what that backend path looks like in a concrete reference system
 
 ## License
 
