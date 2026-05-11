@@ -12,7 +12,7 @@ services:
       retries: 30
 
   rabbitmq:
-    image: rabbitmq:3.13-management
+    image: rabbitmq:3.13.7-management
     environment:
       RABBITMQ_DEFAULT_USER: x07ref
       RABBITMQ_DEFAULT_PASS: x07ref

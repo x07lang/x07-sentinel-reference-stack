@@ -9,6 +9,8 @@ NETWORK="${COMPOSE_PROJECT_NAME}_default"
 
 X07_TAG="${X07_TAG:-${X07_TOOLCHAIN_TAG:-v0.1.107}}"
 KEEP="${KEEP:-0}"
+ORDERS_API_HOST_PORT="${ORDERS_API_HOST_PORT:-8080}"
+ORDERS_API_BASE_URL="http://127.0.0.1:${ORDERS_API_HOST_PORT}"
 
 default_platform="linux/amd64"
 case "$(uname -m 2>/dev/null || true)" in
@@ -37,6 +39,12 @@ check_x07_asset() {
 check_x07_asset
 
 cleanup() {
+  local status="$1"
+  if [[ "${status}" != "0" ]]; then
+    echo "Local stack failed; dumping dependency state" >&2
+    docker compose -p "${COMPOSE_PROJECT_NAME}" -f "${COMPOSE_FILE}" ps >&2 || true
+    docker compose -p "${COMPOSE_PROJECT_NAME}" -f "${COMPOSE_FILE}" logs --no-color --tail=200 rabbitmq >&2 || true
+  fi
   if [[ "${KEEP}" == "1" ]]; then
     echo "KEEP=1; leaving local stack running (project: ${COMPOSE_PROJECT_NAME})" >&2
     return
@@ -44,7 +52,37 @@ cleanup() {
   docker rm -f "${COMPOSE_PROJECT_NAME}-orders-api" "${COMPOSE_PROJECT_NAME}-orders-consumer" >/dev/null 2>&1 || true
   docker compose -p "${COMPOSE_PROJECT_NAME}" -f "${COMPOSE_FILE}" down -v >/dev/null
 }
-trap cleanup EXIT
+trap 'cleanup "$?"' EXIT
+
+compose_service_running() {
+  local service="$1"
+  docker compose -p "${COMPOSE_PROJECT_NAME}" -f "${COMPOSE_FILE}" ps --status running --services "${service}" | grep -qx "${service}"
+}
+
+wait_for_rabbitmq() {
+  local attempt
+  for attempt in 1 2; do
+    for _ in $(seq 1 60); do
+      if compose_service_running rabbitmq \
+        && docker compose -p "${COMPOSE_PROJECT_NAME}" -f "${COMPOSE_FILE}" exec -T rabbitmq rabbitmq-diagnostics -q ping >/dev/null 2>&1; then
+        return 0
+      fi
+      if ! compose_service_running rabbitmq; then
+        break
+      fi
+      sleep 1
+    done
+
+    if [[ "${attempt}" == "1" ]]; then
+      echo "RabbitMQ exited or failed readiness; recreating service once" >&2
+      docker compose -p "${COMPOSE_PROJECT_NAME}" -f "${COMPOSE_FILE}" logs --no-color --tail=200 rabbitmq >&2 || true
+      docker compose -p "${COMPOSE_PROJECT_NAME}" -f "${COMPOSE_FILE}" up -d --force-recreate rabbitmq
+    fi
+  done
+
+  docker compose -p "${COMPOSE_PROJECT_NAME}" -f "${COMPOSE_FILE}" logs --no-color --tail=200 rabbitmq >&2 || true
+  return 1
+}
 
 echo "Starting local dependencies (project: ${COMPOSE_PROJECT_NAME})"
 docker compose -p "${COMPOSE_PROJECT_NAME}" -f "${COMPOSE_FILE}" up -d
@@ -59,13 +97,7 @@ done
 docker compose -p "${COMPOSE_PROJECT_NAME}" -f "${COMPOSE_FILE}" exec -T postgres pg_isready -U orders_app -d orders >/dev/null
 
 echo "Waiting for RabbitMQ"
-for _ in $(seq 1 60); do
-  if docker compose -p "${COMPOSE_PROJECT_NAME}" -f "${COMPOSE_FILE}" exec -T rabbitmq rabbitmq-diagnostics -q ping >/dev/null 2>&1; then
-    break
-  fi
-  sleep 1
-done
-docker compose -p "${COMPOSE_PROJECT_NAME}" -f "${COMPOSE_FILE}" exec -T rabbitmq rabbitmq-diagnostics -q ping >/dev/null
+wait_for_rabbitmq
 
 echo "Waiting for RabbitMQ management API"
 for _ in $(seq 1 60); do
@@ -130,22 +162,22 @@ docker run -d --name "${COMPOSE_PROJECT_NAME}-orders-consumer" --network "${NETW
 
 echo "Starting orders-api"
 docker rm -f "${COMPOSE_PROJECT_NAME}-orders-api" >/dev/null 2>&1 || true
-docker run -d --name "${COMPOSE_PROJECT_NAME}-orders-api" --network "${NETWORK}" -p 8080:8080 \
+docker run -d --name "${COMPOSE_PROJECT_NAME}-orders-api" --network "${NETWORK}" -p "${ORDERS_API_HOST_PORT}:8080" \
   "${export_env[@]}" \
   "${ORDERS_API_IMAGE}" >/dev/null
 
 echo "Waiting for API readiness"
 for _ in $(seq 1 60); do
-  if curl -fsS "http://127.0.0.1:8080/readyz" >/dev/null; then
+  if curl -fsS "${ORDERS_API_BASE_URL}/readyz" >/dev/null; then
     break
   fi
   sleep 1
 done
-curl -fsS "http://127.0.0.1:8080/readyz" >/dev/null
+curl -fsS "${ORDERS_API_BASE_URL}/readyz" >/dev/null
 
 echo "Creating an order"
 order_resp="$(
-  curl -fsS -X POST "http://127.0.0.1:8080/orders" \
+  curl -fsS -X POST "${ORDERS_API_BASE_URL}/orders" \
     -H 'content-type: application/json' \
     --data '{"customer_id":"cust_local","currency":"USD","total_minor":1000}'
 )"
@@ -159,13 +191,13 @@ echo "order_id=${order_id}"
 
 echo "Waiting for consumer projection"
 for _ in $(seq 1 60); do
-  o="$(curl -fsS "http://127.0.0.1:8080/orders/${order_id}")" || true
+  o="$(curl -fsS "${ORDERS_API_BASE_URL}/orders/${order_id}")" || true
   if jq -e '.projection.status == "consumed"' >/dev/null 2>&1 <<<"${o}"; then
     break
   fi
   sleep 1
 done
-curl -fsS "http://127.0.0.1:8080/orders/${order_id}" | jq -e '.projection.status == "consumed"' >/dev/null
+curl -fsS "${ORDERS_API_BASE_URL}/orders/${order_id}" | jq -e '.projection.status == "consumed"' >/dev/null
 
 echo "Running reconciliation-job"
 docker run --rm --network "${NETWORK}" \
@@ -173,6 +205,6 @@ docker run --rm --network "${NETWORK}" \
   "${RECONCILIATION_JOB_IMAGE}" >/dev/null
 
 echo "Fetching latest report"
-curl -fsS "http://127.0.0.1:8080/reports/latest" | jq -e '.ok == true' >/dev/null
+curl -fsS "${ORDERS_API_BASE_URL}/reports/latest" | jq -e '.ok == true' >/dev/null
 
 echo "Local smoke OK"
