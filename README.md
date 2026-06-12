@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> **This repository is archived** (2026-06). X07 has refocused on its core: a deterministic, certifiable execution substrate for agent-written software. This repo (the reference backend stack for deploying X07 workloads to x07 Sentinel on customer-managed Kubernetes) is no longer maintained — no feature work, no releases. The active surface is [`x07lang/x07`](https://github.com/x07lang/x07), `x07-mcp`, `x07-registry`, `x07-wasm-backend`, and `hardproof`. Rationale and roadmap: `x07/docs/roadmap.md`.
+
 # x07-sentinel-reference-stack
 
 Reference backend stack for deploying X07 workloads to x07 Sentinel on customer-managed Kubernetes.
